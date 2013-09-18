@@ -39,6 +39,8 @@ elsif ($uname =~ /Sun|sun|SUN|Sparc|sparc|SPARC/)
 else
 {
     print "SACLIB Warning: Could not determine processor type!\n";
+    print "Using x86_64";
+    $ptype = "x86_64";
 }
 
 ### Get OS type
@@ -62,6 +64,8 @@ elsif ($uname =~ /Darwin|darwin|DARWIN/)
 else
 {
     print "SACLIB Warning: Could not determine OS type!\n";
+    print "Using linux\n";
+    $ostype = "linux";
 }
 
 ### Call appropriate install script
