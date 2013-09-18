@@ -41,6 +41,10 @@ Step1: /* Open the text file containing the helps. */
 Step2: /* Read in the main help text and echo it. */
        c = getc(fp);
        while (c != '@') {
+         if (c < 0) {
+           fprintf(stderr,"Error HELPFRD: Invalid file %s\n",helppath);
+           exit(1);
+         }
          putchar(c);
          c = getc(fp); }
 
