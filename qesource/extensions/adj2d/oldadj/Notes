@@ -1,0 +1,23 @@
+An implementation of the old adjacency method
+
+Assume the same situation with the three adjacent stacks.  We'll determine 
+all adjacencies at once.
+
+c, c_l, c_r, P, A, K
+
+
+A. As helper material, we can get an isolating interval for each section
+   cell in the stack over c.  For each section cell we have an element
+   of the form (s,J,K), where s is the signiture of the level 2 projection
+   factors in the cell, and either:
+   1) K = 0 and J is a logarithmic standard interval containing the cell's
+      y coordinate and acting as an isolating interval for that value for
+      each projection factor which is zero in the cell.
+    
+   - or - 
+
+   2) J and K are standard logarithmic intervals contiaining no section 
+      cells in the stack, and j2 = k1 = the y coordinate of the cell.
+
+IPRRISD is messing up when faced with an input interval with an endpoint
+which is a root of the input polynomial.

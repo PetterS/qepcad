@@ -1,0 +1,8 @@
+#####################################################
+# QEPCAD rc file.
+# This file allows for some customization of QEPCADB.
+# Right now, the ability to give a path to Singular,
+# so that it gets used for some computer algebra
+# computations is the only feature.
+#####################################################
+#SINGULAR /usr/bin

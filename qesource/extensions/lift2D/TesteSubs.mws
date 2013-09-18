@@ -1,0 +1,53 @@
+{VERSION 4 0 "SUN SPARC SOLARIS" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Text Output" -1 2 1 
+{CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 0 0 0 0 0 1 3 0 3 0 }1 0 0 
+-1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Warning" 2 7 1 {CSTYLE "" -1 -1 "
+" 0 1 0 0 255 1 0 0 0 0 0 0 1 0 0 0 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }
+{PSTYLE "Maple Output" 0 11 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 }3 3 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "" 11 12 1 
+{CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }1 0 0 -1 -1 -1 0 
+0 0 0 0 0 -1 0 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 798 "###################
+#############################################\n# takes polynomial p in
+ the variable z and an irreducible \n# polynomial a and returns the hi
+ghest degree coefficient of p \n# that is not divisible by a.\n#######
+#########################################################\nlc :=\nproc
+(p,a,z)\n for i from degree(p,z) by -1 to 0 do                        \+
+\n   if not divide(coeff(p,z,i),a) then q := coeff(p,z,i); break; fi;
+\n od;\nq;\nend proc;\n\n#############################################
+###################\n# Takes a polynomial Dp and a polynomial a, and r
+eturns the\n# quotient Dp/a^k, where k is the highest power of a divid
+ing Dp.\n#############################################################
+###\nremovea :=\nproc(Dp,a)\n p := Dp;\n while divide(p,a) do p := sim
+plify(p / a); od;\np;\nend proc;" }}{PARA 7 "" 1 "" {TEXT -1 60 "Warni
+ng, `i` is implicitly declared local to procedure `lc`\n" }}{PARA 7 "
+" 1 "" {TEXT -1 60 "Warning, `q` is implicitly declared local to proce
+dure `lc`\n" }}{PARA 12 "" 1 "" {XPPMATH 20 "6#>%#lcGR6%%\"pG%\"aG%\"z
+G6$%\"iG%\"qG6\"F-C$?(8$-%'degreeG6$9$9&!\"\"\"\"!%%trueG@$4-%'divideG
+6$-%&coeffG6%F4F5F09%C$>8%F>[FDF-F-F-" }}{PARA 7 "" 1 "" {TEXT -1 65 "
+Warning, `p` is implicitly declared local to procedure `removea`\n" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%(removeaGR6$%#DpG%\"aG6#%\"pG6\"F+C%
+>8$9$?(F+\"\"\"F1F+-%'divideG6$F.9%>F.-%)simplifyG6#*&F.F1F5!\"\"F.F+F
++F+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 33 "Q := primpart(randpo
+ly([x,y]),y);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"QG,.*&%\"xG\"\"\"
+)%\"yG\"\"#F(\"#>*&\"#]F()F*\"\"$F(!\"\"*(\"#))F(F'F(F/F(F(*(\"#`F()F'
+\"\"%F(F*F(F1*(\"#&)F()F'F0F(F)F(F(*(\"#\\F()F'F+F(F/F(F(" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "Qb := subs(\{x = x + e*y\},Q);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#QbG,.*&,&%\"xG\"\"\"*&%\"eGF)%\"yGF
+)F)F))F,\"\"#F)\"#>*&\"#]F))F,\"\"$F)!\"\"*(\"#))F)F'F)F2F)F)*(\"#`F))
+F'\"\"%F)F,F)F4*(\"#&)F))F'F3F)F-F)F)*(\"#\\F))F'F.F)F2F)F)" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 27 "r1 := factor(discrim(Q,y));
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%#r1G,$*&,**$)%\"xG\"\"%\"\"\"\"&
+8w\"*&\"&c'=F,)F*\"\"$F,F,*&\"%qtF,)F*\"\"#F,!\"\"\"$h$F,F,)F*\"#5F,\"
+%4G" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 51 "r2 := factor(subs(\{
+e=0\},removea(discrim(Qb,y),e)));" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>
+%#r2G,$*(,**$)%\"xG\"\"%\"\"\"\"&8w\"*&\"&c'=F,)F*\"\"$F,F,*&\"%qtF,)F
+*\"\"#F,!\"\"\"$h$F,F,),(!#]F,*&\"#))F,F*F,F,*&\"#\\F,F4F,F,F5F,)F*\"#
+5F,\")'4\"G\\" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "primpart(x
+*y + x,y);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#,&%\"yG\"\"\"F%F%" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "6 0 0" 0 }
+{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

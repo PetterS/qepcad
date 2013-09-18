@@ -1,0 +1,76 @@
+
+##################################################################
+#
+# Makefile for adj2D.a 
+#
+# Updated: 3/4/97 -- Chris Brown
+#
+##################################################################
+
+#CCpp = /usr/local/gnu/egcs/bin/g++
+#CC = /usr/local/gnu/egcs/bin/gcc
+CCpp = CC
+CC = cc
+LIBNAME = adj2D.a
+LIBDIR = ${HOME}/usb_brown/CAD/2D_Adj/
+LIB = $(LIBDIR)$(LIBNAME)
+INCLUDES  = \
+                -I${saclib}/include \
+                -I${HOME}/usb_brown/qesource/source \
+                -I${HOME}/usb_brown/CAD/SFext \
+                -I${LIBDIR}
+
+SUBMAKE = ${MAKE} deb "INCLUDES = ${INCLUDES}" "LIB = ${LIB}" \
+          "LIBDIR = $(LIBDIR)" "CC = $(CC)" "CCpp = $(CCpp)"
+
+SUBMAKEII = ${MAKE} deb "INCLUDES = ${INCLUDES}" "LIB = ${LIB}" \
+          "LIBDIR = $(LIBDIR)" "CCpp = $(CCpp)"
+
+O_adj2D = \
+$(LIB)(testfunc.o) \
+$(LIB)(ADJ_2D.o) \
+$(LIB)(ADJ_2D_PART.o) \
+$(LIB)(AD2DC_CONS.o) \
+$(LIB)(AD2DS_CONS.o) \
+$(LIB)(LDCOEFMASK.o) \
+$(LIB)(VECTOR_LTEQ.o) \
+$(LIB)(VECTOR_SUM.o) \
+$(LIB)(VECTOR_DIF_S.o) \
+$(LIB)(VECTOR_SEMI_COMP.o) \
+$(LIB)(VECTOR_S_PROD.o) \
+$(LIB)(VECTOR_NEG.o) \
+$(LIB)(SUM_NORM_SP.o) \
+$(LIB)(CWD_VECTOR_Q.o) \
+$(LIB)(ZERO_VECTOR.o) \
+$(LIB)(EQUAL_ON_ONES.o) \
+$(LIB)(ADD_2_SOL.o) \
+$(LIB)(Mystery_f.o) \
+$(LIB)(ADJ_2D_CONSTRUCT.o) \
+$(LIB)(P1.o) \
+$(LIB)(P2.o) \
+$(LIB)(P3.o) \
+$(LIB)(P4.o) \
+$(LIB)(ADJ_2D1_COMPLETE.o) \
+$(LIB)(ADJ_2D1.o) \
+$(LIB)(ADJ_2D1_SIMPLE.o) \
+$(LIB)(ADJ_2D1P1.o) \
+$(LIB)(ADJ_2D1P2.o) \
+$(LIB)(ADJ_2D1P3.o)\
+$(LIB)(VECTOR_ODD_E.o)
+
+
+deb:		$(O_adj2D)
+		cd oldadj ; ${SUBMAKE}
+		cd sac_ext ; ${SUBMAKE}
+		cd truthbytop ; ${SUBMAKE}
+		ar rv $(LIB) *.o
+		ranlib $1
+		'rm' *.o
+
+
+$(O_adj2D):	$%
+		$(CC) -c -g $(INCLUDES) $?
+
+
+.c.a:;
+.c.o:;

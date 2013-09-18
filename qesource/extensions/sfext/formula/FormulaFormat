@@ -1,0 +1,18 @@
+For purposes of these algorithms, I intend to use the following formula
+format:
+
+Assume that P = (P_1,..,P_k) is the projection factor set.
+
+1)  ((i,j),op) is a formula, 1 <= i <= k, 1 <= j <= |P_i|, and op in
+               {LTOP,EQOP,GTOP,GEOP,NEOP,LEOP}.
+
+2)  (ANDOP,F_1,...,F_i) is a formula, where i > 1 and F_1,...,F_i are
+               formulas.
+
+3)  (OROP,F_1,...,F_i) is a formula, where i > 1 and F_1,...,F_i are
+               formulas.
+
+
+4)  (TRUE) and (FALSE) are both formulas.
+
+

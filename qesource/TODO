@@ -1,0 +1,13 @@
+* The way FILL_2D works in the rend extension is kind of messed up.
+  It takes its left and right boundaries for plotting points from 
+  the leftmost and rightmost cells that the view window overlaps.
+  If the view window happens to overlap just a tiny bit with a
+  *HUGE* open-interval cell, you end up plotting tons more
+  points than you need.  This should be fixed!
+
+* The rend extension needs to be reworked so that it uses floating
+  point computation!  
+
+* Clean-up interface commands ... many of these are simply
+  irrelevant. 
+

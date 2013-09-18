@@ -1,0 +1,53 @@
+/*
+This considers only a single stack and that from the left.
+This particular function deals non-asymptotes.
+ */
+
+#include "adj2D.h"
+
+Word ADJ_2D1P2(U,V,w_l,B)
+       Word U,V,w_l,B;
+{
+  Word Sol,S,v,J,w_v,u,w_u,I,Solp,t;
+
+Sol = NIL;
+S = NIL; 
+
+Step1: /* V empty. */
+  if (V == NIL) {
+    Solp = ADJ_2D1P3(U,w_l);
+    if (Solp != AD2D_FAIL)
+      Sol = CCONC(ADD_2_SOL(S,Solp));
+    goto Return; }
+
+Step2: /* */
+  ADV(V,&v,&V);
+  FIRST2(v,&J,&w_v);
+  if (! VECTOR_ODD_E(w_v)) {
+    Solp = ADJ_2D1P2(U,V,w_l,B);
+    if (Solp != AD2D_FAIL)
+      Sol = CCONC(ADD_2_SOL(S,Solp),Sol); }
+
+Step3: /* */
+  do {
+    do {
+      if (U == NIL) goto Return;
+      ADV(U,&u,&U);
+      FIRST2(u,&I,&w_u);
+      S = COMP(LIST2(I,J),S);
+      w_v = VECTOR_DIF_S(w_v,w_u,&f);
+      if (f == 0)
+	goto Step1;
+      if (f == 3)
+	goto Return;
+    } while (f == 2);
+    Solp = ADJ_2D1P2(U,V,w_l,B);
+    if (Solp != AD2D_FAIL)
+      Sol = CCONC(ADD_2_SOL(S,Solp),Sol);
+  }while(1);
+
+Return: /* Prepare to return. */
+  if (Sol == NIL)
+    Sol = ADJ2D_FAIL;
+  return Sol;
+}

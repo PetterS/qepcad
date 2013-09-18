@@ -1,0 +1,1100 @@
+@
+
+afupbri 83 abcd a
+@
+afupbri C
+
+If C = 'E', exact integer arithmetic is used for isolating the
+real roots of a basis of algebraic polynomials.
+
+If C = 'H', hardware interval arithmetic is instead used, with
+resort to the exact method only in those cases where hardware
+interval arithmetic fails.
+
+@
+
+
+alg-rr 29 abcd a
+@
+alg-rr C
+
+Choose an algorithm for algebraic polynomial real root isolation.
+C is one of the followings:
+  D    -- Use Descartes rule of sign.
+  C    -- Use Collins&Loos Algorithm.
+@
+
+adj-test-1 72 cde cp
+@
+Test the three adjacency methods.  (My temporary addition.)
+@
+
+approx-precision 46 abcde m
+@
+approx-precision N
+
+Approximate algeraic numbers to N decimal places.
+@
+
+assume 98 a pc
+@
+Add an assumption to the problem.  These will not be
+included in the solution formula.
+
+For example, with input  (E x)[ a x^2 + b x + c = 0],
+if we issue the command
+
+     assume [ a /= 0 ]
+
+we'll get the solution formula b^2 - 4 a c >= 0.  Without
+the assumption we'd get something like [a = 0 /\ b /= 0] \/ 
+[a /= 0 /\ 4 a c - b^2 <= 0] \/ [a = 0 /\ b = 0 /\ c = 0].
+@
+
+boundary2d 94 cde cp
+@
+boundary2d
+
+Changes truth values in a 2D CAD to the boundary of the set 
+defined by current truth values.
+@
+
+
+
+cell-choice-bound 8 abcd pc
+@
+cell-choice-bound CCC
+
+Set the cell choice strategy to CCC (for the cells of level >= f).
+CCC is a non-empty list of the followings:
+
+   TC  -- Trivial Conversion First
+   NC  -- Nontrivial Conversion First
+   
+   LD  -- Lesser  presumed Degree of the primitive sample point first
+   GD  -- Greater presumed Degree of the primitive sample point first
+   
+   SR  -- Sector first
+   SN  -- Section first
+   
+   HL  -- Higher Level first
+   LL  -- Lower  Level first
+   
+   GI  -- Greater Index first
+   LI  -- Lesser  Index first
+   
+For example, "cell-choice-bound (SR,LD,HL)".
+@
+
+
+cell-choice-free 44 abcd pc
+@
+cell-choice-free CCC   (Not supported for a while)
+
+Set the cell choice strategy to CCC (for the cells of level < f).
+CCC is a non-empty list of the followings:
+
+   TC  -- Trivial Conversion First
+   NC  -- Nontrivial Conversion First
+   
+   LD  -- Lesser  presumed Degree of the primitive sample point first
+   GD  -- Greater presumed Degree of the primitive sample point first
+   
+   SR  -- Sector first
+   SN  -- Section first
+   
+   HL  -- Higher Level first
+   LL  -- Lower  Level first
+   
+   GI  -- Greater Index first
+   LI  -- Lesser  Index first
+   
+For example, "cell-choice-free (SR,LD,HL)".
+@
+
+
+ch-pivot 56 bc pc
+@
+ch-pivot i,j
+
+Choose pivot.  Selects the equational constraint E_i,j to be the
+pivot constraint.  To see the i-th level equational constraints,
+issue the command "d-eqn-const i".
+@
+
+
+closure2d 79 cde cp
+@
+closure2d
+
+Changes truth values in a 2D CAD to the closure of the set 
+defined by current truth values.
+@
+
+continue 105 abcde pc
+@
+continue
+
+Stop the current QE problem and immediately start another,
+without exiting the system or reinitializing saclib or qepcad
+global structures.  This facilitates programmers that want to 
+use qepcad as a "QE server" and would rather communicate through
+pipes or sockets than by calling the C++ API.
+@
+
+
+d-2d-cad 71 de cp
+@
+d-2d-cad [ D ] | [ E x1 x2 y1 y2 Sx Sy e ]
+
+-------------------------------------
+Display 2D CAD
+-------------------------------------
+
+1. Calling the display program
+------------------------------
+d-2d-cad displays 2-dimensional CAD's.  If the CAD has larger dimension, 
+the induced CAD of 2-space is displayed.  d-2d-cad can be called either 
+with the argument "D", which causes the program to choose viewing
+parameters for you, or with the argument E and a list of specific values 
+for those parameters.  The parameters are:
+
+4 floating-point values: x1 x2 y1 y2, which represent the portion of
+the plane that's included in the plot --- namely [x1,x2] X [y1,y2].
+
+2 positive integer values: Sx Sy which give the dimensions (in pixels)
+of the plot window --- namely Sx X Sy.
+
+1 floating-point value: e, which gives the distance between successive
+x-values for which points in section cells are determined.
+
+Ex:
+
+d-2d-cad D
+
+  - or -
+
+d-2d-cad E -1.75 2.25 -2.0 1.0 400 300 0.125
+
+
+2. Interactive Commands
+------------------------------
+Once the d-2d-cad command has been given, a plot window appears with
+an initial plot based either on the explicitly given  parameter values
+or default parameter values computed by the program.  After the display 
+window appears, the current viewing window coordinates are given and 
+the user is prompted for a command.  The possible commands are printed
+out at the prompt.  They are the single characters:
+
+n -- which stands for "number of points".  The plotting program 
+     accurately places each single-point cell (i.e. section over a
+     section) in the plotting window.  Curves (sections over sectors)
+     connecting single-point cells are approximated by computing points
+     on the curve, and connecting them by line segments.  $n$ equally
+     spaced x-values are chosen, and points on curves are computed for
+     each of these x-values.  Increasing the "number of points" increases
+     the accuracy with which these curves are approximated.  Note that
+     the plot is topologically correct regardless of the "number of 
+     points".  After typing 'n' and pressing return, the plotting program
+     will prompt you for a number.
+
+c -- which stands for "viewing window coordinates".  The plot widow
+     shows a picture of some rectangle in 2-space that is referred to as
+     the "viewing window".  If this command is given, the program prompts
+     you to enter 4 floating-point numbers, separated only by whitespace.
+     These provide the coordinates of the new viewing window: 
+       xmin xmax ymin ymax, where xmin < xmax and ymin < ymax
+
+p -- which stands for "print postscript".  This command allows you to
+     make an eps file of the currect plot.  You will be prompted for a
+     file name, and for "accuracies" x-values and for y-values.  Since
+     postscript devices are typically capable of a much higher resolution
+     than computer monitors, it may be desirable to place points quite
+     accurately in the plot.  When you are promoted for an accuracy, the
+     current accuracy will be displayed.  If you request less accuracy it
+     is simply ignored.  More accuracy requires recomputation.  
+
+w -- which stands for "new plot window".  If this command is given, a new
+     plot window is created, which is exactly like the old plot window.
+     However, any subsequent interactive commands only affect the new plot
+     window.  The old plot window remains the same.
+
+q -- which stands for quit.  This command exits the plotting program and
+     returns to qepcad's interactive interface.
+
+
+
+@
+
+
+d-all-cells-in-subtree 48 de d
+@
+d-all-cells-in-subtree C 
+
+Displays the info about all the cells in the subtree
+rooted at the cell with index C.
+@
+
+d-assumptions 99 abcde d
+@
+d-assumptions
+
+Displays any assumptions entered with the "assume" command.
+@
+
+d-candidate-cells 17 d d
+@
+d-candidate-cells 
+
+Displays the list of the current candiate cells.
+@
+
+
+d-cell 19 de d
+@
+d-cell C
+
+Displays the info about the cell with the index C.
+@
+
+
+d-dstat 38 abcde d
+@
+d-dstat
+
+Displays the dissertation statisitcs.
+@
+
+
+d-eqn-const 55 bc d
+@
+d-eqn-const i
+
+Displays all i-th level equational constraints.
+@
+
+
+d-false-cells 64 bcde d
+@
+d-false-cells
+
+Displays all false cells using d-cell.
+@
+
+
+d-formula 10 abcde d
+@
+d-formula 
+
+Displays the input formula.
+@
+
+
+d-fpc-stat 35 e d
+@
+d-fpc-stat
+
+Displays the statistics on the final partial CAD.
+@
+
+
+d-input-polynomials 15 bcde d
+@
+d-input-polynomials
+
+Displays the normalized input polynomials.
+@
+
+
+d-level 18 bc d
+@
+d-level
+
+Displays the current level.
+@
+
+
+d-level-factors 61 bcde d
+@
+d-level-factors i
+
+Displays the level i projection factors.
+@
+
+
+d-level-polynomials 60 bcde d
+@
+d-level-polynomials i
+
+Displays the level i projection polynomials.
+@
+
+
+d-nqf-formula 14 bcde d
+@
+d-nqf-formula
+
+Displays the normalized quantifier-free part of the input formula.
+@
+
+
+d-number-solutions 84 de d
+@
+d-number solutions
+
+Prints out the number of solutions, if there are finitely
+many, and tells you if there are not finitely many.
+@
+
+
+d-pcad 16 de d
+@
+d-pcad C
+
+Display the partial CAD over the cell whose index is C.
+@
+
+
+d-proj-factors 22 bcde d
+@
+d-proj-factors
+
+Displays the projection factors.
+@
+
+
+d-proj-polynomials 23 bcde d
+@
+d-proj-polynomials
+
+Displays the projection polynomials.
+@
+
+
+d-pscad 49 de d
+@
+d-pscad C
+
+Display the partial CAD with signatures over the cell whose index is C.
+@
+
+
+d-qf-formula 13 abcde d
+@
+d-qf-formula 
+
+Dislays the quantifier-free part of the input formula.
+@
+
+
+d-quantifier-list 12 abcde d
+@
+d-quantifier-list
+
+Displays the quantifier list.
+@
+
+
+d-search-cells-cond 57 abcd d
+@
+d-search-cells-cond
+
+Displays whether true/false cells are searched for.
+@
+
+d-selected-cells-cond 43 abcd d
+@
+d-selected-cells-cond 
+
+Displays the current condition of desired cells
+and also indicates whether the condition is being used or not.
+@
+
+
+d-setting 20 abcde d
+@
+d-setting
+
+Displays the current setting of the program control variables.
+@
+
+d-solution-dimension 82 de d
+@
+d-solution-dimension
+
+Returns the dimension of the solution set.  If the solution
+set is empty, -1 is returned.
+@
+
+d-stack 69 de d
+@
+d-stack C
+
+Displays the substituted projection factor multiplicities
+of the sections in the stack over the cell with index C.
+@
+
+
+d-stat 28 abcde d
+@
+d-stat
+
+Displays the statistics gathered so far.
+@
+
+
+d-trace-alg 25 abcde d
+@
+d-trace-alg
+
+Displays the current setting of the algorithm traces options.
+@
+
+
+d-trace-data 34 abcde d
+@
+d-trace-data
+
+Displays the current setting of the data traces options.
+@
+
+
+d-true-cells 63 bcde d
+@
+d-true-cells
+
+Displays all true cells using d-cell.
+@
+
+
+d-variable-list 11 abcde d
+@
+d-variable-list
+
+Dispalys the variable list.
+@
+
+
+d-witness-list 103 e d
+@
+d-witness-list
+
+Displays all "witnesses" found.  A "witness" is a cell that
+is marked true by trial-evaluation in a totally existentially
+quantified problem --- i.e. a SAT problem.  Witness cells are
+displayed in order of decreasing dimension.  Because lifting
+stops after the first true cell is found, you are not 
+guaranteed that the highest-degree true cell is found.  Using
+the command "cell-choice-bound(SR)" may improve your odds of
+finding the highest dimension true cell first.  If you 
+absolutely need to know the dimension of the solution space,
+you should input the formula without quantifiers.
+@
+
+
+eqn-const 51 b pc
+@
+eqn-const i,j
+
+Sets the projection factor (i,j) to be an equational constraint.
+@
+
+
+eqn-const-list 54 b pc
+@
+eqn-const-list C
+
+Equational constraint list.  C is a list of the labels of the
+projection factors constituting one equational constraint.  For
+example, "eqn-const-list (A_3,2, A_3,3, A_3,7)" says that the
+polynomial A3,2 * A3,3 * A3,7 should be treated as an equational
+constraint.  This command may be repeated for each equational
+constraint but is available only if the command "prop-eqn-const" was
+issued.
+@
+
+
+eqn-const-poly 104 b pc
+@
+eqn-const-poly P
+
+Equational constraint polynomial.  
+
+P is an integer polynomial.  It must be equal to a projection
+factor up to sign.  This is more limited than "eqn-const-list",
+because it only allows irreducible equational constraints to
+be declared.  However, it has the advantage that constraints
+can be declared without knowing in advance the indices assigned
+to the projection factors.  This command may be repeated for each 
+irreducible equational constraint but is available only if the 
+command  "prop-eqn-const" was issued.  NOTE: The polynomial must
+be terminated by a period, and the prop-eqn-const command
+must have been issued.
+@
+
+
+exp1 95 abcde d
+@
+exp1
+
+This is whatever experimental stuff I stick in USERINT under #95.
+@
+
+exprop 85 cde cp
+@
+exprop N
+
+Existential propogation.  Marks level N cells TRUE if one of their
+children is marked TRUE and FALSE if all of their children are marked
+FALSE.  Note that "child" means direct child here, i.e. exactly one
+level higher.
+@
+
+
+
+
+fast-cell-choice 73 d pc
+@
+fast-cell-choice
+
+Sets cell choice during stack construction to be done lexicographically 
+by index.  Can be *much* faster than original default behaviour.
+(Note: This is now the default behaviour, but is turned off when
+cell-choice-bound or cell-choice-free are used.)
+@
+
+
+finish 21 abcde pc
+@
+finish
+
+Finish up the remaining computation without interaction.
+@
+
+
+full-cad 39 abcd pc
+@
+full-cad
+
+Build a full-cad of free variable space by turnning off trial 
+evaluation and propagation for cells in free-variable space.
+@
+
+
+go  40 abcde pc
+@
+go 
+
+Go to the beginning of the next phase.
+@
+
+
+help 1 abcde m
+@
+help
+  
+Displays all the currently active and inactive commands 
+supported by QEPCAD.
+@
+
+
+hoon-sol-ccad  70 e cp
+@
+hoon-sol-ccad
+ 
+Hoon's solution formula construction with the input dependence,
+using a coarse truth invariant CAD.
+@
+
+
+
+hoon-sol-ccad-nid  68 e cp
+@
+hoon-sol-ccad-nid
+ 
+Hoon's solution formula construction without the input dependence,
+using a coarse truth invariant CAD.
+@
+
+
+hoon-sol-nid  67 e cp
+@
+hoon-sol-nid
+ 
+Hoon's solution formula construction without the input dependence.
+@
+
+
+implicant-generation 9 abcde pc
+@
+implicant-generation C
+
+Set the implicant generation strategy to C.
+C is one of the followings:
+   r   -- Right to Left Order
+   l   -- Left to Right Order
+@
+
+
+ipfzt 45 ab m
+@
+ipfzt  C
+
+Integral polynomial finite zero test.
+If C is 'y', turn IPFZT on.
+Otherise,  turn it off.
+@
+
+
+limit-entry-db 6 abcde m
+@
+limit-entry-db NNN
+
+Only when the actual computation took longer than NNN miliseconds,
+its results are stored into a database.
+@
+
+
+manual-choose-cell 24 d pc
+@
+manual-choose-cell C
+
+Manually chooses a cell whose index is C and go one step.
+@
+
+
+measure-zero-error 97 a pc
+@
+measure-zero-error
+
+Allows error in the solution formula.  If there are k free
+variables, the error set (i.e. the points that are incorrectly
+classified by the solution formula) is a measure zero subset
+of R^k.  In return for losing "accuracy", qepcad is often able
+to substantially speed up computation.
+@
+
+negate-truth-values 100 de pc
+@
+negate-truth-values
+
+Changes the truth values of all TRUE cells to FALSE and all
+FALSE cells to TRUE.
+@
+
+p-2d-cad 96 de d
+@
+p-2d-cad xmin xmax ymin ymax step filename [optional flags]
+
+Produces an eps-file plot of the current CAD of 2-space from
+xmin to xmax along the x-axis and ymin to ymax along the y-
+axis.  The plot is written to the file "filename".  The "step"
+parameter determines how many vertical lines along the x-axis
+get used to produce the plot.  The program starts at xmin and
+moves right in intervals of "step".  Optional flags are:
+
+COLOR FLAG - default is to plot in color
+C - produces a plot in color
+c - produces a plot in black and white
+
+ZERO-DIMENSIONAL CELL FLAG - default is to show 0-dim cells
+Z - puts dots at each 0-dimensional cell
+z - does not put a dot at each 0-dimensional cell
+@
+
+
+passline 93 abcde d
+@
+passline
+
+This is very special purpose - for my convex hull stuff.  You call
+it and give a formula (hopefully describing a function), and that
+part of the function between the leftmost and rightmost intersections
+with true cells are marked true.
+@
+
+
+
+proj-operator 7 abc proj
+@
+proj-operator C
+
+C is a list of projection operators:
+   c   -- Collins' projection.
+   m   -- McCallum's projection.
+   h   -- Hong's projection.
+   l   -- Lazard's projection.
+   p   -- "Partial" reduced McCallum projection.  Adds no coeff but the
+          leading coeff if it can prove that we'll never have to lift
+          over a cell in which the polynomial vanishes identically.
+   x   -- McCallum's projection excluding leading coeff's.
+
+For example,  (c,m,h,l)  says that  Lazard's projection
+is used for projecting 5-variate polynomials,
+Hong's projection for 4-variate polynomials,
+McCallum's projection for 3-variate polynomials,
+and Collins' projection for 2-variate polynomials.
+@
+
+
+pdq  90 e pc
+@
+pdq
+ 
+Projection definability query.  Determines whether the CAD is
+projection definable.  If the CAD all cells in the CAD are
+marked TRUE or all cells are marked FALSE then this fact is
+reported instead.
+@
+
+
+prop-eqn-const 53 a pc
+@
+prop-eqn-const
+
+Propagate equational constraints.  This command can only be issued
+prior to normalization.
+@
+
+
+quit 3 abcde pc
+@
+quit
+  
+Quit the QEPCAD system right here.
+@
+
+
+rational-sample 31 abcd pc
+@
+rational-sample C
+
+Decide whether to speciially treat the stack construction
+over a cell with rational sample point.
+C is one of the of followings:
+  y -- Yes,
+  n -- No.
+@
+
+
+rem-pf 32 b proj
+@
+rem-pf i,j
+
+Remove a projection factor.
+The j-th i-level projection factor is removed.
+@
+
+
+rem-pj 33 c proj
+@
+rem-pj i,j
+
+Remove a projection polynomial.
+The j-th i-variate projection polynomial is removed.
+@
+
+
+res-alg 52 abc a
+@
+res-alg C
+
+Specify the algorithm to use for computing resultants and discriminants.
+
+C is one of the following:
+   B -- for the Bezout algorithm.
+   M -- for the modular algorithm.
+   S -- for the subresultant prs algorithm.
+@
+
+
+search-cells-cond 58 abcd pc
+@
+search-cells-cond T F
+
+Sets the search condition to T and F.
+
+T and F are one of 'y' and 'n'.
+
+If T = 'y' then the program stops as soon as a true cell has been found.
+If F = 'y' then the program stops as soon as a false cell has been found.
+@
+
+
+selected-cells-cond 41 abcd pc
+@
+selected-cells-cond E
+
+Sets the condition for desired cells to E
+and activates the condition to be used.
+
+E is a boolean expression of atomic conditions of the form:
+          obj  rel_op obj 
+where obj is either a non-negative integer or an attribute name
+and rel_op is a relational operator such as >  <  =  >=  <=  /=.
+
+Currently supported attributes are
+          degree    :   the presumed degree of the sample point
+          dimension :   the dimension of the cell
+          level     :   the level of the cell
+          parity    :   0 if the cell is a section, 1 if sector.
+          lcindex   :   the last component of the index of the cell.
+          index(i)  :   the i-th element of the index of the cell.
+   
+The following logical connectives are supported:
+    /\    \/   ~  ==>   <==   <==>
+
+The grammar is exactly the same as that of quantifier free formula.
+
+Example:
+  [ [ level <= 2  /\  degree = 1 ]  ==>  dimension = level ].
+@
+
+
+set-kth-section 81 cde cp
+@
+set-kth-section i j k op
+
+Sets truth values of cells according to operator op on and the kth 
+section of the jth i-level projection factor in signiture list.
+@
+
+
+set-truth-value 80 cde cp
+@
+set-truth-value
+ 
+Manually set the truth value of a cell. Press return and you'll be promted.
+@
+
+
+simple-cad-info  75 cde cp
+@
+simple-cad-info N
+ 
+Simple CAD information.  If N is zero, the usual CAD
+simplification is performed.  If it is 1, simplification
+is done solely by considering full dimensional cells.
+This option simply displays stats.
+@
+
+
+simplifier 47 abcd pc
+@
+simplifier C
+
+Choose a simplifier C during solution
+formula construction.
+
+  b :  Bottom-up (using internal routine).
+  t :  Top-down/Bottom-up mixed (using also external routine).
+@
+
+solution-extension  59 de pc
+@
+solution-extension x
+ 
+Use an alternative solution formula construction method.  The
+parameter x is allowed to be T,E,G, or I.  If x is T, then a
+formula in the usual language of Tarski formulas is produced.
+If x is E, a formula in the language of Extended Tarski formulas
+is produced.  If x is G, then a geometry-based formula is
+produced. Finally, if x is I, and "interactive mode" is entered 
+and the user is queried to determine how the formula is to be 
+constructed and displayed.
+@
+
+
+step 4 abcde pc
+@
+step NNN
+ 
+Step NNN times within phases.  
+@
+
+
+replace-with-simple  88 cde cp
+@
+replace-with-simple (f1,f2)
+ 
+Replace with simple CAD.  If f1 is 0 then the usual
+simplification is performed.  If f1 is 1 then simplification
+is performed based purely on the full dimensional cells. If
+f2 is 0 then qepcad's CAD is replaced by the simple CAD.  If
+f2 is 1, then qepcad's CAD is replaced only if the simple
+CAD is projection definable.
+@
+
+
+trace-alg 26 abcde d
+@
+trace-alg A; E; X.
+
+
+A is a (possibly empty) sequence of algorithm names,
+E is a (possibly empty) sequence of entry trace option characters   
+       (one of 'n', 'i'),
+X is a (possibly empty) sequence of exit  trace option characters
+       (one of 'n', 'i', 'o', 't'),
+
+where
+
+'n' stands for "display name",
+'i' stands for "display input",
+'o' stands for "display output",
+'t' stands for "display time".
+
+If A is empty, the specified trace option is applied 
+to all the tracable algorithms.
+@
+
+
+trace-data 27 abcde d
+@
+trace-data D; M
+
+D is a (possibly empty) sequence of data names,
+M is a trace option which is either 'y' or 'n'.
+
+If D is empty, the specified trace option is applied to all the
+tracable data.
+@
+
+
+triv-convert 30 abcd pc
+@
+triv-convert C
+
+Decide whether to specially treat the trivial case of the conversion
+of an extended ample point:
+C is one of the of followings:
+  y   -- Yes,
+  n   -- No.
+@
+
+
+tvc1d 76 cde cp
+@
+tvc1d N
+
+Truth value closure by topology 1D case.
+  N = 1 : means solution space closed.
+  N = 2 : means non-solution space closed.
+  N = 3 : means solution space is the closure of an open set.
+@
+
+
+tvc1ds 77 cde cp
+@
+tvc1ds N
+
+Truth value closure by topology 1D-stack case.
+  N = 1 : means solution space closed.
+  N = 2 : means non-solution space closed.
+  N = 3 : means solution space is the closure of an open set.
+@
+
+
+tvc2d 78 cde cp
+@
+tvc1ds
+
+Truth value closure 2D.  At this point this only assings truth
+values based on the assumption that the solution space is the
+closure of an open set.
+@
+
+tvff 86 cde cp
+@
+tvff F
+
+Truth value from formula.  Enter in a formula as a list.  This sets
+the truth values of the cells in the CAD according to the formula.
+@
+
+tv-lim-inf 101 cde cp
+@
+tv-lim-inf
+
+Truth value lim-inf. In a CAD of k-space (i.e. k free variables),
+sets the truth value of the cells in each stack in k-space to false
+for all cells, except the section representing the lim-inf in that
+stack, if it exists.
+@
+
+tv-lim-sup 102 cde cp
+@
+tv-lim-sup
+
+Truth value lim-sup. In a CAD of k-space (i.e. k free variables),
+sets the truth value of the cells in each stack in k-space to false
+for all cells, except the section representing the lim-sup in that
+stack, if it exists.
+@
+
+
+univprop 91 cde cp
+@
+univprop N
+
+Universal propogation.  Marks level N cells TRUE if all of their
+children are marked TRUE, and FALSE if any of their children are marked
+FALSE.  Note that "child" means direct child here, i.e. exactly one
+level higher.
+@
+
+
+use-db 5  abcde m
+@
+use-db C
+
+If C = y then, databases are used, 
+If C = n then, databases are NOT used.
+@
+
+
+use-selected-cells-cond 42 abcd m
+@
+use-selected-cells-cond C
+
+If C = 'y' then use the condition for desired cells.
+If C = 'n' then do not use the condition for desired cells.
+@
+
+verbose 74 abcde pc
+@
+verbose C
+
+If x is 'y' sets the verbose mode on, if x is 'n' turns
+the verbose mode off.
+@
+
+vertical-fill-2d 92 cde cp
+@
+vertical-fill-2d
+
+Changes the truth values in a 2D CAD to fill in cells
+between the bottom-most and top-most true cells in a
+stack as true.
+@
+
+
+whatis 2 abcde m
+@
+whatis CCCC
+
+Display the detail description of the command CCCC.
+@
+
+
+
+@@@
+
+pc @Program control:@
+d @Displaying information:@
+proj @Modifying the projection set:@
+a @Selecting algorithms:@
+m @Miscellaneous:@
+cp @Chris's Play:@
+
+@@@

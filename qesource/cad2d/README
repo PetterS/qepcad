@@ -1,0 +1,19 @@
+CAD2D - A program for constructing CADs of 2-dimensional space.
+
+0)  YOU MUST USE gmake TO COMPILE THIS PROGRAM!
+
+1)  This program is really just a modification of QEPCAD.  The
+    few files in the src directory are all that have been
+    changed.  The big difference is that the lifting is done,
+    when possible, with some floating-point routines in
+    extensions/lift2D.  This can save some serious time!
+
+2)  This is still very much a work in progress.  Right now
+    some very common (and in a sense generic) situations are
+    still handled exactly.  I'll try to improve this soon.
+
+3)  The plotting program may crap out when called, because
+    it can't really refine sample-point coordinates when
+    they haven't been computed via exact methods.  I haven't
+    taught the plotting routines to work in floating-point
+    yet!

@@ -1,0 +1,123 @@
+Coded up a PROJMCECmod to take care of equational constraints
+properly.  As part of this, I added a facility that, for lower
+level constraints, checks whether the sign-invariance of
+polynomial g in sections of the pivot constraint
+f1 f2 ... fs = 0 actually implies the order-invariance of
+g, in which case disc(g) is not needed.  Otherwise it might
+be necessary.  This test is conservative, not exact, and is
+based on groebner bases.
+
+Next step is to use a similar test to determine that we do
+indeed have order-invariance in some situations where a
+p.f. is nullified.   We will do this by collecting all the
+polynomials that are zero in the cell over which a p.f. is
+nullified, and then checking whether the p.f. is actually
+order-invariant in the variety defined by all those
+polynomials.  If there are any r-level equational
+constraints, they could be thrown in as well, of course.
+
+7/26/2006: Fixed bug in INITPCAD.  When the normalized formula
+           is identically TRUE or FALSE, INITPCAD needs to
+           create the root cell with that as its truth value,
+           not UNDET.  Also, if the assumptions are false, the
+           root cell's truth value should be NA.  Making this
+           fix required making INITPCAD a member function of
+           the QepcadCls class.
+
+11/01/2007:Added a new command: negate-truth-value.  It
+           negates the truth values of all cells currently
+           assigned a TRUE/FALSE truth value in the CAD.
+
+18/01/2007:Fixed gruesome bug in CAD simplification.  How
+           could I have missed this stuff!!! The error was
+           that PLCAD used LPFZC to figure out which projection
+           factors define boundary cells.  Big mistake!  I fixed
+           the unused function LPFOWCS (List of projection factors
+           of which C is a section) and used it instead.  Now 
+           PLCAD works like a champ!  You can't just use the
+           polys that are zero, because that includes those that
+           are nullified in the stack! [NOTE: also fixed SACLIB
+           bug.
+
+           The line:
+              a = (a1 != 0 ? LIST2(a0,a1) : a0);
+           needs to be added to then end of Step 4 of IEEELBRN.
+           Otherwise ISUM is passed an invalid integer.
+
+26/02/2007:Several Improvements:
+           1) Made input consistent in its use of C++ istreams.
+              In particular, I keep a stack of "input contexts",
+              each of which is an istream, so a callee of QEPCAD
+       	      can set up an input context (usually a string, I'd
+              guess) and use it to communicate with QEPCAD.
+           2) Integrated the readline library in tty mode.  In
+              particular, I created a nice simple istream that
+              uses readline in its underlying implementation.
+           3) Straightened out the architecture of CAServers, so
+              it's not too hard for people to set QEPCADB up to
+              use Singular to do some of its computations, and to
+              add GB computation --- which is key to QEPCADB's
+              system for using equational constraints in a way
+              that is correct, while strong enough to help
+              improve performance!
+
+12/03/2007:To get a system that compiles on Solaris, I have to do
+           some more work.  Here are the issues:
+           1) MAIN.c needed #include <signals.h>
+           2) readline/readline.h is located in /opt/sfw/include 
+              (at least on our solaris installation), so that needs
+              to be added to the includes path.
+           3) -lcurses is needed to link, because readline appears
+              to require some curses functions.
+           QEPCADB's, cad2d's and ADJ2D_plot's make files have all
+           been cleaned up using an "if" to decide about the linking
+           issues.
+
+13/03/2007:Added tv-lim-sup and tv-lim-inf ... which help in doing
+           optimization.
+
+24/10/2007:Added d-witness-list command, which displays a list of
+           cells that are witnesses when input is fully existentially
+           quantified --- i.e. for SAT problems.
+
+25/02/2008:Set up the killing of CAServer child processes on SIGINT.
+           Added the "continue" command.  This included adding the
+           global variable flag PCCONTINUE and adding a check for
+           PCCONTINUE after every call to USERINT.  Since PROJECT,
+           TICAD and QEPCAD all call USERINT, each call to these
+           functions also needed to be followed by a check.
+
+22/05/2008:Added explicit license file with Open-BSD style license.
+           This was done with the consent of Hoon Hong, George 
+           Collins, Bruno Buchberger, the director of RISC-Linz and
+           other parties with a potential interest.  Also added
+           a "make clean" target to remove all .o & .a files.
+
+qepcad 1.54 Thu, 15 Apr 2010
+Modified code to compile properly for 64-bit architectures.
+This relies on having at least saclib2.2.3 and tests the
+ __WORDSIZE macro to see whether its value is 32 or 64.
+
+qepcad 1.55 Tue, 08 Jun 2010
+Fixed some issues with rendering.  In particular, ADJ2D_plot 
+no longer relies on FIFOs, it is now simple pipes.
+
+qepcad 1.56 Wed, 02 Mar 2011
+Fixed bug that caused segfault when plotting partial CADs. 
+Fixed bug-esque problem in plot2d that maxed out the CPU 
+purposely ... GLUT's idle callback was happening about 
+1,000,000 times a second!  
+
+qepcad 1.59 Thu, 17 Mar 2011
+Cleaned and reorganized code dealing with intialization and 
+cleanup.  As part of that, Qepcad now redefines Saclib's FAIL 
+function so that child Singular processes are cleaned up 
+before exiting.
+
+qepcad 1.62 Tue, 10 May 2011
+A bug in introduced in version 3.82 of GNU make causes the 
+call to make in $qe/source to fail.  I filed a bug report 
+(bug report #33274) but, since that may never be fixed or at 
+any rate folks will be using 3.82 for a while, I modified 
+$qe/source/Makefile to work around the problem.  The makefile 
+is harder to mantain now, but at least it works. 

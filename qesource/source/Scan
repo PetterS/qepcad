@@ -1,0 +1,14 @@
+grep -i $1 adj/*.c
+grep -i $1 atrace/*.c
+grep -i $1 db/*.c
+grep -i $1 dtrace/*.c
+grep -i $1 io/*.c
+grep -i $1 main/*.c
+grep -i $1 normqff/*.c
+grep -i $1 proj/*.c
+grep -i $1 proj/*.c
+grep -i $1 solution/*.c
+grep -i $1 ticad/*.c
+grep -i $1 userint/*.c
+grep -i $1 saclib/*.c
+grep -i $1 util/*.c qepcad.h Makefile
