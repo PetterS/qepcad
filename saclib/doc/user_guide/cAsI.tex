@@ -1,0 +1,112 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Purpose}
+\label{c:A s:I ss:P}
+
+The \saclib\ arithmetic packages support computations with integers,
+modular numbers, and rational numbers whose sizes are only bounded by the
+amount of memory available.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Definitions of Terms}
+\label{c:A s:I ss:D}
+
+\begin{description}
+\item[integer]\index{integer}
+  Integers to be entered into \saclib\ must be of the following
+  {\em external form}.
+  \begin{itemize}
+  \item   $<$digit sequence$>$ or
+  \item  $+<$digit sequence$>$ or
+  \item  $-<$digit sequence$>$ ,
+  \end{itemize}
+  where $<$digit sequence$>$ designates any non-empty word over the alphabet
+  ${0,1,...,9}$.
+  Note that there is no blank between the optional sign and the
+  digit sequence; also note that leading zeros are allowed.
+  Inputs of this form are interpreted in the usual way as decimal numbers.
+  
+  \saclib\ outputs the {\em canonical external representation} of integers.
+  This is the integer in external form with both positive sign and leading zeros
+  digits supressed.
+
+  The {\em internal representation} \ttI\ of a number $n \in \BbbZ$ is defined as
+  follows:
+  \begin{itemize}
+  \item
+    If $-\BETA < n < \BETA$ then \ttI\ is the atom whose value is $n$.
+  \item
+    If $n \leq -\BETA$ or $\BETA \leq n$ then \ttI\ is the list
+    $(d_0,d_1,\ldots,d_k)$ with $d_k \neq 0$, $d_i \leq 0$ if $n < 0$ and
+    $0 \leq d_i$ if $0 < n$ for $0 \leq i \leq k$, and $n = \sum_{i=0}^k
+    d_i \BETA^i$.
+  \end{itemize}
+\item[digit, \BETA-digit, \BETA-integer]\index{digit}\index{digit!\BETA-}\index{integer!\BETA-}
+  An atom $n$ with $-\BETA < n < \BETA$.
+\item[\GAMMA-digit, \GAMMA-integer]\index{digit!\GAMMA-}\index{integer!\GAMMA-}
+  An atom $n$ with $-\gamma < n < \gamma$, where $\gamma$ is the largest
+  integer which fits into a \Word\footnote{
+    See Section \ref{c:NIW s:CGV} for details on the type \Word.
+  }. (E.g.\ if the size of a \Word\ is $32$ bits, then $\gamma =
+  2^{31}-1$.)
+\item[modular digit]\index{digit!modular}\index{modular!digit}
+  An atom $n$ with $0 \leq n < m$, where $m$ is a positive \BETA-digit.
+\item[modular integer]\index{integer!modular}\index{modular!integer}
+  An integer $n$ with $0 \leq n < m$, where $m$ is a positive integer.
+\item[symmetric modular]\index{modular!symmetric}
+  An integer $n$ with $-\left\lfloor\frac{m}{2}\right\rfloor+1 \leq n \leq
+  \left\lfloor\frac{m}{2}\right\rfloor$, where $m$ is a positive integer. In
+  the input/output specifications of the corresponding algorithms these are
+  denoted as elements of {\tt Z'\_M}, as opposed to the notation {\tt Z\_M},
+  which is used for (non-symmetric) modular integers.
+\item[rational number]\index{number!rational}\index{rational!number}
+  Rational numbers to be entered into \saclib\ must be of the following
+  {\em external form}.
+  \begin{itemize}
+  \item $<$integer $N>$ or
+  \item $<$integer $N>/<$integer $D>$ ,
+  \end{itemize}
+  where $<$integer $N>$ and $<$integer $D>$ are external forms of relatively prime
+  integers $N$ and $D$, such that $D > 0$.
+  Note that no blanks are permitted immediately before and after the $/$.
+  Inputs of this form are interpreted in the usual way as rational numbers
+  with numerator $N$ and denominator $D$.
+
+  \saclib\ outputs the {\em canonical external representation} of rational numbers
+  $r \in \BbbQ$.
+  If $r \in \BbbZ$, the canonical external representation of $r$ is the canonical
+  external representation of the integer $r$.
+  Otherwise there are unique integers $N$ and $D$ such that
+  $r = \frac{N}{D}$,
+  $D > 1$, and
+  $\gcd(N,D) = 1$.
+  The canonical external representation of $r$ in this case is the canonical external
+  representation of the integer $N$ followed by $/$ followed by the canonical
+  external representation of the integer $D$.
+
+  The {\em internal representation} \ttR\ of a number $r \in \BbbQ$ is defined as
+  follows:
+  \begin{itemize}
+  \item
+    If $r = 0$ then \ttR\ is the \BETA-digit 0.
+  \item
+    Otherwise, \ttR\ is the list $(\ttN,\ttD)$, where \ttN\ and \ttD\ are the
+    internal representations of the numerator and the denominator of $r$,
+    i.e.\ the unique integers $n$ and $d$ such that $r = \frac{n}{d}$, $d >
+    0$, and $\gcd(n,d) = 1$.
+  \end{itemize}
+\item[ceiling]\index{ceiling}
+  of a number $r$ is the smallest integer $n$ such that $r \leq n$.
+\item[floor]\index{floor}
+  of a number $r$ is the largest integer $n$ such that $n \leq r$.
+\item[positive]\index{positive}
+  $n$ is positive if $0 < n$.
+\item[non-negative]\index{non-negative}
+  $n$ is non-negative if $0 \leq n$.
+\item[non-positive]\index{non-positive}
+  $n$ is non-positive if $n \leq 0$.
+\item[negative]\index{negative}
+  $n$ is negative if $n < 0$.
+
+\end{description}
+

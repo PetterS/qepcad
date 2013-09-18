@@ -1,0 +1,120 @@
+Note that the functions whose names begin with MI are based upon modular
+integer arithmetic, while those beginning with MP and MUP are based upon modular
+digit arithmetic with a prime modulus\footnote{
+  See Section \ref{c:A s:MA} for details on modular digit and integer
+  arithmetic.
+}.
+
+
+\begin{description}
+\item[Basic arithmetic:] \ \
+  \begin{description}
+  \item[{\tt C <- MIPSUM(r,M,A,B) 
+}]\index{MIPSUM}  Modular integral polynomial sum.
+  \item[{\tt C <- MPSUM(r,m,A,B) 
+}]\index{MPSUM}  Modular polynomial sum.
+  \item[{\tt C <- MIPDIF(r,M,A,B) 
+}]\index{MIPDIF}  Modular integral polynomial difference.
+  \item[{\tt C <- MPDIF(r,m,A,B) 
+}]\index{MPDIF}  Modular polynomial difference.
+  \item[{\tt B <- MIPNEG(r,M,A) 
+}]\index{MIPNEG}  Modular integral polynomial negation.
+  \item[{\tt B <- MPNEG(r,m,A) 
+}]\index{MPNEG}  Modular polynomial negative.
+  \item[{\tt C <- MIPPR(r,M,A,B) 
+}]\index{MIPPR}  Modular integral polynomial product.
+  \item[{\tt C <- MPPROD(r,m,A,B) 
+}]\index{MPPROD}  Modular polynomial product.
+  \item[{\tt B <- MPUP(r,m,c,A) 
+}]\index{MPUP}  Modular polynomial univariate product.
+  \item[{\tt C <- MPMDP(r,p,a,B) 
+}]\index{MPMDP}  Modular polynomial modular digit product.
+  \item[{\tt C <- MIPIPR(r,M,D,A,B) 
+}]\index{MIPIPR}  Modular integral polynomial mod ideal product.
+  \item[{\tt  MIUPQR(M,A,B; Q,R) 
+}]\index{MIUPQR}  Modular integral univariate polynomial quotient and
+  remainder.
+  \item[{\tt  MPQR(r,p,A,B; Q,R) 
+}]\index{MPQR}  Modular polynomial quotient and remainder.
+  \item[{\tt C <- MPQ(r,p,A,B) 
+}]\index{MPQ}  Modular polynomial quotient.
+  \item[{\tt C <- MPUQ(r,p,A,b) 
+}]\index{MPUQ}  Modular polynomial univariate quotient.
+  \item[{\tt C <- MPPSR(r,p,A,B) 
+}]\index{MPPSR}  Modular polynomial pseudo-remainder.
+  \item[{\tt  MMPIQR(r,M,D,A,B; Q,R) 
+}]\index{MMPIQR}  Modular monic polynomial mod ideal quotient and remainder.
+  \item[{\tt B <- MPEXP(r,m,A,n) 
+}]\index{MPEXP}  Modular polynomial exponentiation.
+  \end{description}
+
+\item[Differentiation and Integration:] \ \
+  \begin{description}
+  \item[{\tt B <- MUPDER(m,A) 
+}]\index{MUPDER}  Modular univariate polynomial derivative.
+  \end{description}
+
+\item[Contents and Primitive Parts:] \ \
+  \begin{description}
+  \item[{\tt  MPUCPP(r,p,A; a,Ab) 
+}]\index{MPUCPP}  Modular polynomial univariate content and primitive part.
+  \item[{\tt c <- MPUC(r,p,A) 
+}]\index{MPUC}  Modular polynomial univariate content.
+  \item[{\tt Ab <- MPUPP(r,p,A) 
+}]\index{MPUPP}  Modular polynomial univariate primitive part.
+  \item[{\tt d <- MPUCS(r,p,A,c) 
+}]\index{MPUCS}  Modular polynomial univariate content subroutine.
+  \end{description}
+
+\item[Evaluation:] \ \
+  \begin{description}
+  \item[{\tt B <- MPEMV(r,m,A,a) 
+}]\index{MPEMV}  Modular polynomial evaluation of main variable.
+  \item[{\tt B <- MPEVAL(r,m,A,i,a) 
+}]\index{MPEVAL}  Modular polynomial evaluation.
+  \end{description}
+
+\item[Transformation:] \ \
+  \begin{description}
+  \item[{\tt Ap <- MPMON(r,p,A) 
+}]\index{MPMON}  Modular polynomial monic. {\em Computes the monic
+  polynomial similar to a given modular polynomial.}
+  \end{description}
+
+\item[Chinese Remainder Algorithm:] \ \
+  \begin{description}
+  \item[{\tt As <- MPINT(p,B,b,bp,r,A,A1) 
+}]\index{MPINT}  Modular polynomial interpolation.
+  \item[{\tt B <- MIPHOM(r,M,A) 
+}]\index{MIPHOM}  Modular integral polynomial homomorphism. {\em Computes the
+  homomorphism from $\BbbZ[x_1,\ldots,x_r]$ to $\BbbZ_m[x_1,\ldots,x_r]$.}
+  \item[{\tt B <- MPHOM(r,m,A) 
+}]\index{MPHOM}  Modular polynomial homomorphism.
+  \end{description}
+
+\item[Squarefree Factorization:] \ \
+  \begin{description}
+  \item[{\tt L <- MUPSFF(p,A) 
+}]\index{MUPSFF}  Modular univariate polynomial squarefree factorization.
+  \end{description}
+
+\item[Random Polynomial Generation:] \ \
+  \begin{description}
+  \item[{\tt A <- MIPRAN(r,M,q,N) 
+}]\index{MIPRAN}  Modular integral polynomial, random.
+  \item[{\tt A <- MPRAN(r,m,q,N) 
+}]\index{MPRAN}  Modular polynomial, random.
+  \item[{\tt A <- MUPRAN(p,n) 
+}]\index{MUPRAN}  Modular univariate polynomial, random.
+  \end{description}
+
+\item[Conversion:] \ \
+  \begin{description}
+  \item[{\tt B <- MIPFSM(r,M,A) 
+}]\index{MIPFSM}  Modular integral polynomial from symmetric modular.
+  \item[{\tt B <- SMFMIP(r,M,A) 
+}]\index{SMFMIP}  Symmetric modular from modular integral polynomial.
+  \end{description}
+
+\end{description}
+

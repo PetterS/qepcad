@@ -1,0 +1,490 @@
+\section{Mathematical Preliminaries}
+
+An algebraic number is a number that satisfies a rational polynomial
+equation.  An algebraic number $\alpha$ is represented by an irreducible
+polynomial, $A(x)$, such that $A(\alpha) = 0$.
+A real algebraic number,
+is a real number that is also an algebraic number, and it is represented
+by an irreducible polynomial and an isolating interval to distinguish
+it from its real conjugates.
+The collection of algebraic numbers forms a field
+containing the real algebraic numbers as a subfield.
+Since $A(x)$ is irreducible, the extension field $Q(\alpha)$ obtained 
+by adjoining $\alpha$ to the rational number field is isomorphic to
+$Q[x]/(A(x))$ and elements of $Q(\alpha)$ are represented by polynomials
+whose degrees are less than the degree of $A(x)$.  If $\alpha$ is real then
+$Q(\alpha)$ is an ordered field and sign computations can be performed
+using the isolating interval for $\alpha$.
+
+\section{Purpose}
+
+The \saclib\ algebraic number arithmetic package provides algorithms
+for performing arithmetic with algebraic numbers, with
+elements of an algebraic
+number field, and with polynomials whose coefficients belong to an algebraic 
+number field.  There are algorithms for computing the gcd of two
+polynomials with algebraic number coefficients and for factoring a polynomial
+with algebraic number coefficients.
+Algorithms are also provided for performing sign computations 
+in a real algebraic number field and for isolating the real roots of a 
+polynomial with real algebraic number coefficients. 
+
+\section{Methods and Algorithms}
+Algorithms for performing algebraic number arithmetic use
+resultant computations.
+Let $A(x) = \sum_{i=0}^ma_ix^i = a_m \prod_{i=1}^m(x-\alpha_i)$
+be the integral minimal polynomial for $\alpha = \alpha_1$ and 
+let $B(y) = \sum_{j=0}^n b_jy^j = b_n \prod_{j=1}^n (y - \beta_j)$ 
+be the integral minimal
+polynomial for $\beta = \beta_1$.  The minimal polynomial for
+$\alpha + \beta$ is a factor of $\res_x(A(x),B(y-x))$ and the minimal polynomial
+for $\alpha \cdot \beta$ is a factor of $\res_x(A(x),x^nB(y/x))$.  If
+$\alpha$ and $\beta$ are real algebraic numbers, the particular factor
+can be found by using the isolating intervals for $\alpha$ and $\beta$.  The
+algorithms {\tt ANSUM} and {\tt ANPROD} use these ideas to perform addition
+and multiplication in the field of real algebraic numbers.  Subtraction
+and division can be performed by negating and adding and inverting and
+multiplying respectively.  The minimal polynomial of
+$-\alpha$ is $A(-x)$ and the minimal polynomial of $1/\alpha$ is
+$x^mA(1/x)$.  These operations are provided by the algorithms 
+{\tt IUPNT} and {\tt PRT} in the polynomial arithmetic system.
+
+Let $Q(\alpha)$ be the extension field of the rationals obtained by adjoining
+the algebraic number $\alpha$.  Arithmetic in $Q(\alpha)$ is performed 
+using the isomorphism $Q(\alpha) \cong Q[x]/(A(x))$.  Elements of $Q(\alpha)$
+are represented by polynomials whose degrees are less than the degree of the
+minimal polynomial of
+$\alpha$ and  addition and multiplication
+are performed using polynomial multiplication and addition
+modulo the minimal polynomial.  Inverses of elements of $Q(\alpha)$ are
+calculated by using a resultant computation.  If $B(x)$ is the polynomial
+representing $\beta = B(\alpha)$ and $R = \res(A(x),B(x))$,
+then there exist polynomials $S(x)$ and $T(x)$ such that
+$A(x)S(x) + B(x)T(x) = R$.  Since the minimal polynomial $A(x)$ is irreducible,
+the resultant does not equal zero and $B(\alpha)^{-1} = T(\alpha)/R$.
+The algorithm {\tt AFINV} uses this approach to compute inverses of elements
+of $Q(\alpha)$.
+
+If $\alpha \in I$ is a real algebraic number, then the field $Q(\alpha)$
+can be ordered.  The algorithm {\tt AFSIGN} computes the sign of
+an element of $Q(\alpha)$.  
+The sign of $\beta = B(\alpha)$ is determined by refining the isolating
+interval, $I$, for $\alpha$ until it can be shown that $B(y)$ does not
+contain any roots in $I$.  If there are no roots of $B(y)$ in the isolating
+interval $I$, then the sign of $B(\alpha)$ is equal to the sign of $B(y)$ for
+any $y \in I$.  The algorithm {\tt AFSIGN} uses this approach
+and Descartes' rule of signs to determine how much to refine $I$.
+
+\saclib\ provides algorithms for computing with polynomials whose
+coefficients belong to an algebraic field $Q(\alpha)$.  Besides basic
+arithmetic, there are algorithms for polynomial gcd computation,
+factorization, and real root isolation.  The algorithm
+{\tt AFUPGC} uses the monic PRS to compute the gcd of two univariate
+polynomials.
+The algorithms {\tt AFUPGS}, {\tt AFUPSF}, and {\tt AFUPSB}
+use this algorithm to compute greatest squarefree divisors, squarefree
+factorization, and a squarefree basis respectively.  Algorithms are also
+provided to isolate the real roots of a polynomial whose coefficients
+belong to a real algebraic number field.  Both the Collins-Loos algorithm
+({\tt AFUPRICL})
+and the coefficient sign variation method ({\tt AFUPRICS}) are provided.
+
+An algebraic number may arise as a solution of a polynomial with
+algebraic number coefficients.  The norm can be used to find a defining
+polynomial with integral coefficients.  Let $B(\alpha,y)$ be a polynomial
+with coefficients in $Q(\alpha)$.  The norm of $B(\alpha,y)$ is the rational
+polynomial $\norm(B\alpha,y)) = \prod_{i=1}^m B(\alpha_i,y)$.  
+The norm can be computed
+with the resultant computation $res_x(A(x),B(x,y))$ which produces a
+polynomial similar to the norm.  The algorithm
+{\tt AFPNORM} uses this approach to compute the norm.  The algorithm
+{\tt AFPNIP} returns the list of irreducible factors of the norm.
+If $\alpha$ is
+a real algebraic number, the isolating interval for $\alpha$ can be used
+to select the appropriate irreducible factor of the norm.  This is done
+by the algorithm {\tt AFUPMPR}.
+
+As a special
+case, the minimal polynomial of $\beta = B(\alpha)$ can be computed by
+calculating the norm of the linear polynomial $y-B(\alpha)$.  Since 
+$y-B(\alpha)$ is irreducible 
+the norm is a power of an irreducible polynomial, and the minimal
+polynomial can be obtained with a greatest squarefree divisor computation.
+The algorithm {\tt ANFAF} uses this approach to convert the representation
+of an element of an algebraic number field to its representation as an
+algebraic number.
+
+The algorithm {\tt AFUPFAC} uses the norm to factor a squarefree polynomial
+whose coefficients belong to an algebraic number field.  Let 
+$B^*(y) = \norm(B(\alpha,y))$, and let $\prod_{i=1}^t B^*_i(y)$ be the
+irreducible factorization of $B^*(y)$.
+Provided the norm
+is squarefree the irreducible factorization of $B(\alpha,y) =
+\prod_{i=1}^t\gcd(B(\alpha,y),B^*_i(y))$.  If $B^*(y)$ is not squarefree,
+a translation, $B(\alpha,y-s\alpha)$, is computed whose norm is squarefree.
+The factorization of $B(\alpha,y)$ can be recovered from the factorization
+of the translated polynomial.
+
+\saclib\ also provides an algorithm for computing a primitive element
+of a multiple extension field.  Let $\alpha$ and $\beta$ be algebraic
+numbers and consider the multiple extension field $Q(\alpha,\beta)$.
+The primitive element theorem states that there exists a primitive element
+$\gamma$ such that $Q(\alpha,\beta) = Q(\gamma)$.  The algorithms
+{\tt ANPEDE} and {\tt ANREPE} provide a constructive version of this theorem.
+
+References:
+%\begin{thebibliography}{99}
+%
+%\bibitem{JJ}
+R. G. K. Loos: {\it Computing in Algebraic Extensions},
+In ``Computer Algebra, Symbolic and Algebraic Computation'',
+pages 173--187.
+
+Jeremy R.\ Johnson:
+{\it Algorithms for polynomial real root isolation}.
+Technical Research Report OSU-CISRC-8/91-TR21, 1991.
+The Ohio State University,
+2036 Neil Avenue Mall,
+Columbus, Ohio 43210,
+Phone: 614-292-5813.
+
+Barry Trager: {\it Algebraic Factoring and Rational Function Integration},
+In ``SYMSAC '76: Proceedings of the 1976 ACM Symposium on Symbolic and
+Algebraic Computation'', pages 219--226.
+
+%
+%\end{thebibliography}
+
+\section{Definitions of Terms}
+
+\begin{description}
+\item[algebraic number]\index{number!algebraic}\index{algebraic!number}
+  A solution of a rational polynomial equation.
+An algebraic number $\alpha$ is represented either by a rational
+minimal polynomial or an integral minimal polynomial.
+
+\item[algebraic integer]\index{integer!algebraic}\index{algebraic!integer}
+  A solution of a monic integral polynomial equation.
+
+\item[real algebraic number]\index{number!real
+algebraic}\index{algebraic!number, real}
+  A real number that is also an algebraic
+number.  A real algebraic number is represented by an
+integral minimal polynomial and an acceptable isolating interval.
+
+\item[rational minimal polynomial]\index{polynomial!rational minimal}
+  The rational minimal polynomial for
+an algebraic number $\alpha$ is the unique monic, irreducible rational
+polynomial $A(x)$ such that $A(\alpha) = 0$.
+
+\item[integral minimal polynomial]\index{polynomial!integral minimal}
+  The integral minimal polynomial for
+an algebraic number $\alpha$ is the unique, positive, primitive, integral
+polynomial $A(x)$ such that $A(\alpha) = 0$.
+
+\item[acceptable isolating interval]\index{interval!isolating!acceptable}
+ an isolating interval, $I$, for
+a real algebraic number $\alpha$,
+where $I$ is either a left-open and right-closed
+standard interval or a one-point interval.  
+
+\item[algebraic field element]\index{algebraic!field element}
+  an element of the extension field $Q(\alpha)$.
+$\beta \in Q(\alpha)$ is represented by a list $(r,B(y))$, where
+$\beta = rB(\alpha)$ and $r$ is a rational number and $B(y)$ is a primitive
+integral polynomial whose degree is less than the degree of the minimal
+polynomial of $\alpha$.
+\end{description}
+
+
+\section{Representation}
+
+There are several different representations for elements of $Q(\alpha)$.
+Let $A(x)$ be the integral minimal polynomial for an algebraic number
+$\alpha$ with $\deg(A(x)) = m$.  
+An element $\beta$ of $Q(\alpha)$ can be uniquely represented by:
+\begin{enumerate}
+\item A rational polynomial, $B(x)$, whose degree is less than $m$ and such
+that $B(\alpha) = \beta$.  
+\item A pair $(r,\overline{B}(x))$, where $r$ is a rational number, 
+$\overline{B}(x)$ is a positive primitive integral polynomial, 
+and $\beta = B(\alpha) = r \overline{B}(\alpha)$. 
+\end{enumerate}
+The default representation is (2).  The algorithm {\tt AFCR} converts 
+representation (1) to (2), and the algorithm {\tt AFICR} converts 
+representation (2) to (1).
+
+Let $Z[\alpha]$ denote the $Z$-module with basis
+$1,\alpha,\alpha^2,\ldots,\alpha^{m-1}$.  Elements of $Z[\alpha]$ are
+represented by integral polynomials whose degree is less than $m$.
+If $\alpha$ is an algebraic integer, then $Z[\alpha]$ is a ring.
+If an algorithm does not require division or reduction by the minimal 
+polynomial, operations in $Q(\alpha)$ can be replaced with operations in
+$Z[\alpha]$.  When this is possible, efficiency is gained by using the
+integral representation $Z[\alpha]$.  An important example is polynomial
+real root isolation.  Let $P(\alpha,y)$ be a polynomial in $Q(\alpha)[y]$ and
+let $d$ be the greatest common divisor of the denominators of the coefficients
+of $P(\alpha,y)$.  Then $dP(\alpha,y)$ is in $Z[\alpha,y]$ and has the 
+same roots as $P(\alpha,y)$.
+Moreover, the coefficient sign variation method for real root isolation
+only uses operations which can be performed in $Z[\alpha]$.
+
+The name of algorithms which operate in $Z[\alpha]$ begin with the letters
+{\tt AM}.
+The algorithm ${\tt AMPSAFP}(r,P)$ computes a polynomial 
+$\overline{P} \in Z[\alpha,X1,\ldots,Xr]$ which is similar to the polynomial
+$P \in Q(\alpha)[X1,\ldots,Xr]$.  The algorithm {\tt AIFAN} computes an
+algebraic integer $\overline{\alpha}$ such that 
+$Q(\alpha) = Q(\overline{\alpha})$.
+
+\section{Functions}
+
+\begin{description}
+\item[Algebraic Number Arithmetic] \ \
+\begin{description}
+  \item[{\tt  ANIIPE(M,I,N,J,t,L; S,k,K) 
+}]\index{ANIIPE} Algebraic number isolating interval for a primitive element
+  \item[{\tt  ANPROD(A,I,B,J; C,K) 
+}]\index{ANPROD} Algebraic number product
+  \item[{\tt  ANSUM(A,I,B,J;C,K) 
+}]\index{ANSUM} Algebraic number sum
+  \item[{\tt  ANPEDE(A,B;C,t) 
+}]\index{ANPEDE} Algebraic number primitive element for a double extension
+  \item[{\tt b <- ANREPE(M,A,B,t) 
+}]\index{ANREPE} Algebraic number represent element of a primitive extension
+\end{description}
+
+\item[Algebraic Field Arithmetic] \ \
+
+\begin{description}
+  \item[{\tt c <- AFDIF(a,b) 
+}]\index{AFDIF} Algebraic number field element difference
+  \item[{\tt b <- AFINV(M,a) 
+}]\index{AFINV} Algebraic number field element inverse
+  \item[{\tt b <- AFNEG(a) 
+}]\index{AFNEG} Algebraic number field negative
+  \item[{\tt c <- AFPROD(P,a,b) 
+}]\index{AFPROD} Algebraic number field element product
+  \item[{\tt c <- AFQ(M,a,b) 
+}]\index{AFQ} Algebraic number field quotient
+  \item[{\tt c <- AFSUM(a,b) 
+}]\index{AFSUM} Algebraic number field element sum
+\end{description}
+
+\item[Real Algebraic Number Sign and Order Computation] \ \
+\begin{description}
+  \item[{\tt t <- AFCOMP(M,I,a,b) 
+}]\index{AFCOMP} Algebraic number field comparison
+  \item[{\tt s <- AFSIGN(M,I,a) 
+}]\index{AFSIGN} Algebraic number field sign
+  \item[{\tt s <- AMSIGN(M,I,a) 
+}]\index{AMSIGN} Algebraic module sign
+  \item[{\tt AMSIGNIR(M,I,a;s,Is) 
+}]\index{AMSIGNIR} Algebraic module sign, interval refinement
+\end{description}
+
+\item[Algebraic Polynomial Arithmetic] \ \
+\begin{description}
+  \item[{\tt C <- AFPAFP(r,M,a,B) 
+}]\index{AFPAFP} Algebraic number field polynomial algebraic number 
+              field element product
+  \item[{\tt C <- AFPAFQ(r,M,A,b) 
+}]\index{AFPAFQ} Algebraic number field polynomial algebraic number field 
+              element quotient
+  \item[{\tt C <- AFPDIF(r,A,B) 
+}]\index{AFPDIF} Algebraic number field polynomial difference
+  \item[{\tt Ap <- AFPMON(r,M,A) 
+}]\index{AFPMON} Algebraic number field polynomial monic
+  \item[{\tt B <- AFPNEG(r,A) 
+}]\index{AFPNEG} Algebraic number field polynomial negative
+  \item[{\tt C <- AFPPR(r,M,A,B) 
+}]\index{AFPPR} Algebraic number field polynomial product
+  \item[{\tt  AFPQR(r,M,A,B; Q,R) 
+}]\index{AFPQR} Algebraic number field polynomial quotient and remainder
+  \item[{\tt C <- AFPSUM(r,A,B) 
+}]\index{AFPSUM} Algebraic number field polynomial sum
+\end{description}
+
+\item[Algebraic Polynomial Differentiation and Integration] \ \
+\begin{description}
+  \item[{\tt B <- AFPDMV(r,M,A) 
+}]\index{AFPDMV} Algebraic number field polynomial derivative, main variable
+  \item[{\tt B <- AFPINT(r,M,A,b) 
+}]\index{AFPINT} Algebraic number field polynomial integration
+  \item[{\tt B <- AMPDMV(r,M,A) 
+}]\index{AFPDMV} Algebraic module polynomial derivative, main variable
+\end{description}
+
+\item[Algebraic Polynomial Factorization] \ \
+\begin{description}
+  \item[{\tt F <- AFUPFAC(M,B) 
+}]\index{AFUPFAC} Algebraic number field univariate polynomial factorization 
+  \item[{\tt L <- AFUPSF(M,A) 
+}]\index{AFUPSF} Algebraic number field univariate polynomial squarefree 
+              factorization
+\end{description}
+
+\item[Algebraic Polynomial Greatest Common Divisors] \ \
+\begin{description}
+  \item[{\tt  AFUPGC(M,A,B; C,Ab,Bb) 
+}]\index{AFUPGC} Algebraic number field univariate polynomial greatest 
+              common divisor and cofactors
+  \item[{\tt B <- AFUPGS(M,A) 
+}]\index{AFUPGS} Algebraic number field polynomial greatest squarefree divisor
+\end{description}
+
+\item[Algebraic Polynomial Norm Computation] \ \
+\begin{description}
+  \item[{\tt L <- AFPNIP(M,A) 
+}]\index{AFPNIP} Algebraic number field polynomial normalize to integral 
+              polynomial
+  \item[{\tt Bs <- AFPNORM(r,M,B) 
+}]\index{AFPNORM} Algebraic number field polynomial norm.
+\end{description}
+
+\item[Algebraic Polynomial Substitution and Evaluation] \ \
+\begin{description}
+  \item[{\tt C <- AFPCMV(r,M,A,B) 
+}]\index{AFPCMV} Algebraic number field polynomial composition in main variable
+  \item[{\tt B <- AFPEMV(r,M,A,a) 
+}]\index{AFPEMV} Algebraic number field polynomial evaluation of main variable
+  \item[{\tt B <- AFPEV(r,M,A,i,a) 
+}]\index{AFPEV} Algebraic number field polynomial evaluation
+  \item[{\tt B <- AFPME(r,M,A,b) 
+}]\index{AFPME} Algebraic number field polynomial multiple evaluation
+  \item[{\tt s <- AFUPSR(M,I,A,c) 
+}]\index{AFUPSR} Algebraic number field univariate polynomial, sign at a 
+                rational point
+  \item[{\tt s <- AMUPBES(M,I,A,c)
+}]\index{AMUPBES} Algebraic module univariate polynomial, binary rational
+                  evaluation of sign.
+  \item[{\tt s <- AMUPSR(M,I,A,c)
+}]\index{AMUPSR} Algebraic module univariate polynomial, sign at a rational 
+                 point
+  \item[{\tt B <- IPAFME(r,M,A,b) 
+}]\index{IPAFME} Integral polynomial, algebraic number field multiple evaluation
+  \item[{\tt B <- RPAFME(r,M,A,b) 
+}]\index{RPAFME} Rational polynomial, algebraic number field multiple evaluation
+\end{description}
+
+\item[Algebraic Polynomial Transformations] \ \
+\begin{description}
+  \item[{\tt B <- AMUPBHT(A,k)
+}]\index{AMUPBHT} Algebraic module univariate polynomial binary homothetic 
+                  transformation
+  \item[{\tt B <- AMUPNT(A)
+}]\index{AMUPNT} Algebraic module univariate polynomial negative transformation
+  \item[{\tt B <- AMUPTR(A,h)
+}]\index{AMUPTR} Algebraic module univariate polynomial translation
+  \item[{\tt B <- AMUPTR1(A)
+}]\index{AMUPTR1} Algebraic module univariate polynomial translation by 1
+\end{description}
+
+\item[Real Algebraic Polynomial Real Root Isolation] \ \
+\begin{description}
+  \item[{\tt N <- AFUPBRI(M,I,L) 
+}]\index{AFUPBRI} Algebraic number field univariate polynomial basis 
+                 real root isolation
+  \item[{\tt  AFUPMPR(M,I,B,J,L; Js,j) 
+}]\index{AFUPMPR} Algebraic number field polynomial minimal polynomial of 
+              a real root
+  \item[{\tt b <- AFUPRB(M,I,A) 
+}]\index{AFUPRB} Algebraic number field univariate polynomial root bound
+  \item[{\tt L <- AFUPRICL(M,I,A) 
+}]\index{AFUPRICL} Algebraic number field univariate polynomial real root 
+                 isolation, Collins-Loos algorithm
+  \item[{\tt L <- AFUPRICS(M,I,A) 
+}]\index{AFUPRICS} Algebraic number field univariate polynomial real root 
+                  isolation, coefficient sign variation method
+  \item[{\tt a <- AFUPRL(M,A) 
+}]\index{AFUPRL} Algebraic number field univariate polynomial, root of a linear 
+                polynomial
+  \item[{\tt n <- AFUPVAR(M,I,A) 
+}]\index{AFUPVAR} Algebraic number field univariate polynomial variations
+  \item[{\tt AMUPMPR(M,I,B,J,L; Js,j)
+}]\index{AMUPMPR} Algebraic module univariate polynomial minimal polynomial 
+                  of a real root
+  \item[{\tt L <- AMUPRICS(M,I,A)
+}]\index{AMUPRICS} Algebraic module univariate polynomial real root isolation,
+                   coefficient sign variation method
+  \item[{\tt AMUPRICSW(M,I,A;L,Is)
+}]\index{AMUPRICSW} Algebraic module univariate polynomial real root isolation,
+                    coefficient sign variation method, weakly disjoint intervals
+  \item[{\tt AMUPRINCS(M,I,A,a,b;L,Is)
+}]\index{AMUPRINCS} Algebraic module univariate polynomial root isolation,
+                    normalized coefficient sign variation method
+  \item[{\tt AMUPVARIR(M,I,A; n,J)
+}]\index{AMUPVARIR} Algebraic module univariate polynomial variations, interval
+                    refinement
+\end{description}
+
+\item[Algebraic Polynomial Real Root Refinement] \ \
+\begin{description}
+  \item[{\tt Js <- AFUPIIR(M,I,B,J)
+}]\index{AFUPIIR} Algebraic number field polynomial isolating interval 
+                  refinement
+  \item[{\tt  AFUPIIWS(M,I,A,L) 
+}]\index{AFUPIIWS} Algebraic number field univariate polynomial isolating 
+                  intervals weakly disjoint to strongly disjoint
+  \item[{\tt  AFUPRLS(M,I,A1,A2,L1,L2; Ls1,Ls2) 
+}]\index{AFUPRLS} Algebraic number field univariate polynomial real root list 
+                 separation
+  \item[{\tt Js <- AFUPRRI(M,I,A,B,J,s1,t1) 
+}]\index{AFUPRRI} Algebraic number field univariate polynomial relative 
+                 real root isolation
+  \item[{\tt  AFUPRRS(M,I,A1,A2,I1,I2; Is1,Is2,s) 
+}]\index{AFUPRRS} Algebraic number field univariate polynomial real root 
+                 separation
+  \item[{\tt Js <- AMUPIIR(M,I,B,J)
+}]\index{AMUPIIR} Algebraic module polynomial isolating interval refinement
+  \item[{\tt AMUPIIWS(M,I,A,L)
+}]\index{AMUPIIWS} Algebraic module univariate polynomial isolating intervals
+                   weakly disjoint to strongly disjoint
+  \item[{\tt AMUPRLS(M,I,A1,A2,L1,L2; Ls1,Ls2)
+}]\index{AMUPRLS} Algebraic module univariate polynomial real root list 
+                  separation
+  \item[{\tt AMUPRRS(M,I,A1,A2,I1,I2; Is1,Is2,s)
+}]\index{AMUPRRS} Algebraic module univariate polynomial real root separation
+\end{description}
+
+\item[Conversion] \ \
+\begin{description}
+  \item[{\tt Ap <- AFCR(A) 
+}]\index{AFCR} Algebraic number field element convert representation
+  \item[{\tt a <- AFFINT(M) 
+}]\index{AFFINT} Algebraic number field element from integer
+  \item[{\tt a <- AFFRN(R) 
+}]\index{AFFRN} Algebraic number field element from rational number
+  \item[{\tt Ap <- AFICR(A) 
+}]\index{AFICR} Algebraic number field element inverse convert representation
+  \item[{\tt B <- AFPCR(r,A) 
+}]\index{AFPCR} Algebraic number field polynomial convert representation
+  \item[{\tt B <- AFPFIP(r,A) 
+}]\index{AFPFIP} Algebraic number field polynomial from integral polynomial
+  \item[{\tt B <- AFPFRP(r,A) 
+}]\index{AFPFRP} Algebraic number field polynomial from rational polynomial
+  \item[{\tt B <- AFPICR(r,A) 
+}]\index{AFPICR} Algebraic number field polynomial inverse convert representation
+  \item[{\tt  AIFAN(M; mh,Mh) 
+}]\index{AIFAN} Algebraic integer from algebraic number
+  \item[{\tt B <- AMPSAFP(r,A) 
+}]\index{AMPSAFP} Algebraic module polynomial similar to algebraic field polynomial
+  \item[{\tt  ANFAF(M,I,a; N,J) 
+}]\index{ANFAF} Algebraic number from algebraic number field element
+\end{description}
+
+\item[Input/Output] \ \
+\begin{description}
+  \item[{\tt  AFDWRITE(M,I,b,n) 
+}]\index{AFDWRITE} Algebraic number field, decimal write 
+  \item[{\tt  AFPWRITE(r,A,V,v) 
+}]\index{AFPWRITE} Algebraic number field polynomial write
+  \item[{\tt  AFUPWRITE(A,vA,vc) 
+}]\index{AFUPWRITE} Algebraic number field univariate polynomial write
+  \item[{\tt  AFWRITE(A,v) 
+}]\index{AFWRITE} Algebraic field element write
+  \item[{\tt  ANDWRITE(M,I,n) 
+}]\index{ANDWRITE} Algebraic number decimal write
+\end{description}
+\end{description}
+

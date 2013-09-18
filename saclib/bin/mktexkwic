@@ -1,0 +1,46 @@
+#! /bin/tcsh
+
+# USAGE:
+#   mktexkwic [<input file name>] [<output file name> [<ll>]]
+#
+# FUNCTION
+#   Creates a KWIC index from an input file which consists of one or more
+#   blocks of the following format:
+#
+#   <subject> <text>
+#     <0 or more lines of additional text beginning with at least one blank>
+#
+#   The keywords will be taken from the text in the subject line and in the
+#   optional subsequent indented text lines. "bin/mkkwic.sed" contains a
+#   set of commands which remove irrelevant keywords like "the", "for",
+#   etc.
+#
+#   The output file consists of lines of the following format, sorted
+#   alphabetically by keyword and subject:
+#         COLUMN : 1         sc     kc             ll
+#                  <subject> <text> <keyword> <text>
+#
+#   Default values for input and output file, and ll are
+#   "$saclib/doc/desc.doc", "$saclib/doc/guide/KWIC.tex", and 77, resp.
+
+if ($#argv < 1) then
+  set infile=$saclib/doc/desc.doc
+else
+  set fname=$1
+endif
+if ($#argv < 2) then
+  set outfile=$saclib/doc/guide/KWIC.tex
+else
+  set outfile=$2
+endif 
+if ($#argv < 3) then
+  set ll=77
+else
+  set ll=$3
+endif 
+
+gawk -f $saclib/bin/b2l.awk $infile |\
+gawk -f $saclib/bin/mktexkwic1.awk - |\
+sed -f $saclib/bin/mktexkwic.sed |\
+sort -f |\
+gawk >$outfile -f $saclib/bin/mktexkwic2.awk ll=$ll -

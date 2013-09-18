@@ -1,0 +1,33 @@
+Saclib2.1 for PC's runninx linux
+--------------------------------
+
+1. The src contains the system dependent source files you'll need.
+
+2. The includes directory contains the hfloats.h appropriate to linux
+   on PC's.
+
+3. Comment out the "#define BIG_ENDIAN" in sacsys.h.  This environment
+   variable already exists in the linux C files.
+
+4. You might want to make sure that bin/mklib doesn't contain any
+   compiler flags that won't make sense on your system.  Also, be
+   sure to set the environment variable CC = gcc, or else change 
+   bin/mklib so that gcc (rather than cc) is the default value for 
+   CC.
+
+Note: Debian linux seems not to have the ucontext.h file required by 
+FPHAND.  I don't know if this is a version problem or what, but other
+linux's seem okay with it.  Try using src/FPHAND.c.debian instead of
+src/FPHAND.c.
+
+LOG:
+
+06/18/2002 - Changed FPCATCH line 27 from
+
+     p->sa_handler = FPHAND;     to      p->sa_sigaction = FPHAND;
+
+     The reason for this is that sa_handler only takes an int as an
+     arguments, whereas sa_sigaction takes the three parameters
+     specified by FPHAND.  This doesn't affect anything in reality
+     other than the type checking, since the OS doesn't really
+     distinguish!

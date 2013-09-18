@@ -1,0 +1,80 @@
+\begin{description}
+\item[Basic Arithmetic:] \ \
+  \begin{description}
+  \item[{\tt T <- RNSUM(R,S) 
+}]\index{RNSUM}  Rational number sum.
+  \item[{\tt T <- RNDIF(R,S) 
+}]\index{RNDIF}  Rational number difference.
+  \item[{\tt S <- RNNEG(R) 
+}]\index{RNNEG}  Rational number negative.
+  \item[{\tt T <- RNPROD(R,S) 
+}]\index{RNPROD}  Rational number product.
+  \item[{\tt T <- RNQ(R,S) 
+}]\index{RNQ}  Rational number quotient.
+  \item[{\tt S <- RNINV(R) 
+}]\index{RNINV}  Rational number inverse.
+  \item[{\tt s <- RNSIGN(R) 
+}]\index{RNSIGN}  Rational number sign.
+  \item[{\tt S <- RNABS(R) 
+}]\index{RNABS}  Rational number absolute value.
+  \item[{\tt t <- RNCOMP(R,S) 
+}]\index{RNCOMP}  Rational number comparison.
+  \item[{\tt c <- RNMIN(a,b) 
+}]\index{RNMIN}  Rational number min.
+  \item[{\tt c <- RNMAX(a,b) 
+}]\index{RNMAX}  Rational number max.
+  \end{description}
+
+\item[Constructors:] \ \
+  \begin{description}
+  \item[{\tt R <- RNINT(A) 
+}]\index{RNINT}  Rational number from integer. {\em Returns $\frac{n}{1}$
+  given an integer $n$.}
+  \item[{\tt R <- RNRED(A,B) 
+}]\index{RNRED}  Rational number reduction to lowest terms. {\em Returns
+  $\frac{n}{d}$ given two integers $n$ and $d$ with $d \neq 0$.}
+  \end{description}
+
+\item[Selectors:] \ \
+  \begin{description}
+  \item[{\tt a <- RNNUM(R) 
+}]\index{RNNUM}  Rational number numerator.
+  \item[{\tt b <- RNDEN(R) 
+}]\index{RNDEN}  Rational number denominator.
+  \end{description}
+
+\item[Random Number Generation:] \ \
+  \begin{description}
+  \item[{\tt R <- RNRAND(n) 
+}]\index{RNRAND}  Rational number, random.
+  \end{description}
+
+\item[Input/Output:] \ \
+  \begin{description}
+  \item[{\tt R <- RNREAD() 
+}]\index{RNREAD}  Rational number read.
+  \item[{\tt  RNWRITE(R) 
+}]\index{RNWRITE}  Rational number write.
+  \item[{\tt  RNDWRITE(R,n) 
+}]\index{RNDWRITE}  Rational number decimal write. {\em Approximates a rational
+  number by a decimal fraction with a given accuracy and writes the
+  approximation to the output stream.}
+  \end{description}
+
+\item[Miscellaneous:] \ \
+  \begin{description}
+  \item[{\tt a <- RNCEIL(r) 
+}]\index{RNCEIL}  Rational number, ceiling of.
+  \item[{\tt a <- RNFLOR(r) 
+}]\index{RNFLOR}  Rational number, floor of.
+  \item[{\tt  RNBCR(A,B; M,N,k) 
+}]\index{RNBCR}  Rational number binary common representation.
+  \item[{\tt  RNFCL2(a; m,n) 
+}]\index{RNFCL2}  Rational number floor and ceiling of logarithm, base 2.
+  \item[{\tt r <- RNP2(k) 
+}]\index{RNP2}  Rational number power of 2. {\em Computes $2^n$ given a
+  \GAMMA-digit $n$.}
+  \end{description}
+
+\end{description}
+

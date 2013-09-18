@@ -1,0 +1,176 @@
+This section lists \saclib\ types, constants, and global variables. All
+types and constants are defined in ``saclib.h'', ``sactypes.h'', and
+``sacsys.h''. External variables are defined in ``external.c'' and declared
+as {\tt external} in ``saclib.h''.
+
+The average user of \saclib\ functions should not find it neccessary to deal
+directly with any of these values (except for \Word, \BETA, and \NIL, which
+are also mentioned in other sections). If you modify any of the values
+listed below without knowing what you are doing, you may either crash
+\saclib\ or cause it to produce false results, so please take care!
+
+\medskip
+
+\noindent{\em Notation:}
+In the description below, {\em pointer} means a C pointer (i.e.\ an actual
+memory address) and {\em pointer to an array} means a C pointer to the
+first element of an array. {\em List handle} means a \saclib\ list handle
+(i.e.\ an integer \ttL\ with $\BETA \leq \ttL < \BETAp$ which is used as an
+index into the \SPACEB\ and \SPACEBone\ arrays), and {\em GCA handle} means
+a handle for a garbage collected array (i.e.\ an integer \ttA\ with $\BETAp
+\leq \ttA < \BETApp$ which is used as an index into the \GCASPACEBp\
+array). {\em Cell} means a \saclib\ list cell (i.e.\ two consecutive \Word s
+in the \SPACE\ array, the first one of which has an odd index) and {\em GCA
+cell} means a \GCArray\ structure in the \GCASPACE\ array.
+
+\medskip
+
+In \saclib\ only two low-level data structures are typechecked by the C
+compiler\footnote{Lists, integers, polynomials, etc.\ are structures which
+are built at runtime. For these no type checking is done so that the
+programmer has to make sure that there are no conflicts.}. These two
+typedefs are:
+\begin{itemize}
+\item
+  \Word\ \ldots\ the basic type which in most installations of \saclib\
+  will be the same as a C {\tt int}. \Word\ is defined in ``sysdep.h''.
+\item
+  \GCArray\ \ldots\  a {\tt struct} containing information on garbage
+  collected arrays. This is a \saclib\ internal data structure defined in
+  ``sactypes.h''.
+\end{itemize}
+
+The following constants are defined in ``sacsys.h'' except for \NIL, which
+is defined in ``saclib.h'':
+\begin{itemize}
+\item
+  \BETA\index{\BETA}\ \ldots\ a \Word, the value used to distinguish between
+  atoms and lists. This is also the base for the internal representation of
+  large integers. \BETA\ must be a power of $2$ such that $2^8 \leq \BETA$ and
+  $3 * \BETA$ fits into a \Word. In most implementations where a \Word\ is a
+  standard C {\tt int} with $n$ bits, the setting is $\BETA = 2^{n-3}$.
+\item
+  \BETAone\ \ldots\ a \Word, $\BETAone = \BETA - 1$.
+\item
+  \NIL\index{\NIL}\ \ldots\ a \Word, the empty list handle\footnote{
+    This is equal to \BETA. For historical reasons, in some \saclib\
+    functions \BETA\ is explicitly used instead of \NIL.
+  }.
+\item
+  {\tt NU\_, NUp\_, NPRIME\_, NSMPRM\_, NPFDS\_, RHO\_, NPTR1\_}\ \ldots\
+  \Word s, the initial values for the corresponding global variables.
+\end{itemize}
+
+The following flags are defined in ``saclib.h'':
+\begin{itemize}
+\item
+  {\tt GC\_CHECK / GC\_NO\_CHECK}\ \ldots\ \Word s, used for telling the
+  garbage collector whether an array allocated by {\tt GCAMALLOC()} will
+  contain list or GCA handles (and thus cannot be ignored in the mark
+  phase).
+\item
+  {\tt SAC\_KEEPMEM / SAC\_FREEMEM}\ \ldots\ \Word s, used when calling {\tt
+  ENDSACLIB()} directly for requesting memory allocated by {\tt
+  GCAMALLOC()} to be kept / deallocated.
+\end{itemize}
+
+Below we give a list of the \saclib\ global variables as defined in
+``external.c'':
+\begin{description}
+\item[List processing and garbage collection:] \ \
+  \begin{itemize}
+  \item \AVAIL\ \ldots\ a \Word, the list handle of the free list.
+  \item \GCGLOBALS\ \ldots\ a \Word, the list handle of the list of global
+    variables.
+  \item {\tt BACSTACK}\ \ldots\ a pointer to the beginning of the system
+    stack.
+  \item {\tt GCC}\ \ldots\ a \Word, the number of garbage collections.
+  \item {\tt GCAC}\ \ldots\ a \Word, the number of GCA cells collected in
+    all garbage collections.
+  \item {\tt GCCC}\ \ldots\ a \Word, the number of cells collected in all
+    garbage collections.
+  \item {\tt GCM}\ \ldots\ a \Word, if {\tt GCM} is 1, a message is written
+    to the output stream each time the garbage collector is called.
+  \item \NU\ \ldots\ a \Word, one less than the size of the \SPACE\ array
+    in \Word s, i.e.\ twice the number of cells in \SPACE.
+  \item \RHO\ \ldots\ a \Word, the garbage collector aborts the program
+    if no more than $\NU/\RHO$ cells were reclaimed.
+  \item \SPACEB \ \ldots\ a pointer to an array of words, $\SPACEB = \SPACE
+    - \BETA$.
+  \item \SPACEBone \ \ldots\ a pointer to an array of words, $\SPACEBone =
+    \SPACE - \BETAone$.
+  \item \GCAAVAIL \ \ldots\ a \Word, the GCA handle of the free list of GCA
+    cells.
+  \item \GCASPACE \ \ldots\ a pointer to an array of \GCArray\ structures,
+    the memory space for GCA cells.
+  \item \GCASPACEBp \ \ldots\ a pointer to an array of \GCArray\
+    structures, $\GCASPACEBp = \GCASPACE - \BETAp$.
+  \item \NUp \ \ldots\ a \Word, one less than the number of \GCArray\
+    structures in the \GCASPACE\ array.
+  \item \BETAp \ \ldots\ a \Word, the bound used to distinguish between
+    list and GCA handles. $\BETAp = \BETA + \NU + 1$.
+  \item \BETApp \ \ldots\ a \Word, the upper bound on GCA GCA handles.
+    $\BETApp = \BETAp + \NUp + 1$.
+  \end{itemize}
+
+\item[Timing:] \ \
+  \begin{itemize}
+  \item {\tt TAU}\ \ldots\ a \Word, the time (in milliseconds) spent for
+    garbage collections.
+  \item {\tt TAU0}\ \ldots\ a \Word, the system time (in milliseconds) just
+    before \saclib\ initialization.
+  \item {\tt TAU1}\ \ldots\ a \Word, the system time (in milliseconds)
+    immediately after \saclib\ initialization.
+  \end{itemize}
+
+\item[Integer arithmetic:] \ \
+  \begin{itemize}
+  \item {\tt DELTA}\ \ldots\ a \Word, ${\tt DELTA} = 2^{\lfloor{\textstyle
+    {\tt ZETA}/2}\rfloor}$.
+  \item {\tt EPSIL}\ \ldots\ a \Word, ${\tt EPSIL} = 2^{\lceil{\textstyle
+    {\tt ZETA}/2}\rceil} = \BETA/{\tt DELTA}$.
+  \item {\tt ETA}\ \ldots\ a \Word, ${\tt ETA} = \lfloor\log_{10} \BETA
+    \rfloor$.
+  \item {\tt RINC}\ \ldots\ a \Word, the increment for the random number
+    generator.
+  \item {\tt RMULT}\ \ldots\ a \Word, the multiplier for the random number
+    generator.
+  \item {\tt RTERM}\ \ldots\ a \Word, the last value produced by the random
+    number generator.
+  \item {\tt TABP2}\ \ldots\ a pointer to an array of \Word s,
+    ${\tt TABP2}[i] = 2^{i-1}$ for $1 \leq i \leq {\tt ZETA}$.
+  \item {\tt THETA}\ \ldots\ a \Word, ${\tt THETA} = 10^{\tt ETA}$.
+  \item {\tt UZ210}\ \ldots\ a \Word, the list handle of the list of units
+    of ${\bf Z}_{210}$.
+  \item {\tt ZETA}\ \ldots\ a \Word, ${\tt ZETA} = \log_2 {\tt BETA}$.
+  \end{itemize}
+
+\item[Prime numbers:] \ \
+  \begin{itemize}
+  \item {\tt NPFDS}\ \ldots\ a \Word, the number of primes used by the
+    \saclib\ function {\tt IUPFDS}.
+  \item {\tt NPRIME}\ \ldots\ a \Word\ controlling the number of primes in
+    {\tt PRIME}.
+  \item {\tt PRIME}\ \ldots\ a \Word, the list handle of the list of primes
+    between $\BETA - {\tt NPRIME} * {\tt ZETA} * 7 / 5$ and \BETA.
+  \item {\tt NSMPRM}\ \ldots\ a \Word, the upper bound on the size of primes
+    in {\tt SMPRM}.
+  \item {\tt SMPRM}\ \ldots\ a \Word, the list handle of the list of primes
+    $< {\tt NSMPRM}$.
+  \end{itemize}
+
+\item[Miscellaneous:] \ \
+  \begin{itemize}
+  \item {\tt NPTR1}\ \ldots\ a \Word, the number of \Word s in the {\tt
+    GCAPTR1} array.
+  \item {\tt GCAPTR1}\ \ldots\ a \Word, the GCA handle of the array used by
+    the function {\tt IUPTR1}.
+  \end{itemize}
+
+\item[Input/Output:] \ \
+  \begin{itemize}
+  \item {\tt LASTCHAR}\ \ldots\ a \Word, the last character read from the
+    input stream.
+  \end{itemize}
+\end{description}
+

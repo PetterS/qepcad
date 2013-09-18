@@ -1,0 +1,42 @@
+\unitlength0.5pt
+\begin{picture}(700,80)
+\savebox{\cell}(0,0)[b]{
+  \multiput(-35, 15)(10,0){3}{\circle*{2}}
+  \put(-15, 00){\usebox{\dline}}
+  \put(-15, 30){\usebox{\dline}}
+  \put(  0,  0){\framebox(80,30){}}
+  \put( 40,  0){\line(0,1){ 30}}
+  \put( 80, 00){\usebox{\dline}}
+  \put( 80, 30){\usebox{\dline}}
+  \multiput( 95, 15)(10,0){3}{\circle*{2}}
+}
+\savebox{\arrow}(0,0)[b]{
+  \put(  0,  0){\circle*{4}}
+  \put(  0,  0){\line(0,1){ 30}}
+  \put(  0, 30){\line(1,0){110}}
+  \put(110, 30){\vector(0,-1){ 15}}
+}
+
+\put( 40, 50){\begin{picture}(20,30)
+  \put(  0, 20){\makebox(0,0)[b]{\ttL}}
+  \put(  0, 15){\vector(0,-1){ 15}}
+\end{picture}}
+\put( 40, 20){\begin{picture}(600,100)
+  \multiput(0,0)(130,  0){5}{\usebox{\cell}}
+  \multiput(20,15)(130,  0){2}{\usebox{\arrow}}
+  \put(410,15){\usebox{\arrow}}
+  \put( 60,15){\makebox(0,0){1}}
+  \put(280,15){\makebox(0,0){\NIL}}
+  \put(320,15){\makebox(0,0){8}}
+  \put(450,15){\makebox(0,0){9}}
+  \put(540,15){\makebox(0,0){\NIL}}
+  \put(580,15){\makebox(0,0){6}}
+  \put(190, 15){\begin{picture}(200,30)
+    \put(  0,  0){\circle*{4}}
+    \put(  0,  0){\line(0,-1){ 30}}
+    \put(  0,-30){\line(1,0){200}}
+    \put(200,-30){\vector(0,1){ 15}}
+  \end{picture}}
+\end{picture}}
+\end{picture}
+

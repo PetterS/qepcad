@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What is \saclib?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:I s:W}
+
+\saclib\ is a library of C programs for computer algebra derived
+from the SAC2 system.  Hoon Hong was the main instigator.  Sometime early in
+1990 he proposed to translate SAC2 (which was written in the ALDES language)
+into C instead of Fortran (as it had been since 1976), and he quickly wrote
+the required translator.  The results were rewarding in several ways.  Hoon
+Hong, myself and Jeremy Johnson, working together at Ohio State University,
+observed a speedup by a factor of about two in most applications and the
+powerful debugging facilities associated with C became available.
+
+Later that year Hoon finished his doctorate and moved to RISC, where Bruno
+Buchberger was writing a book on Gr\"{o}bner bases and working on a set of
+programs to go with it.  He found that SAC2 was the only computer algebra
+system in which he could write these programs without an unacceptable
+sacrifice in computational efficiency.  It became apparent that for similar
+reasons other researchers would benefit greatly from the availability of a
+library of C programs derived from SAC2.  Subsequently Bruno did much to
+promote and facilitate the preparation of the library for distribution.
+
+Although the translated programs were correct, they needed to be reformatted
+for user consumption, a users guide was required, and we had compulsions to
+make some minor improvements.  Jeremy Johnson made many recent improvements to
+the algebraic number algorithms and wrote the corresponding chapter of this
+Guide, among other things.  Werner Krandick made improvements to the
+polynomial real root algorithms and wrote the corresponding chapter.  Mark
+Encarnaci\'{o}n wrote three chapters of the Guide and also converted the
+polynomial input and output algorithms to modern notation from the original
+"Fortran notation".  Ana Mandache, Andreas Neubacher and Hoon Hong all toiled
+long hours editing and reformatting programs.  Andreas deserves special
+recognition.  He initiated the writing of the manual, wrote three chapters of
+the manual and two of the appendices, and did all the required system
+maintenance. To facilitate experimenting with the functions in the library,
+Herbert Vielhaber implemented \isac, the interactive shell for \saclib. He
+also wrote the corresponding appendix of the manual.
+
+Besides the above it would be unthinkable not to mention, collectively, all of
+my former doctoral students, who contributed to the development of the SAC2
+algorithms and the research on which they were founded over a period of 26
+years.  During the last 20 of those years R\"{u}diger Loos was a frequent
+collaborator.  He proposed creation of an "ALgorithm DEScription language" for
+SAC1, the predecessor of SAC2, and wrote an ALDES-to-Fortran translator.
+
+This initial version of SACLIB is just the beginning of what is to come.  We
+know how to improve several of the programs in the current system and we will
+do it for subsequent versions.  Some basic functionalities are largely
+undeveloped in the currrent system (e.g. linear algebra) but they will be
+supplied in subsequent versions.  Some more advanced functionalities (e.g.
+polynomial complex roots and quantifier elimination) are nearly ready and will
+be forthcoming soon.  Also we expect that users of the system will write
+programs based on the ones we distribute and offer them to other users.
+
+\begin{flushright}
+George E.\ Collins
+\end{flushright}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{About this Guide}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:I s:A}
+
+The main goal in writing this guide was to enable the reader to quickly
+discover whether \saclib\ provides a function for a given problem. The
+structure of the paper should facilitate searching for a function in the
+following way:
+\begin{itemize}
+\item Every chapter deals with functions operating over a certain domain
+  (lists, numbers, polynomials, etc.) or with functions solving certain
+  problems (GCD computation, factorization, real root calculation, etc.).
+\item Some chapters are split into sections covering more specific topics
+  (integer arithmetic, rational number arithmetic, integral polynomial
+  arithmetic, etc.)
+\item Inside a section, functions are divided into various areas (basic
+  arithmetic, predicates, input/output, etc.).
+\item Inside these areas, closely related functions (a function and its
+  inverse, functions solving essentially the same problem, a function and
+  its auxiliary routines, etc.) are grouped.
+\end{itemize}
+
+This partitioning was done on a completely subjective basis. The intention
+always was that the neophyte user should be able to pinpoint a desired
+function by using simple heuristics. This approach may certainly fail in
+some cases, but with at most 50 functions per section browsing them
+sequentially should always succeed in an acceptable amount of time.
+
+Another rather subjectively designed feature is the function descriptions.
+The lists were generated automatically from the headers of the \saclib\
+source files. For some functions additional remarks were added in {\em
+emphasized} type style.
+
+Readers who want to use \saclib\ functions in their C programs should read
+Appendix \ref{c:CFC}, which describes how initialization and cleanup are done,
+which files have to be {\tt \#include}d, etc. A detailed description of the
+input/output specifications of a given function can be found in the comment
+block at the beginning of the corresponding source file. Read the ``Addendum
+to the \saclib\ User's Guide'' for information on how to access these.
+
+Those who want to know more about the inner workings of \saclib\ should
+refer to Appendix \ref{c:NIW} which gives an overview of the internal
+representation of lists, the garbage collector and the constants and global
+variables used internally. Descriptions of the high level data structures
+used for implementing the elements of domains like integers, polynomials,
+etc.\ can be found at the beginnings of the corresponding sections.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\saclib\ Maintenance}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The recommended way for reporting problems with \saclib\ is sending e-mail to
+the maintenance account
+\begin{quote}
+{\tt saclib@risc.uni-linz.ac.at}
+\end{quote}
+or mail to 
+\begin{verbatim}
+SACLIB Maintenance
+
+Research Institute for Symbolic Computation
+Johannes Kepler University
+4020 Linz
+Austria
+\end{verbatim}
+
+Messages which might interest a greater audience should be sent to the mailing
+list
+\begin{quote}
+{\tt saclib-l@risc.uni-linz.ac.at}
+\end{quote}
+This list can be subscribed by sending a message with the body
+\begin{quote}
+subscribe saclib-l $<$first name$>$ $<$last name$>$
+\end{quote}
+to {\tt listserv@risc.uni-linz.ac.at}.
+
+Note that \saclib\ is not sold for profit\footnote{
+  \saclib\ maintenance is sponsored by the Research Institute for Symbolic
+  Computation.  
+}.
+Therefore do not expect prompt service and extensive support.  Nevertheless,
+\saclib\ is continuously maintained and extended, so do not hesitate getting
+in contact with us.
+

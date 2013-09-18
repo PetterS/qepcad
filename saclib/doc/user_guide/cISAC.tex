@@ -1,0 +1,170 @@
+%----------------------------------------------
+\section{What is \isac?}
+%----------------------------------------------
+
+\isac\ is a small experimental interactive interface to \saclib, allowing
+simple {\tt read--eval--write} cycles of interaction.
+
+The system is designed and implemented in the most straightforward way, so
+that its source code can be used as an example or a tutorial for those who
+want to quickly write an interactive test environment for their \saclib\ based
+functions or intend to develop professional interfaces to \saclib.
+
+
+%----------------------------------------------
+\section{Supported \saclib\ Algorithms}
+%----------------------------------------------
+
+All the \saclib\ library algorithms and macros are accessible.
+\NIL\ and \BETA\ are available as constants.
+
+
+%----------------------------------------------
+\section{Command Line Options}
+%----------------------------------------------
+
+\isac\ takes the standard \saclib\ command line options for initializing
+various global variables.  In order to find out what is available, issue the
+command
+\begin{verbatim}
+            isac +h
+\end{verbatim}
+
+
+%----------------------------------------------
+\section{Interface Functionality}
+%----------------------------------------------
+
+An \isac\ session consists of one or more statements.
+Every statement must end with a semicolon `\verb:;:'.
+A statement can be one of the three kinds:
+\begin{itemize}
+\item     command
+\item     call
+\item     assignment
+\end{itemize}
+%
+The commands supported in this version are:
+\begin{glists}{3em}{10em}{1em}{1ex}
+\iteml{quit;}               For quitting the session.
+\iteml{vars;}               For displaying the contents of the variables.
+			    Values are displayed in internal \saclib\ format.
+\iteml{help \mbox{[}algName\mbox{]};}     For displaying a general help or an algorithm.
+                            For example, in order to display the algorithm
+                            \mbox{\tt IPROD}, issue the the command:
+                            \verb: help IPROD;:
+\iteml{view algName;}	    For displaying an algorithm with the editor vi(1).
+\iteml{save fileName;}	    For saving the current state of the session 
+			    (i.e. the variable binding) to a file.
+\iteml{restore fileName;}   For restoring the state of a session from a file.
+\end{glists}
+%
+A call statement is a call to any procedures or functions in the \saclib\
+library.  For example,
+\begin{verbatim}
+      IPFAC(r,A; s,c,F);
+      IPWRITE(r,IPSUM(r,A,B),V);
+\end{verbatim}
+%
+An assignment statement is of the form:  
+\begin{verbatim}
+      var := expression;
+\end{verbatim}
+%
+For example,
+\begin{verbatim}
+      A := IPROD(a,ISUM(b,c));
+      a := 2 * 3 + 4;
+      a := 3 % 2;
+\end{verbatim}
+
+
+%----------------------------------------------
+\section{Interface Grammar}
+%----------------------------------------------
+Below we give a context-free grammar for a session.
+We have followed the following conventions: 
+\begin{itemize}
+\item  Upper-case strings and quoted strings denote tokens,
+\item  Lower-case strings denote non-terminals.
+\end{itemize}
+
+\begin{verbatim}
+session
+        : statement
+        | session statement
+        ;
+        
+statement        
+        : command ';'
+        | proc_call ';'
+        | assignment ';'
+        ;
+
+command
+        : IDENT        
+        | IDENT CMDARGS        
+        ;
+
+proc_call
+        : IDENT '(' proc_arg_star ')' 
+        ;
+
+assignment
+        : IDENT ':=' expr
+        ;
+
+proc_arg_star
+        : val_star 
+        | val_star ';' ref_star        
+        ;
+
+val_star
+        : /* empty */
+        | val_plus
+        ;
+
+val_plus
+        : expr
+        | val_plus ',' expr
+        ;
+
+ref_star
+        : /* empty */
+        | ref_plus
+        ;
+
+ref_plus
+        : ref
+        | ref_plus ',' ref
+        ;
+
+ref
+        : IDENT        
+
+expr
+        : expr '+' expr        
+        | expr '-' expr
+        | expr '*' expr
+        | expr '/' expr
+        | expr '%' expr
+        | '+' expr
+        | '-' expr
+        | '(' expr ')'
+        | func_call
+        | atom
+        ;
+
+func_call
+        : IDENT '(' func_arg_star ')' 
+        ;
+
+func_arg_star
+        : val_star 
+        ;
+
+atom
+        : IDENT
+        | INTEGER
+        ;
+\end{verbatim}

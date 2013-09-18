@@ -1,0 +1,21 @@
+; USAGE
+;   mktags.aux
+;
+; FUNCTION
+;   Reads names of files from STDIN (for use with pipes) until an EOF is
+;   read. The files are processed by ctags to create a tags file.
+
+LAB loop
+
+Read fname
+IF $? EQ 1 VAL
+  Skip End
+ENDIF
+
+ctags -a $fname
+fname=
+
+Skip BACK loop
+
+LAB End
+

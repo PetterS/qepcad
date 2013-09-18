@@ -1,0 +1,48 @@
+\documentstyle[saclib,DinA4]{article}
+
+
+\newcommand{\desclabel}[1]{\hspace\labelsep \bf #1}
+\renewenvironment{description}{
+  \begin{list}{}{
+    \labelwidth 0 pt \itemindent-\leftmargin
+    \renewcommand{\makelabel}{\desclabel}
+    \topsep 0 pt
+    \parsep 0 pt
+    \itemsep \parsep
+  }
+}{\end{list}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+  A KWIC Index to \saclib\ Functions
+}
+
+\author{
+  Andreas Neubacher\thanks{
+    With the help of one {\tt csh} script, three {\tt awk} scripts, and one
+    {\tt sed} script.
+  }
+}
+
+\date{March 12, 1993}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+This paper solely consists of an automatically generated ``KeyWord In Context''
+index of all functions provided by \saclib.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\small
+\input{KWIC.tex}
+\normalsize
+
+\end{document}
+

@@ -1,0 +1,7 @@
+#!/bin/csh
+
+if ($#argv != 3) then
+  echo "Usage: sci <SACfile.ext> <algo|bug|del|embe|init|new|typo|spec> <author>"
+else
+  ci -l -s$2 -w$3 ${saclib}/RCS/$1,v
+endif

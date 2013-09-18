@@ -1,0 +1,18 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces A sample program.}}{52}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Sample code using GCA handles.}}{53}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Declaring global variables.}}{54}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Sample code for initializing SACLIB by hand.}}{56}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {C.1}{\ignorespaces The {\tt SPACE}\ array.}}{61}
+\contentsline {figure}{\numberline {C.2}{\ignorespaces The cell structure of the list ${\tt L}= (1,(9,6),8)$.}}{61}

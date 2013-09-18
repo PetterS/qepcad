@@ -1,0 +1,17 @@
+#!/bin/tcsh
+
+# USAGE:
+#   sman <SAC function name>
+#
+# FUNCTION
+#   Displays the SAC source file containing the given function.
+
+
+if ($#argv < 1) then
+  echo "USAGE:"
+  echo "  sman <SAC function name>"
+  perl $saclib/bin/svers.pl
+else
+  more $saclib/src/$1.c
+endif
+

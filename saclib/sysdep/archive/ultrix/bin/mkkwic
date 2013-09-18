@@ -1,0 +1,51 @@
+#! /bin/csh
+
+# USAGE:
+#   mkkwic [<file name> [<sc> [<kc> [<ll>]]]]
+#
+# FUNCTION
+#   Creates a KWIC index from a file which consists of one or more blocks
+#   of the following format:
+#
+#   <subject> <text>
+#     <0 or more lines of additional text, beginning with at least one blank.>
+#
+#   The keywords will be taken from the text in the subject line and in the
+#   optional subsequent indented text lines. "bin/mkkwic.sed" contains a
+#   set of commands which remove irrelevant keywords like "the", "for",
+#   etc.
+#
+#   The output consists of lines of the following format, sorted alphabetically
+#   by keyword and subject:
+#   COLUMN : 1         sc     kc             ll
+#            <subject> <text> <keyword> <text>
+#
+#   Default values for <file name>, <sc>, <kc> and <ll> are $saclib/doc/desc.doc,
+#   8, 43 and 79, resp.
+
+if ($#argv < 1) then
+  set fname=$saclib/doc/desc.doc
+else
+  set fname=$1
+endif
+if ($#argv < 2) then
+  set sc=8
+else
+  set sc=$2
+endif 
+if ($#argv < 3) then
+  set kc=43
+else
+  set kc=$3
+endif 
+if ($#argv < 4) then
+  set ll=79
+else
+  set ll=$4
+endif 
+
+awk -f $saclib/bin/b2l.awk $fname |\
+awk -f $saclib/bin/mkkwic.awk sc=$sc kc=$kc ll=$ll - |\
+sed -f $saclib/bin/mkkwic.sed |\
+sort -f |\
+awk -f $saclib/bin/strip1st.awk -

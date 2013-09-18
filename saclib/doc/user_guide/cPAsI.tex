@@ -1,0 +1,152 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Purpose}
+\label{c:PA s:I ss:P}
+
+The \saclib\ polynomial arithmetic packages provide functions doing
+computations with multivariate polynomials over domains implemented by the
+\saclib\ arithmetic packages.
+
+Except for the functions listed in Section \ref{c:PA s:MR} and various
+conversion functions, only the {\em sparse recursive} representation is
+used.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Definitions of Terms}
+\label{c:PA s:I ss:D}
+
+\begin{description}
+\item[sparse recursive representation]\index{sparse recursive
+representation}\index{polynomial!sparse recursive representation}
+  A polynomial $p \in \BbbD[x_1,\ldots,x_r]$ is interpreted as an element
+  of $(\ldots(\BbbD[x_1])\ldots)[x_r]$, for some domain \BbbD. The \saclib\
+  {\em sparse recursive representation} \ttP\ of a polynomial $p =
+  \sum_{i=1}^n p_i x_r^{e_i}$ with $e_1 > \ldots > e_n$, $p_i \in
+  (\ldots(\BbbD[x_1])\ldots)[x_{r-1}]$, and $p_i \neq 0$ is defined
+  recursively as follows:
+  \begin{itemize}
+  \item
+    If $p = 0$ then \ttP\ is the \BETA-digit 0.
+  \item
+    If $r = 0$, then $p$ is in \BbbD\ and its representation \ttP\ is the
+    representation of elements of the domain \BbbD.
+  \item
+    If $r > 0$, then \ttP\ is the list $(e_1, \ttP_1,\ldots, e_n, \ttP_n)$
+    where the $e_i$ are \BETA-digits and each $\ttP_i$ is the
+    representation of $p_i$.
+  \end{itemize}
+\item[sparse distributive representation]\index{sparse distributive representation}\index{polynomial!sparse distributive representation}
+  A polynomial $p \in \BbbD[x_1,\ldots,x_r]$ is interpreted as $p =
+  \sum_{i=1}^n d_i x^{e_i}$, where $d_i \in \BbbD$, $d_i \neq 0$, and
+  $x^{e_i}$ stands for $x_1^{e_{i,1}} x_2^{e_{i,2}} \cdots x_r^{e_{i,r}}$
+  with $e_{i,j} \geq 0$.
+   %
+  Furthermore, we assume that $e_1 > e_2 > \ldots > e_n$, where $e_k > e_i$
+  iff there exists a $\hat{\jmath}$ such that $e_{k,j} = e_{i,j}$ for
+  $\hat{\jmath} < j \leq r$ and $e_{k,\hat{\jmath}} > e_{i,\hat{\jmath}}$.
+
+  The {\em sparse distributive representation} \ttP\ of such a polynomial
+  $p$ is the list $(\ttD_1, \ttE_1, \ttD_2, \ttE_2,\ldots, \ttD_n,
+  \ttE_n)$, where $\ttD_i$ is the \saclib\ internal representation of $d_i$
+  and $\ttE_i$ is the list $(e_{i,r}, e_{i,r-1},\ldots, e_{i,1})$ with
+  $e_{i,j}$ being \BETA-digits.
+
+  As always in \saclib, $\ttP = 0$ if $p = 0$.
+\item[dense recursive representation]\index{dense recursive representation}\index{polynomial!dense recursive representation}
+  A polynomial $p \in \BbbD[x_1,\ldots,x_r]$ is interpreted as an element
+  of $(\ldots(\BbbD[x_1])\ldots)[x_r]$, for some domain \BbbD. The {\em
+  dense recursive representation} \ttP\ of a polynomial $p = \sum_{i=0}^n
+  p_i x_r^i$ with $p_i \in (\ldots(\BbbD[x_1])\ldots)[x_{r-1}]$ is defined
+  recursively as follows:
+  \begin{itemize}
+  \item
+    If $p = 0$ then \ttP\ is the \BETA-digit 0.
+  \item
+    If $r = 0$, then $p$ is in \BbbD\ and its representation \ttP\ is the
+    representation of elements of the domain \BbbD.
+  \item
+    If $r > 0$, then \ttP\ is the list $(n, \ttP_n, \ttP_{n-1},\ldots,
+    \ttP_0)$ where the $n$ is a \BETA-digit and each $\ttP_i$ is the
+    representation of $p_i$.
+  \end{itemize}
+\item[polynomial]\index{polynomial}
+  If this term appears in the parameter specifications of a function, this
+  denotes a polynomial in the sparse recursive representation. Otherwise,
+  it is used to denote a polynomial in arbitrary representation.
+\item[base domain, base ring]\index{base domain}\index{base ring}
+  If $p$ is an element of $\BbbD[x_1,\ldots,x_r]$, \BbbD\ is its base
+  domain.
+\item[integral polynomial]\index{integral polynomial}\index{polynomial!integral}
+  A polynomial whose base domain is \BbbZ.
+\item[modular polynomial]\index{modular!polynomial}\index{polynomial!modular}
+  A polynomial whose base domain is $\BbbZ_m$ with $m$ a prime positive
+  \BETA-digit.
+\item[modular integral polynomial]\index{modular!integral polynomial}\index{polynomial!modular integral}
+  A polynomial whose base domain is $\BbbZ_m$ with $m$ a positive integer.
+\item[rational polynomial]\index{rational!polynomial}\index{polynomial!rational}
+  A polynomial whose base domain is \BbbQ.
+\item[main variable]\index{main variable}\index{variable!main}
+  of a polynomial in $\BbbD[x_1,\ldots,x_r]$ is $x_r$.
+\item[degree]\index{degree}
+  The degree of a polynomial w.r.t.\ a given variable is the highest power
+  of this variable appearing with non-zero coefficient in the polynomial.
+  If no variable is specified, the degree is computed w.r.t.\ the main
+  variable.
+\item[order]\index{order!of a polynomial}
+  The order of a polynomial $p = \sum_{i=0}^n p_i x_r^i$ is the smallest $k
+  \geq 0$ such that $p_k \neq 0$.
+\item[constant polynomial]\index{constant polynomial}\index{polynomial!constant}
+  A polynomial of degree 0 in every variable.
+\item[leading term]\index{leading term}\index{term!leading}
+  of a polynomial is a polynomial equal to the term of highest
+  degree w.r.t.\ the main variable.
+\item[reductum]\index{reductum!of a polynomial}
+  of a polynomial is the polynomial minus its leading term.
+\item[leading coefficient]\index{leading coefficient}\index{coefficient!leading}
+  The leading coefficient of a polynomial is the coefficient of its leading
+  term.
+\item[leading base coefficient]\index{leading base coefficient}\index{coefficient!leading base}
+  An element of the base domain equal to the coefficient of the leading
+  power product of a polynomial where the ordering on the power products is
+  the lexicographic ordering with $x_1 < \cdots < x_r$.
+\item[trailing base coefficient]\index{trailing base coefficient}\index{coefficient!trailing base}
+  An element of the base domain equal to the coefficient of the smallest
+  power product of a polynomial where the ordering on the power products is
+  the lexicographic ordering with $x_1 < \cdots < x_r$.
+\item[monic polynomial]\index{monic polynomial}\index{polynomial!monic}
+  A polynomial, the leading coefficient of which is $1$.
+\item[positive polynomial]\index{positive polynomial}\index{polynomial!positive}
+  A polynomial, the leading base coefficient of which is positive.
+\item[sign]\index{sign!of a polynomial}
+  An integer equal to $1$ if the leading base coefficient of the polynomial
+  is positive, $-1$ otherwise.
+\item[absolute value]\index{absolute value!of a polynomial}
+  of a polynomial $p$ is the positive polynomial $q$ such that $p =
+  \sign(p) \cdot q$.
+\item[content]\index{content}
+  of a polynomial $p$ is equal to the absolute value of the greatest common
+  divisor of the coefficients of $p$.
+\item[integer content]\index{integer content}\index{content!integer}
+  of an integral polynomial is an integer equal to the positive greatest
+  common divisor of the integer coefficients of each power product of the
+  polynomial.
+\item[primitive polynomial]\index{primitive polynomial}\index{polynomial!primitive}
+  A polynomial, the content of which is $1$.
+\item[squarefree polynomial]\index{squarefree!polynomial}\index{polynomial!squarefree}
+  A polynomial $p$ is squarefree if each factor occurs only once. In
+  other words, if $p = p_1^{e_1} \cdots p_k^{e_k}$ is a complete
+  factorization of $p$ then each of the $e_i$ is equal to $1$.
+\item[squarefree factorization]\index{squarefree!factorization}\index{factorization!squarefree}
+  The squarefree factorization of $p$ is $p_1^{e_1} \cdots p_k^{e_k}$
+  where $1 \leq e_1 < \cdots < e_k$ and each of the $p_i$ is a positive
+  squarefree polynomial of positive degree.  Note that if $p$ is
+  squarefree then $p^1$ is the squarefree factorization of $p$.
+\item[variable (name)]\index{variable!name}\index{name!of a
+variable}\index{list!of characters}
+  A list $(c_1, \ldots, c_k)$, where the $c_i$ are C characters. Example: the
+  name "fubar" would be represented by the character list
+  ('f','u','b','a','r').
+\item[list of variables]\index{list!of variables}\index{variable!list of}
+  A list $(n_1, \ldots, n_r)$ giving the names of the corresponding
+  variables of an $r$-variate polynomial for input and output.
+\end{description}

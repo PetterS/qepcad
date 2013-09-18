@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# USAGE
+#   mkdesc 
+#
+# FUNCTION
+#   Calls: mkdescd 12 70 $saclib/src/*.c
+
+$saclib/bin/mkdescd 12 70 $saclib/src/*.c > $saclib/doc/desc.doc
+

@@ -1,0 +1,201 @@
+In this section we will describe the polynomial input and output
+routines that are available in \saclib.  Before proceeding further,
+the reader should be familiar with the internal representations of
+polynomials which are discussed in Section \ref{c:PA s:I ss:D}.
+
+\subsection{Recursive polynomials over $\BbbZ$}
+The {\em external canonical representation} of sparse {\em recursive}
+polynomials over $\BbbZ$ is defined by the following rules.  First of
+all, each polynomial is enclosed in parentheses.  A term is
+represented by the coefficient immediately followed by the variable
+(no space nor '{\tt *}' in between).  The coefficients $+1$ and $-1$
+are suppressed unless the exponent of the variable is $0$ in which
+case the variable is suppressed. The caret '\verb@^@' is used to
+indicate exponentiation.  Exponents with the value $1$ are suppressed
+and if a variable has the exponent $0$ then the variable is
+suppressed.  These rules apply recursively to the coefficients which
+may themselves be polynomials.  A few examples are in order.
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+recursive polynomial & external canonical form \\ \hline
+ & \\
+$ -x^4 + 2x^3 - x + 3 $ & \verb@(-x^4+2x^3-x+3)@ \\
+ & \\
+$ (x^2+1)y^3+(x+8)y-5 $ & \verb@((x^2+1)y^3+(x+8)y+(-5))@ \\
+ & \\
+$  - (x^2-4)y^4 + y^2 - y - x$ & 
+  \verb@((-x^2+4)y^4+(1)y^2+(-1)y+(-x))@ \\ 
+ & \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent
+Note that a constant polynomial in $r$ variables will be enclosed in
+$r$ sets of parentheses.  For example, the constant polynomial $2$ in
+3 variables will be represented in external canonical form as
+\verb@(((2)))@.
+
+The algorithm {\tt IPREAD} reads an $r$-variate recursive polynomial
+over $\BbbZ$ in external canonical form from the input stream. The
+polynomial that is read is stored in internal canonical form and the
+number of variables is also recorded.  The variables are {\em not}
+stored.  Integer coefficients may be of arbitrary length but exponents
+must be {\tt BETA}-digits.  Since no sorting is performed on the
+terms, they must be given in order of descending degree.  This is an
+important remark since almost all algorithms that manipulate
+polynomials require that the terms be ordered and violating this rule
+will undoubtedly cause incorrect results to be computed and may even
+crash the system.  Another important remark is that terms whose
+coefficients are 0 should not be given as these terms will be stored
+and may cause problems, for example in equality testing.
+
+Although {\tt IPREAD} is happiest when a polynomial is given in
+external canonical form as exemplified by the previous examples, the
+user is allowed some freedom.  An arbitrary number of spaces may
+interspersed between the coefficients, the variables, the exponents
+and the symbols '\verb@+@', '\verb@-@' and '\verb@^@'.  Spaces may not
+be inserted within a variable nor within an integer.  Coefficients
+with magnitude 1 as well as the exponents 0 and 1 may be explicitly
+given. Thus, for example, \verb@((x ^ 2+1) y^3+(1x+8) y^1-(5x^0) y^0)@
+is perfectly valid and is equivalent to the second example given in
+the table above.
+
+Since {\tt IPREAD} was intended to be used mainly for reading output
+produced by previous computations, it is designed to be fast and,
+consequently, very little error checking is performed on the input.
+Among other things, {\tt IPREAD} does not check for consistency among
+the variables, e.g. \verb@((y)x^2+(z)y)@ will be accepted as valid
+input and would be identical to
+\verb@((u)v^2+(u)v)@ in internal representation.  Also, {\tt IPREAD}
+does not check for consistency among terms, i.e.  each term is
+processed separately and it is not checked whether all terms have the
+same number of recursive nestings.  For example, \verb@(y^3+(x-1)y)@
+will be accepted although the first term, \verb@y^3@, is a univariate
+polynomial whereas the second,
+\verb@(x-1)y@, is a bivariate polynomial.  {\em It is therefore the
+responsibility of the user to see that polynomials are input properly.}
+
+The algorithm {\tt IPWRITE} takes as inputs an $r$-variate recursive
+polynomial \verb@A@ over $\BbbZ$ and a list
+\verb@V = (@$v_1,\ldots,v_r$\verb@)@ of $r$ variables and writes \verb@A@ to
+the output stream using the variables specified with $v_r$ as the main
+variable and $v_1$ as the most minor variable.  The list \verb@V@ may be
+initialized using {\tt VLREAD} which reads a variable list from the input
+stream.  For generating a list with a fixed number of variables one could also
+use an expression such as {\tt LIST3(LFS("X"),LFS("Y"),LFS("Z"))}.  Here the
+functions {\tt LFS} is used for converting a C string to a SACLIB variable.
+It is possible to use the algorithm {\tt IUPWRITE} to write univariate
+recursive polynomials but this algorithm was intended mainly as a subroutine
+to be called by {\tt IPWRITE}, which also handles univariate polynomials, and
+the user need not even be aware of its existence.
+
+There is an additional set of input functions of which the top level function
+is {\tt IPEXPREAD}. The format accepted by this function is a bit more
+convenient as expressions may be of the form 
+\verb@(3 X Y^2 + X)^3 - (Y X + Y) (X - 1)^2 + 5@.
+Note that {\tt IPEXPREAD} also takes a variable list as input and therefore
+can detect the order of the variables without requiring the recursive
+structure made explicit by parentheses.
+
+To be more precise, {\tt IPEXPREAD} accepts any polynomial expression built
+from integers and variables using +, -, blanks for multiplication, \^\ for
+exponentiation, and parenthesis for grouping. The expression may be
+terminated by any character not being part of the legal input set (e.g.\ a
+period, a semicolon, etc.). This terminating character is not removed from
+the input stream.
+
+The function {\tt IPEXPREADR} has the same specification as {\tt IPEXPREAD},
+with the difference that it {\em does} remove the terminating character.
+
+
+\subsection{Recursive polynomials over $\BbbQ$}
+For $r$-variate recursive polynomials over $\BbbQ$ the algorithms {\tt RPREAD}
+and \linebreak {\tt RPWRITE} are the corresponding input and output routines.
+The situation for rational polynomials is essentially the same as that for
+integral polynomials with the exception that the base coefficients may be
+rational numbers.  The same freedoms on valid input apply and an arbitrary
+number of spaces may be inserted before and after '\verb@/@'.  If the
+denominator of a base coefficient is 1 then only the numerator is in the
+external canonical representation.  As an example, the external canonical
+representation of $\frac{2}{7}x^3-65x^2+5x+\frac{12}{4}$ is
+\verb@(2/7x^3-65x^2+5x+12/4)@ which, among many other possible
+variations, may be input as \verb@(2/7x^ 3- 65 x^2 + 5/1x+12/ 4)@.  It
+should be noted that the rational base coefficients are not reduced to
+lowest terms when converted to internal representation.  Corresponding
+to {\tt IUPWRITE} is {\tt RUPWRITE} which, again, need not concern the
+user.
+
+For rational polynomials there are also input functions for reading polynomial
+expressions. Here the name of the top level function is {\tt RPEXPREAD}. The
+input format here is the same as in the integral case, except that numbers may
+be rational.
+
+\subsection{Distributive polynomials over $\BbbZ$}
+The external canonical representation of sparse {\em distributive}
+polynomials over $\BbbZ$ is as follows.  The entire polynomial is
+enclosed in parentheses.  Each term is made up of the integer
+coefficient followed by the variables having positive exponents with
+each variable separated from its corresponding exponent by a caret.
+The coefficient and each variable-exponent pair is separated by a
+single space.  As was the case for recursive polynomials, coefficients
+and exponents with a magnitude of 1 are suppressed as are variables
+with exponent 0.  For example, the polynomial $2x^3y^5-xy^3-4y+x+1$
+will be expressed in external canonical form as
+\verb@( 2 x^3 y^5 - x y^3 -4 y + x +1 )@.
+
+The algorithms {\tt DIIPREAD} and {\tt DIIPWRITE} are the input and
+output routines for distributive polynomials over $\BbbZ$.  {\tt
+DIIPREAD} takes as input a variable list \verb@V@ =
+\verb@(@$v_1,\ldots,v_r$\verb@)@ and reads a distributive polynomial
+in external canonical form from the input stream.  The ordering of the
+variables in \verb@V@ is significant and the variables in each term of
+the polynomial that is read must appear in the same order that they
+appear in \verb@V@ and the terms must be ordered in descending degree
+in $v_r$.  For example, if\space \verb@V@ = \verb@(x,y,z)@ then \verb@(4 z^5
+- y^2 z^4 + 9 x y z)@ is valid but \verb@(4 z^5 + 9 y x z - y^2 z^4)@
+is not for two reasons---first, \verb@y@ appears before \verb@x@ in
+the term \verb@9 y x z@ and second, the term \verb@9 y x z@ appears
+before \verb@- y^2 z^4@ which violates the rule that terms must appear
+in order of descending degree in \verb@z@.  Additionally, if there are
+two terms with the same degree in $v_r$ then they should be ordered
+according to descending degree in $v_{r-1}$ and so on.  Coefficients
+may be separated from the variables by an arbitrary number of spaces
+(including no space at all).  Variables must be separated by at least
+one space if there is no exponent explicitly given, otherwise an
+arbitrary number of spaces may separate them.  For example \verb@(4z^5
+- y^2z^4 + 9x y z)@ is valid but \verb@(4z^5 - y^2z^4 + 9xyz)@ is not
+since
+\verb@xyz@ will be treated as a single variable.  
+
+
+\subsection{Distributive polynomials over $\BbbQ$}
+Distributive polynomials over $\BbbQ$ may be read in and written out using
+the algorithms {\tt DIRPREAD} and {\tt DIRPWRITE}.  The only difference
+between rational distributive polynomials and integral distributive
+polynomials is that the base coefficients may be rational numbers and
+not just integers.  It should be clear after reading the preceding
+subsections what constitutes valid input and we will not discuss this
+matter further.
+
+\subsection{Conversion Between Recursive and Distributive\protect\newline
+            Representation}
+Converting recursive polynomials to distributive polynomials can be
+achieved by using {\tt DIPFP} which, given a polynomial in recursive
+internal representation, computes an equivalent one in distributive
+internal representation.  In the other direction, namely to convert
+from distributive to recursive representation, the algorithm {\tt
+PFDIP} is provided. Both {\tt DIPFP} and {\tt PFDIP} work for
+polynomials over either $\BbbZ$ or $\BbbQ$ but the number of variables
+must be specified.  For example, if \verb@A@ is a polynomial over
+$\BbbQ$ in internal recursive representation and the user wants to
+display \verb@A@ in external distributive representation then the code
+\begin{center}
+\verb@DIRPWRITE(r,DIPFP(r,A),V);@ 
+\end{center}
+where \verb@r@ is equal to the number of variables and \verb@V@ is a
+list of \verb@r@ variables, will suffice.  
+
+\subsection{Polynomials over $\BbbZ_m$}
+The input and output routines for polynomials over $\BbbZ$ work
+equally well for polynomials over $\BbbZ_m$.

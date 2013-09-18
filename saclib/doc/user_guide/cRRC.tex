@@ -1,0 +1,267 @@
+\section{Mathematical Preliminaries}
+
+Let $A(x)$ be a univariate polynomial with integer coefficients.
+%
+A real number $x_0$ with $A(x_0) = 0$ is called a
+{\em real root} of $A(x)$.
+%
+A real number $x_0$ is a root of $A(x)$ if and only if
+$A(x)$ is divisible by $(x-x_0)$, i.e. if
+there is a polynomial $B(x)$ with real coefficients such that $A(x) = (x-x_0)B(x)$.
+%
+For any real root $x_0$ of $A(x)$ there is a natural number $k$
+such that $A(x)$ is divisible by $(x-x_0)^k$ but not by $(x-x_0)^{k+1}$.
+%
+This number $k$ is called the {\em multiplicity} of the root $x_0$ of $A(x)$.
+%
+Roots of multiplicity 1 are called {\em simple roots}.
+%
+An interval $I$ containing $x_0$ but no other real root of $A(x)$,
+is called an {\em isolating interval} for $x_0$.
+%
+For example, if $A(x) = x^2 - 2$, the interval $(-2,2)$ is not
+an isolating interval for a real root of $A(x)$, but $(0,1000)$ is.
+
+
+\section{Purpose}
+
+The \saclib\ real root calculation package solves non-linear equations in one
+variable:
+%
+It computes isolating intervals for the real roots of univariate integral
+polynomials along with the multiplicity of each root, and it
+refines the isolating intervals to any specified size.
+
+
+\section{Methods and Algorithms}
+
+For root isolation three methods are available.
+%
+The {\em coefficient sign variation method} (or: {\em modified Uspensky method}),
+is based on Descartes' rule of signs.
+%
+The {\em Collins-Loos method} is based on Rolle's theorem.
+%
+{\em Sturm's method} is based on Sturm sequences.
+
+Generally, the coefficient sign variation method is many times faster
+than the other two methods.
+For the coefficient sign variation method
+various main programs are provided to accommodate details of input and
+output specifications.
+
+For the refinement of isolating intervals to any specified precision
+a symbolic version of Newton's method is used.
+
+Given an arbitrary integral polynomial {\tt IPRCH} will calculate all its
+real roots to specified accuracy.
+%
+The multiplicity of each root is also computed.
+%
+The algorithm uses the coefficient sign variation method to isolate the roots
+from each other and then applies Newton's method to refine the isolating intervals
+to the desired width.
+
+Given a squarefree integral polynomial {\tt IPRIM} isolates all the real roots
+from each other.
+The roots inside a specified open interval are isolated by {\tt IPRIMO}.
+Both {\tt IPRIM} and {\tt IPRIMO} use the coefficient sign variation method.
+Other main algorithms which use this method are {\tt IPRIMS} and {\tt IPRIMW}.
+
+The Collins-Loos method is implemented in {\tt IPRICL}:
+%
+Given an arbitrary univariate integral polynomial {\tt IPRICL} produces a list of
+isolating intervals for its real roots.
+%
+These intervals have the additional property that the first derivative of $A$
+is monotone on each of them.
+
+An implementation of Sturm's method is provided by {\tt IPRIST}:
+Given a squarefree univariate integral polynomial {\tt IPRIST} produces a list
+of isolating intervals for its real roots.
+
+Roots of different polynomials can be isolated from each other using the program
+{\tt IPLRRI}.
+
+
+Reference:
+%\begin{thebibliography}{99}
+%
+%\bibitem{JJ}
+Jeremy R.\ Johnson:
+{\it Algorithms for polynomial real root isolation}.
+Technical Research Report OSU-CISRC-8/91-TR21, 1991.
+The Ohio State University,
+2036 Neil Avenue Mall,
+Columbus, Ohio 43210,
+Phone: 614-292-5813.
+%
+%\end{thebibliography}
+
+\section{Definitions of Terms}
+
+\begin{description}
+\item[binary rational number]\index{binary rational number}
+A rational number whose denominator is a power of 2.
+
+\item[interval]\index{interval}
+A list $I=(a,b)$ of rational numbers $a \leq b$.
+If $a = b$ the interval is called a one-point interval and it
+designates the set consisting of the number $a$.
+If $a < b$ it is not evident from the representation whether
+the endpoints are thought to be part of $I$ or not.
+Therefore the specifications of the algorithms have to state
+whether a particular interval is meant to be
+an open interval,
+a left-open and right closed interval,
+a left-closed and right open interval or
+a closed interval.
+
+\item[standard interval]\index{standard interval}\index{interval!standard}
+An interval whose endpoints are binary rational numbers $a$, $b$ such that
+$a = m / 2^k$, $b = (m+1) / 2^k$, $k$ and $m$ being positive or negative integers,
+or zero.
+
+\item[(weakly) isolating interval]\index{interval!isolating}\index{interval!isolating!weakly}
+An interval $I$ is called a (weakly) isolating interval for a simple real
+root $\alpha$ of the polynomial $A$ if $I$ contains $\alpha$ but no other
+root of $A$.
+
+\item[strongly isolating interval]\index{interval!isolating!strongly}
+An isolating interval for a root $\alpha$ of a polynomial $A$ is said to be
+strongly isolating, if the closure of $I$ is also an isolating interval
+for $\alpha$.
+
+\item[disjoint intervals]\index{disjoint intervals}\index{intervals!disjoint}
+Intervals are called disjoint if the sets they designate are disjoint.
+
+\item[strongly disjoint intervals]\index{intervals!disjoint!strongly}
+Disjoint intervals are called strongly disjoint if their closures are
+disjoint.
+
+\item[inflectionless isolating interval]\index{inflectionless isolating interval}\index{interval!isolating!inflectionless}
+An interval I with binary rational endpoints which is an isolating interval
+for a real root $x_0$ of $A(x)$
+is called inflectionless if the derivative $A'(x)$ is monotone in $I$, i.e. if
+$A''(x)$ does not have a root in $I$ except possibly $x_0$.
+
+\item[inflectionless isolation list]\index{inflectionless isolation list}
+A list of inflectionless isolating intervals.
+
+\end{description}
+
+
+\section{Functions}
+
+\begin{description}
+\item[High Precision Calculation] \ \
+\begin{description}
+\item[{\tt L <- IPRCH(A,I,k) 
+}]\index{IPRCH}  Integral polynomial real root calculation, high precision.
+       Input: any polynomial. Output: all roots or all roots in an interval.
+
+\item[{\tt L <- IPRCHS(A,I,k) 
+}]\index{IPRCHS} Integral polynomial real root calculation, high-precision special.
+       Input: polynomial which does not have common roots with its first or second
+       derivative. Output: all roots or all roots in an interval.
+
+\item[{\tt  IPRCNP(A,I; sp,spp,J) 
+}]\index{IPRCNP} Integral polynomial real root calculation, Newton method preparation.
+
+\item[{\tt J <- IPRCN1(A,I,s,k) 
+}]\index{IPRCN1} Integral polynomial real root calculation, 1 root.
+
+\end{description}
+
+\item[Coefficient Sign Variation Method] \ \
+\begin{description}
+\item[{\tt L <- IPRIM(A) 
+}]\index{IPRIM}  Integral polynomial real root isolation, modified Uspensky method.
+       
+\item[{\tt L <- IPRIMO(A,Ap,I) 
+}]\index{IPRIMO} Integral polynomial real root isolation, modified Uspensky method,
+       open interval.
+
+\item[{\tt L <- IPRIMS(A,Ap,I) 
+}]\index{IPRIMS} Integral polynomial real root isolation, modified Uspensky method,
+       standard interval.
+
+\item[{\tt L <- IPRIMU(A) 
+}]\index{IPRIMU} Integral polynomial real root isolation, modified Uspensky method,
+       unit interval.
+
+\item[{\tt L <- IPRIMW(A) 
+}]\index{IPRIMW} Integral polynomial real root isolation, modified Uspensky method,
+       weakly disjoint intervals.
+
+\item[{\tt L <- IPSRM(A,I) 
+}]\index{IPSRM}  Integral polynomial strong real root isolation, modified Uspensky
+       method. Input: an integral polynomial without multiple roots and no roots
+       in common with its second derivative. Output: an inflectionless isolation
+       list for all roots or all roots in an interval.
+
+\item[{\tt L <- IPSRMS(A,I) 
+}]\index{IPSRMS} Integral polynomial strong real root isolation, modified Uspensky
+       method, standard interval.
+\end{description}
+
+\item[Rolle's Theorem] \ \
+\begin{description}
+\item[{\tt L <- IPRICL(A) 
+}]\index{IPRICL} Integral polynomial real root isolation, Collins-Loos algorithm.
+\end{description}
+
+\item[Sturm's method] \ \
+\begin{description}
+\item[{\tt IPRIST}]\index{IPRIST} Integral polynomial real root isolation using a Sturm sequence.
+\end{description}
+
+\item[Special] \ \
+\begin{description}
+\item[{\tt r <- IUPRLP(A) 
+}]\index{IUPRLP} Integral univariate polynomial, root of a linear polynomial.
+\item[{\tt b <- IUPRB(A) 
+}]\index{IUPRB}  Integral univariate polynomial root bound.
+              Input: a univariate integral polynomial $A$.
+              Output: a binary rational number, power of 2, which is greater than
+                      the absolute value of any root of $A$.
+\item[{\tt M <- IPLRRI(L) 
+}]\index{IPLRRI} Integral polynomial list real root isolation.
+              Input: a list of integral polynomials without multiple roots and
+                     without common roots.
+              Output: a list of strongly disjoint isolating intervals in ascending order
+                      for all the roots of all the input polynomials -- each
+                      interval is listed with the polynomial of which it isolates a root.
+\item[{\tt Is <- IUPIIR(A,I)
+}]\index{IUPIIR}  Integral univariate polynomial isolating interval
+    refinement.
+\end{description}
+
+\item[Low-Level Functions] \ \
+  \begin{description}
+  \item[{\tt  IPRRS(A1,A2,I1,I2; Is1,Is2,s) 
+}]\index{IPRRS}  Integral polynomial real root separation.
+  \item[{\tt  IPRRLS(A1,A2,L1,L2; Ls1,Ls2) 
+}]\index{IPRRLS}  Integral polynomial real root list separation.
+  \item[{\tt L <- IPRRII(A,Ap,d,Lp) 
+}]\index{IPRRII}  Integral polynomial real root isolation induction.
+  \item[{\tt Is <- IPRRRI(A,B,I,s1,t1) 
+}]\index{IPRRRI}  Integral polynomial relative real root isolation.
+  \item[{\tt J <- IPSIFI(A,I) 
+}]\index{IPSIFI}  Integral polynomial standard isolating interval from isolating interval.
+  \item[{\tt  IPIIWS(A,L) 
+}]\index{IPIIWS}  Integral polynomial isolating intervals weakly disjoint to strongly disjoint.
+  \item[{\tt IPPNPRS}]\index{IPPNPRS} Integral polynomial primitive negative polynomial remainder sequence.
+  \item[{\tt k <- IPVCHT(A) 
+}]\index{IPVCHT}  Integral polynomial variations after circle to half-plane transformation.
+  \item[{\tt B <- IUPCHT(A) 
+}]\index{IUPCHT}  Integral univariate polynomial circle to half-plane transformation.
+  \item[{\tt n <- IUPVAR(A) 
+}]\index{IUPVAR}  Integral univariate polynomial variations.
+  \item[{\tt v <- IUPVOI(A,I) 
+}]\index{IUPVOI}  Integral univariate polynomial, variations for open interval.
+  \item[{\tt v <- IUPVSI(A,I) 
+}]\index{IUPVSI}  Integral univariate polynomial, variations for standard interval.
+  \end{description}
+
+\end{description}

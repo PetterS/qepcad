@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Removing any macosX86 system dependent files ..."
+'rm' -f $saclib/src/GC.c 
+'rm' -f $saclib/include/sysdep.h

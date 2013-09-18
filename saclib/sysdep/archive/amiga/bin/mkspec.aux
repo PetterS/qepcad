@@ -1,0 +1,22 @@
+; USAGE
+;   mkspec.aux
+;
+; FUNCTION
+;   Reads names of SAC source files from STDIN (for use with pipes) until
+;   an EOF is read. The files are processed by awk to extract the function
+;   description in the header.
+
+LAB loop
+
+Read fname
+IF $? EQ 1 VAL
+  Skip End
+ENDIF
+
+awk "/^\/\*====*===\$/,/^====*===\*\/\$/ {print}" $fname
+Delete T:gawk.* QUIET
+fname=
+
+Skip BACK loop
+
+LAB End

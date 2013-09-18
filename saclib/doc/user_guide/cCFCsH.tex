@@ -1,0 +1,57 @@
+\section{GCA Handles for Hackers}
+
+GCA handles can also be applied to C structures, but as they are
+interpreted as arrays by \saclib\ you must make sure that all fields lie on
+a \Word\ boundary. Figure \ref{f:GCA2} gives an example.
+
+
+\begin{figure}[htb]
+\ \hrulefill\ \small
+\begin{verbatim}
+        .
+        .
+        .
+        struct poly {
+          Word   p; /* the polynomial             */
+          Word   v; /* the list of variable names */
+          int    r; /* the number of variables    */
+        };
+
+        #define poly_words (sizeof(struct poly)+sizeof(Word))/sizeof(Word)
+        .
+        .
+        .
+        struct poly *ptrP;
+        Word  P, L;
+        .
+        .
+        .
+Step2:  /* Here we do some allocation. */
+        L = NIL;
+        do {
+          P = GCAMALLOC(poly_words,GC_CHECK);
+          ptrP = (struct poly *)GCA2PTR(P);
+          SWRITE("Enter a polynomial (0 to quit): ");
+          IPREAD(&(ptrP->r),&(ptrP->p),&(ptrP->v));
+          L = COMP(P,L);
+        }
+        until (ISZERO(ptrP->p));
+        .
+        .
+        .
+\end{verbatim}
+\ \hrulefill\ \normalsize
+\caption{Sample code using GCA handles for C structures.}
+\label{f:GCA2}
+\end{figure}
+
+First a structure {\tt poly} is defined which contains the polynomial
+itself, the list of variable names to be used for output, and the number of
+variables. Then we define a constant giving size of this structure in \Word
+s (rounding up in case the size in bytes might not be an even multiple of
+the size of a \Word). Inside the loop, an instance of this structure is
+allocated. Then a polynomial and the accompanying information are read and
+stored in the corresponding fields of the structure. Finally a new element
+containing the GCA handle {\tt P} of the structure is appended to the
+beginning of the list \ttL.
+

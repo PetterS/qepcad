@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sparse Distributive Representation}
+
+\begin{description}
+\item[Conversion\footnotemark :] \ \
+  \footnotetext{
+    See Section \ref{c:PA s:I} for a description of the sparse recursive
+    representation.
+  }
+  \begin{description}
+  \item[{\tt B <- DIPFP(r,A) 
+}]\index{DIPFP}  Distributive polynomial from polynomial. {\em Computes a
+  polynomial in sparse distributive representation from a polynomial in the
+  sparse recursive representation.}
+  \item[{\tt B <- PFDIP(r,A) 
+}]\index{PFDIP}  Polynomial from distributive polynomial. {\em Computes a
+  polynomial in the sparse recursive representation from a polynomial in
+  the sparse distributive representation.}
+  \end{description}
+
+\item[Input/Output:] \ \
+  \begin{description}
+  \item[{\tt A <- DIIPREAD(V) 
+}]\index{DIIPREAD}  Distributive integral polynomial read.
+  \item[{\tt  DIIPWRITE(r,A,V) 
+}]\index{DIIPWRITE}  Distributive integral polynomial write.
+  \item[{\tt A <- DIRPREAD(V) 
+}]\index{DIRPREAD}  Distributive rational polynomial read.
+  \item[{\tt  DIRPWRITE(r,A,V) 
+}]\index{DIRPWRITE}  Distributive rational polynomial write.
+  \end{description}
+
+\item[Miscellaneous:] \ \
+  \begin{description}
+  \item[{\tt n <- DIPDEG(r,A) 
+}]\index{DIPDEG}  Distributive polynomial degree.
+  \item[{\tt  DIPINS(a,d,A; t,B) 
+}]\index{DIPINS}  Distributive polynomial, insert term.
+  \end{description}
+
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dense Recursive Representation}
+
+\begin{description}
+\item[Basic arithmetic:] \ \
+  \begin{description}
+  \item[{\tt C <- DMPPRD(r,m,A,B) 
+}]\index{DMPPRD}  Dense modular polynomial product.
+  \item[{\tt C <- DMPSUM(r,m,A,B) 
+}]\index{DMPSUM}  Dense modular polynomial sum.
+  \item[{\tt C <- DMUPNR(p,A,B) 
+}]\index{DMUPNR}  Dense modular univariate polynomial natural remainder.
+  \end{description}
+
+\item[Conversion\footnotemark :] \ \
+  \footnotetext{
+    See Section \ref{c:PA s:I} for a description of the sparse recursive
+    representation.
+  }
+  \begin{description}
+  \item[{\tt B <- DPFP(r,A) 
+}]\index{DPFP}  Dense polynomial from polynomial. {\em Computes a
+  polynomial in dense recursive representation from a polynomial in the
+  sparse recursive representation.}
+  \item[{\tt B <- PFDP(r,A) 
+}]\index{PFDP}  Polynomial from dense polynomial. {\em Computes a polynomial
+  in the sparse recursive representation from a polynomial in the dense
+  recursive representation.}
+  \end{description}
+
+\end{description}

@@ -1,0 +1,14 @@
+.key pat,outfile
+.bra {
+.ket }
+.def pat SACLIB:src/*.c
+.def outfile SACLIB:doc/spec.doc
+
+; USAGE:
+;   mkspec [file name pattern] [output file name]
+;
+; FUNCTION
+;   Extracts the function descriptions from SAC source files and writes
+;   them to the output file.
+
+List {pat} SORT LFORMAT "%s%s" | SACLIB:bin/mkspec.aux >{outfile}

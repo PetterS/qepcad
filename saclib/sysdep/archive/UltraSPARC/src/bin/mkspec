@@ -1,0 +1,12 @@
+#! /bin/csh
+
+# USAGE
+#   mkspec <SAC source file names>
+#
+# FUNCTION
+#   Extracts the function specifications from the headers of SAC source files
+#   and writes them to STDOUT.
+
+foreach fname ($argv)
+  awk '/^\/\*====*===$/,/^====*===\*\/$/ {print}' $fname
+end

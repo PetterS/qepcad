@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Removing any solarisSparc system dependent files ..."
+'rm' -f $saclib/src/GC.c $saclib/src/flush.s $saclib/src/get_pointers.s
+'rm' -f $saclib/include/sysdep.h

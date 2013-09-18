@@ -1,0 +1,254 @@
+\begin{description}
+\item[Basic arithmetic:] \ \
+  \begin{description}
+  \item[{\tt C <- IPSUM(r,A,B) 
+}]\index{IPSUM}  Integral polynomial sum.
+  \item[{\tt C <- IPDIF(r,A,B) 
+}]\index{IPDIF}  Integral polynomial difference.
+  \item[{\tt B <- IPNEG(r,A) 
+}]\index{IPNEG}  Integral polynomial negative.
+  \item[{\tt C <- IPPROD(r,A,B) 
+}]\index{IPPROD}  Integral polynomial product.
+  \item[{\tt C <- IPIP(r,a,B) 
+}]\index{IPIP}  Integral polynomial integer product. {\em Computes $c * p$
+    given an integer $c$ and an integral polynomial $p$.}
+  \item[{\tt C <- IPP2P(r,B,m) 
+}]\index{IPP2P}  Integral polynomial power of 2 product.
+  \item[{\tt  IPQR(r,A,B; Q,R) 
+}]\index{IPQR}  Integral polynomial quotient and remainder.
+  \item[{\tt C <- IPQ(r,A,B) 
+}]\index{IPQ}  Integral polynomial quotient.
+  \item[{\tt C <- IPIQ(r,A,b) 
+}]\index{IPIQ}  Integral polynomial integer quotient. {\em Computes $p/c$
+    given an integral polynomial $p$ and an integer $c$.}
+  \item[{\tt C <- IPPSR(r,A,B) 
+}]\index{IPPSR}  Integral polynomial pseudo-remainder.
+  \item[{\tt  IUPSR(A,B; ab,bb,C) 
+}]\index{IUPSR}  Integral univariate polynomial semi-remainder.
+  \item[{\tt B <- IPEXP(r,A,n) 
+}]\index{IPEXP}  Integral polynomial exponentiation.
+  \item[{\tt s <- IPSIGN(r,A) 
+}]\index{IPSIGN}  Integral polynomial sign.
+  \item[{\tt B <- IPABS(r,A) 
+}]\index{IPABS}  Integral polynomial absolute value.
+
+  \end{description}
+
+\item[Differentiation and Integration:] \ \
+  \begin{description}
+  \item[{\tt B <- IPDMV(r,A) 
+}]\index{IPDMV}  Integral polynomial derivative, main variable.
+  \item[{\tt B <- IPDER(r,A,i) 
+}]\index{IPDER}  Integral polynomial derivative. {\em Computes the
+    derivative of the argument w.r.t.\ the i-th variable.}
+  \item[{\tt B <- IPHDMV(r,A,k) 
+}]\index{IPHDMV}  Integral polynomial higher derivative, main variable. {\em
+    Computes the k-th derivative of the argument w.r.t.\ the main
+    variable.}
+  \item[{\tt B <- IPINT(r,A,b) 
+}]\index{IPINT}  Integral polynomial integration. {\em Computes the integral
+    of the argument w.r.t.\ the main variable.}
+
+  \end{description}
+
+\item[Substitution and Evaluation:] \ \
+  \begin{description}
+  \item[{\tt C <- IPSMV(r,A,B) 
+}]\index{IPSMV}  Integral polynomial substitution for main variable. {\em
+    Substitutes an integral polynomial for the main variable of an integral
+    polynomial.}
+  \item[{\tt C <- IPSUB(r,A,i,B) 
+}]\index{IPSUB}  Integral polynomial substitution. {\em Substitutes an
+    integral polynomial for the i-th variable of an integral polynomial.}
+  \item[{\tt C <- IPGSUB(r,A,s,L) 
+}]\index{IPGSUB}  Integral polynomial general substitution. {\em Substitutes
+    an integral polynomials for all variables of an integral polynomial.}
+  \item[{\tt B <- IUPQS(A) 
+}]\index{IUPQS}  Integral univariate polynomial quotient substitution.
+  \item[{\tt B <- IPEMV(r,A,a) 
+}]\index{IPEMV}  Integral polynomial evaluation of main variable. {\em
+    Substitutes a constant for the main variable of an integral
+    polynomial.}
+  \item[{\tt B <- IPEVAL(r,A,i,a) 
+}]\index{IPEVAL}  Integral polynomial evaluation. {\em Substitutes a
+    constant for the i-th variable of an integral polynomial.}
+  \item[{\tt b <- IUPBEI(A,c,m) 
+}]\index{IUPBEI}  Integral univariate polynomial binary rational evaluation,
+    integer output.
+  \item[{\tt s <- IUPBES(A,a) 
+}]\index{IUPBES}  Integral univariate polynomial binary rational evaluation of
+    sign.
+  \item[{\tt b <- IUPBRE(A,a) 
+}]\index{IUPBRE}  Integral univariate polynomial binary rational evaluation.
+  \item[{\tt B <- IPBEILV(r,A,c,k,m)
+}]\index{IPBEILV} Integral polynomial binary rational evaluation, integral
+    polynomial result, leading variable.
+  \item[{\tt B <- IPBREI(r,A,i,c)
+}]\index{IPBREI}  Integral polynomial binary rational evaluation, integral
+    polynomial result.
+
+  \end{description}
+
+\item[Transformation:] \ \
+  \begin{description}
+  \item[{\tt B <- IPTRMV(r,A,h) 
+}]\index{IPTRMV}  Integral polynomial translation, main variable. {\em
+    Computes $p(x+h)$ given $p$ and $h$, where $x$ is the main variable of
+    $p$.}
+  \item[{\tt B <- IPTRAN(r,A,T) 
+}]\index{IPTRAN}  Integral polynomial translation. {\em Computes
+    $p(x_1+t_1,\ldots,x_r+t_r)$ given $p$ and the $t_i$.}
+  \item[{\tt B <- IPBHT(r,A,i,k) 
+}]\index{IPBHT}  Integral polynomial binary homothetic transformation.
+  \item[{\tt B <- IPBHTLV(r,A,k) 
+}]\index{IPBHTLV}  Integral polynomial binary homothetic transformation,
+    leading variable.
+  \item[{\tt B <- IPBHTMV(r,A,k) 
+}]\index{IPBHTMV}  Integral polynomial binary homothetic transformation,
+    main variable.
+  \item[{\tt B <- IUPBHT(A,k) 
+}]\index{IUPBHT}  Integral univariate polynomial binary homothetic
+    transformation.
+  \item[{\tt B <- IUPIHT(A,n) 
+}]\index{IUPIHT}  Integral univariate polynomial integer homothetic
+    transformation.
+  \item[{\tt B <- IPNT(r,A,i) 
+}]\index{IPNT}  Integral polynomial negative transformation.
+  \item[{\tt B <- IUPNT(A) 
+}]\index{IUPNT}  Integral univariate polynomial negative transformation.
+  \item[{\tt B <- IPTR(r,A,i,h) 
+}]\index{IPTR}  Integral polynomial translation, specified variable.
+  \item[{\tt B <- IUPTR(A,h) 
+}]\index{IUPTR}  Integral univariate polynomial translation.
+  \item[{\tt B <- IPTR1(r,A,i) 
+}]\index{IPTR1}  Integral polynomial translation by 1, specified variable.
+    specified variable.
+  \item[{\tt B <- IPTRLV(r,A) 
+}]\index{IPTRLV}  Integral polynomial translation, leading variable.
+  \item[{\tt B <- IPTR1LV(r,A) 
+}]\index{IPTR1LV}  Integral polynomial translation by 1, leading variable.
+  \item[{\tt B <- IUPTR1(A) 
+}]\index{IUPTR1}  Integral univariate polynomial translation by 1.
+
+  \end{description}
+
+\item[Predicates:] \ \
+  \begin{description}
+  \item[{\tt t <- IPCONST(r,A) 
+}]\index{IPCONST}  Integral polynomial constant. {\em Tests whether the argument
+    is a constant.}
+  \item[{\tt t <- IPONE(r,A) 
+}]\index{IPONE}  Integral polynomial one. {\em Tests whether the argument is 1.}
+
+  \end{description}
+
+\item[Random Polynomial Generation:] \ \
+  \begin{description}
+  \item[{\tt A <- IPRAN(r,k,q,N) 
+}]\index{IPRAN}  Integral polynomial, random.
+  \end{description}
+
+\item[Conversion:] \ \
+  \begin{description}
+  \item[{\tt  IPSRP(r,A; a,Ab) 
+}]\index{IPSRP}  Integral polynomial similiar to rational polynomial. {\em
+    Given a rational polynomial $q$, computes a rational number $c$ and an
+    integral polynomial $p$ with $c p = q$.}
+  \item[{\tt B <- IPFRP(r,A) 
+}]\index{IPFRP}  Integral polynomial from rational polynomial. {\em Computes
+    an integral polynomial from a rational polynomial whose base
+    coefficients are integers.}
+  \end{description}
+
+\item[Input/Output:] \ \
+  \begin{description}
+  \item[{\tt  IPREAD(; r,A) 
+}]\index{IPREAD}  Integral polynomial read.
+  \item[{\tt  IPEXPREAD(r,V; A,t) 
+}]\index{IPEXPREAD}  Integral polynomial expression read.
+  \item[{\tt  IPWRITE(r,A,V) 
+}]\index{IPWRITE}  Integral polynomial write.
+  \item[{\tt  IPDWRITE(r,A,V) 
+}]\index{IPDWRITE}  Integral Polynomial Distributive Write. {\em Writes an
+    integral recursive polynomial in distributive form.}
+  \end{description}
+
+\item[Contents and Primitive Parts:] \ \
+  \begin{description}
+  \item[{\tt  IPICPP(r,A; a,Ab) 
+}]\index{IPICPP}  Integral polynomial integer content and primitive part.
+  \item[{\tt c <- IPIC(r,A) 
+}]\index{IPIC}  Integral polynomial integer content.
+  \item[{\tt Ab <- IPIPP(r,A) 
+}]\index{IPIPP}  Integral polynomial integer primitive part.
+  \item[{\tt d <- IPICS(r,A,c) 
+}]\index{IPICS}  Integral polynomial integer content subroutine.
+  \item[{\tt  IPSCPP(r,A; s,C,Ab) 
+}]\index{IPSCPP}  Integral polynomial sign, content, and primitive part.
+    {\em Computes the sign, content and primitive part of the argument
+    w.r.t.\ the main variable.}
+  \item[{\tt  IPCPP(r,A; C,Ab) 
+}]\index{IPCPP}  Integral polynomial content and primitive part.
+  \item[{\tt C <- IPC(r,A) 
+}]\index{IPC}  Integral polynomial content.
+  \item[{\tt Ab <- IPPP(r,A) 
+}]\index{IPPP}  Integral polynomial primitive part.
+  \item[{\tt  IPLCPP(r,A; C,P) 
+}]\index{IPLCPP}  Integral polynomial list of contents and primitive parts.
+
+  \end{description}
+
+\item[Polynomial Norms:] \ \
+  \begin{description}
+  \item[{\tt b <- IPSUMN(r,A) 
+}]\index{IPSUMN}  Integral polynomial sum norm.
+  \item[{\tt b <- IPMAXN(r,A) 
+}]\index{IPMAXN}  Integral polynomial maximum norm.
+
+  \end{description}
+
+\item[Chinese Remainder Algorithm:] \ \
+  \begin{description}
+  \item[{\tt As <- IPCRA(M,m,mp,r,A,a) 
+}]\index{IPCRA}  Integral polynomial chinese remainder algorithm.
+
+  \end{description}
+
+\item[Squarefree Factorization:] \ \
+  \begin{description}
+  \item[{\tt L <- IPSF(r,A) 
+}]\index{IPSF}  Integral polynomial squarefree factorization.
+  \item[{\tt L <- IPFSD(r,A) 
+}]\index{IPFSD}  Integral polynomial factorization, second derivative.
+  \item[{\tt L <- IPSFSD(r,A) 
+}]\index{IPSFSD}  Integral squarefree factorization, second derivative.
+
+  \end{description}
+
+\item[Computations in Ideals:] \ \
+  \begin{description}
+  \item[{\tt B <- IPTRUN(r,D,A) 
+}]\index{IPTRUN}  Integral polynomial truncation. {\em Computes $p \mod
+    (x_1^{d_1},\ldots,x_r^{d_r})$ given $p$ and the $d_i$.}
+  \item[{\tt C <- IPTPR(r,D,A,B) 
+}]\index{IPTPR}  Integral polynomial truncated product. {\em Computes $p
+    q \mod \\(x_1^{d_1},\ldots,x_r^{d_r})$ given $p, q$, and the
+    $d_i$.}
+  \item[{\tt B <- IPIHOM(r,D,A) 
+}]\index{IPIHOM}  Integral polynomial mod ideal homomorphism. {\em Computes
+    $p \mod \\(x_1^{d_1},\ldots,x_{r-1}^{d_{r-1}})$ given an
+    r-variate polynomial $p$ and the $d_i$.}
+  \item[{\tt C <- IPIPR(r,D,A,B) 
+}]\index{IPIPR}  Integral polynomial mod ideal product. {\em Computes $p
+    q \mod \\(x_1^{d_1},\ldots,x_{r-1}^{d_{r-1}})$ given r-variate
+    polynomials $p$ and $q$ and the $d_i$.}
+  \item[{\tt C <- IUPTPR(n,A,B) 
+}]\index{IUPTPR}  Integral univariate polynomial truncated product. {\em
+    Computes $p q \mod x^n$ given univariate polynomials $p$ and $q$ and a
+    \BETA-digit $n$.}
+
+  \end{description}
+
+
+\end{description}
+

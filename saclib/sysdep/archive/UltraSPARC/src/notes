@@ -1,0 +1,10 @@
+1)  Need to use assembly GC routines to dump register windows.
+    flush and get_pointers
+2)  Modified mkmake so that *.s files are properly assembled.
+    Need to make sure cpp is run so that include files are included.
+3)  use varargs
+4)  set CC=cc  (note this is K&R C and does not have parameter types).
+    this should be set in install (want to be able to use gcc)
+    In this case need to define __STDC__ in sacsys.h
+5)  changed the environment variable "system" to SPARC in install
+

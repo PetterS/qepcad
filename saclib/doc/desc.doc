@@ -1,0 +1,1226 @@
+AADV       Arithmetic advance.
+ABS        Absolute value.
+ACLOCK     Clock minus garbage collection time.
+ADDTO      Add array to array.
+ADV        Advance.
+ADV2       Advance 2.
+ADV3       Advance 3.
+ADV4       Advance 4.
+AFCOMP     Algebraic number field comparison.
+AFCR       Algebraic number field element convert representation.
+AFDIF      Algebraic number field element difference.
+AFDWRITE   Algebraic number field, decimal write.
+AFFINT     Algebraic number field element from integer.
+AFFRN      Algebraic number field element from rational number.
+AFGEN      Algebraic number field generator.
+AFICR      Algebraic number field element inverse convert
+           representation.
+AFINV      Algebraic number field element inverse.
+AFNEG      Algebraic number field negation.
+AFPAFP     Algebraic number field polynomial algebraic number field
+           element product.
+AFPAFQ     Algebraic number field polynomial algebraic number field
+           element quotient.
+AFPCMV     Algebraic number field polynomial composition in main
+           variable.
+AFPCR      Algebraic number field polynomial convert representation.
+AFPDIF     Algebraic number field polynomial difference.
+AFPDMV     Algebraic number field polynomial derivative, main
+           variable.
+AFPEMV     Algebraic number field polynomial evaluation of main
+           variable.
+AFPEV      Algebraic number field polynomial evaluation.
+AFPFIP     Algebraic number field polynomial from integral polynomial.
+AFPFRP     Algebraic number field polynomial from rational polynomial.
+AFPHIIR    Algebraic field polynomial hardware interval isolation and
+           refinement.
+AFPHIP     Algebraic field polynomial to hardware interval polynomial.
+AFPICR     Algebraic number field polynomial inverse convert
+           representation.
+AFPINT     Algebraic number field polynomial integration.
+AFPME      Algebraic number field polynomial multiple evaluation.
+AFPMON     Algebraic number field polynomial monic.
+AFPNEG     Algebraic number field polynomial negative.
+AFPNIP     Algebraic number field polynomial normalize to integral
+           polynomial.
+AFPNORM    Algebraic number field polynomial norm.
+AFPPR      Algebraic number field polynomial product.
+AFPQR      Algebraic number field polynomial quotient and remainder.
+AFPROD     Algebraic number field element product.
+AFPSIP     Algebraic field polynomial to software interval polynomial.
+K          Algebraic field polynomial software interval refinement.
+AFPSUM     Algebraic number field polynomial sum.
+AFPWRITE   Algebraic number field polynomial write.
+AFQ        Algebraic number field quotient.
+AFSIGN     Algebraic number field sign.
+AFSUM      Algebraic number field element sum.
+AFUPBRI    Algebraic number field univariate polynomial basis real
+           root isolation.
+AFUPCSFB   Algebraic number field univariate polynomial coarsest
+           squarefree basis.
+AFUPFAC    Algebraic number field univariate polynomial factorization.
+AFUPFMRC   Algebraic number field univariate polynomial from modular
+           residues, with comparison.
+AFUPFRPT   Algebraic number field univariate polynomial fast
+           relative-primality test.
+AFUPGC     Algebraic number field univariate polynomial greatest
+           common divisor and cofactors.
+AFUPGC1    Algebraic number field univariate polynomial greatest
+           common divisor and cofactors, degree 1.
+AFUPGS     Algebraic number field univariate polynomial greatest
+           squarefree divisor.
+AFUPHIBRI  Algebraic number field univariate polynomial hardware
+           interval basis real root isolation.
+AFUPIIR    Algebraic number field polynomial isolating interval
+           refinement.
+AFUPIIWS   Algebraic number field univariate polynomial isolating
+           intervals weakly disjoint to strongly disjoint.
+AFUPMPR    Algebraic number field univariate polynomial minimal
+           polynomial of a real root.
+AFUPQR     Algebraic number field univariate polynomial quotient and
+           remainder.
+AFUPRB     Algebraic number field univariate polynomial root bound.
+AFUPRICL   Algebraic number field univariate polynomial real root
+           isolation, Collins-Loos algorithm.
+AFUPRICS   Algebraic univariate polynomial real root isolation,
+           coefficient sign variation method.
+AFUPRII    Algebraic number field univariate polynomial real root
+           isolation induction.
+AFUPRL     Algebraic number field univariate polynomial, root of a
+           linear polynomial.
+AFUPRLS    Algebraic number field univariate polynomial real root list
+           separation.
+AFUPRRI    Algebraic number field univariate polynomial relative real
+           root isolation.
+AFUPRRS    Algebraic number field univariate polynomial real root
+           separation.
+AFUPSF     Algebraic number field univariate polynomial squarefree
+           factorization.
+AFUPSFBA   Algebraic number field univariate polynomial squarefree
+           basis augmentation.
+AFUPSFN    Algebraic number field univariate polynomial squarefree
+           norm.
+AFUPSIBRI  Algebraic number field univariate polynomial software
+           interval basis real root isolation.
+AFUPSR     Algebraic number field univariate polynomial, sign at a
+           rational point.
+AFUPVAR    Algebraic number field univariate polynomial variations.
+AFUPWRITE  Algebraic number field univariate polynomial write.
+AFUSPSFB   Algebraic number field univariate squarefree polynomial
+           squarefree basis.
+AFWRITE    Algebraic field element write.
+AGIBL      Array Gaussian integer bit length.
+AGICOPY    Array Gaussian integer copy.
+AGIDP2     Array Gaussian integer division by a power of 2.
+D          Array Gaussian integer greatest common divisor.
+D          Array Gaussian integer greatest common divisor,
+           approximative Euclidean.
+AGIGCDW    Array Gaussian integer greatest common divisor, Weilert's
+           method.
+AGIMD      Array Gaussian integer minimal difference.
+AGIMP2     Array Gaussian integer multiplication by a power of 2.
+AGIMU      Array Gaussian integer multiplication by a unit.
+AGINC      Array Gaussian integer norm comparison.
+AGINORM    Array Gaussian integer norm.
+AGIPROD    Array Gaussian integer product.
+AGIQHQ     Array Gaussian integer quadrant and half quadrant.
+AGIRP      Array Gaussian integer reduced part.
+AGIRSUM    Array Gaussian integer rotated sum.
+AGISUM     Array Gaussian integer sum.
+AGITR      Array Gaussian integer truncate and round.
+AGIWRITE   Array Gaussian integer write.
+t          Array Gaussian integer zero.
+AICOMP     Array integer comparison.
+AICOPY     Array integer copy.
+AIDP2      Array integer division by a power of 2.
+AIFAN      Algebraic integer from algebraic number.
+AII        Array integer to integer.
+AIMP2      Array integer multiplication by a power of 2.
+AINQ       Array integer nearest quotient.
+AIPROD     Array integer product.
+AIQR       Array integer quotient and remainder.
+AISUM      Array integer sum.
+AITR       Array integer truncate and round.
+AITRS      Array integer truncate and round, small result.
+AIWRITE    Array integer write.
+t          Array integer zero.
+ALSIL      Attach labels to standard isolation list.
+AMLM       Array matrix to list matrix.
+AMPDMV     Algebraic module polynomial derivative, main variable.
+AMPSAFP    Algebraic module polynomial similar to algebraic field
+           polynomial.
+AMSIGN     Algebraic module sign.
+AMSIGNIR   Algebraic module sign, interval refinement.
+AMUPBES    Algebraic module univariate polynomial, binary rational
+           evaluation of sign.
+AMUPBHT    Algebraic module univariate polynomial binary homothetic
+           transformation.
+AMUPIIR    Algebraic module polynomial isolating interval refinement.
+AMUPIIWS   Algebraic module univariate polynomial isolating intervals
+           weakly disjoint to strongly disjoint.
+AMUPMPR    Algebraic module univariate polynomial minimal polynomial
+           of a real root.
+AMUPNT     Algebraic module univariate polynomial negative
+           transformation.
+AMUPRBH    Algebraic module univariate polynomial root bound and
+           homothetic transformation.
+AMUPRICS   Algebraic module univariate polynomial real root isolation,
+           coefficient sign variation method.
+AMUPRICSW  Algebraic module univariate polynomial real root isolation,
+           coefficient sign variation method, weakly disjoint
+           intervals.
+AMUPRINCS  Algebraic module univariate polynomial root isolation,
+           normalized coefficient sign variation method.
+AMUPRLS    Algebraic module univariate polynomial real root list
+           separation.
+AMUPRRS    Algebraic module univariate polynomial real root
+           separation.
+AMUPSR     Algebraic module univariate polynomial, sign at a rational
+           point.
+AMUPTR     Algebraic module univariate polynomial translation.
+AMUPTR1    Algebraic module univariate polynomial translation by 1.
+AMUPVARIR  Algebraic module univariate polynomial variations, interval
+           refinement.
+ANDWRITE   Algebraic number decimal write.
+ANFAF      Algebraic number from algebraic number field element.
+ANHI       Algebraic number to hardware interval.
+ANIIPE     Algebraic number isolating interval for a primitive
+           element.
+ANPEDE     Algebraic number primitive element for a double extension.
+ANPROD     Algebraic number product.
+ANR        Algebraic number refinement.
+ANREPE     Algebraic number represent element of a primitive
+           extension.
+ANSI       Algebraic number to software interval.
+ANSUM      Algebraic number sum.
+AREAD      Atom read.
+ARGSACLIB  Process the command line arguments.
+ARIE       Array remove indexed elements.
+ASSPR      Assignment problem.
+AWCOPY     Array of words copy.
+AWRITE     Atom write.
+BDGCD      Binary digit greatest common divisor.
+BEGINSACLIB Begin SACLIB.
+BERNOULLINUM Bernoulli numbers via tangent numbers.
+BERNOULLIPOL Bernoulli polynomial. The n-th Bernoulli polynomial is
+           computed.
+BITRAN     Bit, random.
+BKSP       Backspace.
+BRILBRI    Binary rational interval to logarithmic binary rational
+           interval.
+CCONC      Constructive concatenation.
+CHEBY      Chebyshev polynomial.
+CINV       Constructive inverse.
+CLEAR      Clear array.
+CLOCK      Clock.
+CLOUT      Character list out.
+COMP       Composition.
+COMP2      Composition 2.
+COMP3      Composition 3.
+COMP4      Composition 4.
+CONC       Concatenation.
+COPYTO     Copy array to array.
+CPLEXN     Cartesian product, lexicographically next.
+CREAD      Character read.
+CREADB     Character read.
+c          Characteristic set from array of members.
+CSFPAR     Characteristic set from partition.
+CSFS       Characteristic set from set.
+CSINT      Characteristic set intersection.
+CSSUB      Characteristic set subset.
+CSUN       Characteristic set union.
+CTMI       Create table of modular inverses.
+CWRITE     Character write.
+DAND       Digit and.
+DDPCC      Double-digit partial cosequence calculation.
+DDRPCC     Double-digit restricted partial cosequence calculation.
+DEGCD      Digit extended greatest common divisor.
+DGCD       Digit greatest common divisor.
+DIELOC     Display Input Error Location.
+DIGIT      Digit.
+DIIPREAD   Distributive integral polynomial read.
+DIIPWRITE  Distributive integral polynomial write.
+DIPDEG     Distributive polynomial degree.
+DIPFP      Distributive polynomial from polynomial.
+DIPINS     Distributive polynomial, insert term.
+DIRPREAD   Distributive rational polynomial read.
+DIRPWRITE  Distributive rational polynomial write.
+DLINIT     Discrete logarithm initialization of tables.
+DLINV      Discrete logarithm inverse.
+DLNEG      Discrete logarithm negative.
+DLOG2      Digit logarithm, base 2.
+DLPROD     Discrete logarithm product.
+DLSUM      Discrete logarithm sum.
+DMPPRD     Dense modular polynomial product.
+DMPSUM     Dense modular polynomial sum.
+DMUPNR     Dense modular univariate polynomial natural remainder.
+DNIMP      Digit non-implication.
+DNOT       Digit not.
+DOR        Digit or.
+DPCC       Digit partial cosequence calculation.
+DPFP       Dense polynomial from polynomial.
+DPGEN      Digit prime generator.
+DPR        Digit product.
+DPRNN      Digit product.
+DQR        Digit quotient and remainder.
+DRAN       Digit, random.
+DRANN      Digit, random non-negative.
+DRPCC      Digit restricted partial cosequence calculation.
+DSMC       Digit solution of modular congruence.
+DSQRTF     Digit square root function.
+DVCMP      Degree vector comparison.
+ENDSACLIB  End saclib.
+EQUAL      Equal.
+EVEN       EVEN.
+EXPF       Exponential function.
+EXTENT     Extent.
+FAIL       Failure handler.
+FCOMP      Floating point comparison.
+FCOPY      Floating point copy.
+FDIF       Floating-point difference.
+FILINE     Flush the input stream line.
+FIRST      First.
+FIRST2     First 2.
+FIRST3     First 3.
+FIRST4     First 4.
+FIRST5     First 5.
+FIRST6     First 6.
+FLBRN      Floating point to logarithmic binary rational number
+           conversion.
+FOURTH     Fourth.
+FPCATCH    Floating-point catch.
+FPHAND     Floating-point handler.
+FPROD      Floating-point product.
+FPROD1     Floating-point product, precision 1.
+FPROD2     Floating-point product, precision 2.
+FPROD21    Floating-point product, precision 2 by precision 1.
+FQUOT      Floating-point quotient.
+FRAPCR     Finite ring array polynomial convert representation.
+FRAPFMD    Finite ring array polynomial from modular digit.
+FRAPFREE   Finite ring array polynomial free memory.
+FRAPGET    Finite ring array polynomial get memory.
+FRAPMON    Finite ring array polynomial monic.
+FRAPREM    Finite ring array polynomial remainder.
+FREEARRAY  Free array.
+FREEMATRIX Free matrix.
+FREINV     Finite ring element inverse.
+FREPROD    Finite ring element product.
+FRESL      Fermat residue list.
+FRLSM      Fermat residue list, single modulus.
+FRUPCR     Finite ring univariate polynomial convert representation.
+FRUPGCD    Finite ring univariate polynomial gcd.
+FSUM       Floating-point sum.
+FSUMDEOS1  Floating-point sum, different exponents, opposite signs,
+           exponent difference of 1.
+FSUMDEOS2  Floating-point sum, different exponents, opposite signs,
+           exponent difference of 2 or more.
+FSUMDESS   Floating-point sum, different exponents, same signs.
+FSUMSEOS   Floating-point sum, same exponents, opposite signs.
+FSUMSESS   Floating-point sum, same exponents, same signs.
+GC         Garbage collection entry-point.
+GCA2PTR    Convert garbage collected array handle to C pointer.
+GCAFREE    Garbage collected array memory deallocation.
+GCAGET     Garbage collected array get element.
+GCAMALLOC  Garbage collected array memory allocation.
+GCASET     Garbage collected array set element.
+GCATL      GCA to list.
+GCGLOBAL   Declare a global variable to the Garbage Collector.
+GCSI       Garbage collection, system independent.
+GDPGEN     Gaussian digit prime generator.
+GETAHIA    Get array of hardware interval arrays.
+GETARRAY   Get array.
+GETHIPARRAY Get hardware interval polynomial array.
+GETMATRIX  Get matrix.
+B          Gaussian integer to array Gaussian integer.
+GICONJ     Gaussian integer conjugation.
+GIDIF      Gaussian integer difference.
+GIFP       Gaussian integer from parts.
+b          Gaussian integer first quadrant associate.
+GIGCD      Gaussian integer greatest common divisor.
+GIHQ       Gaussian integer half quadrant.
+GIMS       Gaussian integer minimal sum.
+GINEG      Gaussian integer negation.
+GINORM     Gaussian integer norm.
+q          Gaussian integer nearest quotient.
+GINQR      Gaussian integer nearest quotient and remainder.
+GIPGEN     Gaussian integer prime generator.
+GIPROD     Gaussian integer product.
+GIRP       Gaussian integer reduced part.
+GISUM      Gaussian integer sum.
+GIWRITE    Gaussian integer write.
+GREAD      C integer read.
+GWRITE     C integer write.
+HEXP       Hardware exponent.
+HIACC      Hardware interval accuracy.
+HIDWRITE   Hardware interval decimal write.
+HILBRI     Hardware interval to logarithmic binary rational interval.
+HIPBHT     Hardware interval polynomial binary homothetic
+           transformation.
+HIPCHT     Hardware interval polynomial circle to half-plane
+           transformation.
+HIPCOPY    Hardware interval polynomial copy.
+HIPDWRITE  Hardware interval polynomial decimal write.
+HIPFES     Hardware interval polynomial floating point evaluation of
+           sign.
+HIPIEVAL   Hardware interval polynomial interval evaluation.
+HIPIR      Hardware interval polynomial interval refinement.
+HIPLWRITE  Hardware interval polynomial logarithmic write.
+HIPNEGT    Hardware interval polynomial negative transformation.
+HIPPRB     Hardware interval polynomial positive root bound.
+HIPROD     Hardware interval product.
+HIPRRID    Hardware interval polynomial real root isolation, Descartes
+           method.
+HIPRRISD   Hardware interval polynomial real root isolation, standard
+           interval, Descartes' method.
+HIPRT      Hardware interval polynomial reciprocal transformation.
+HIPSV      Hardware interval polynomial sign variations.
+HIPTR1     Hardware interval polynomial translation by 1.
+HIPVCHT    Hardware interval polynomial, variations after circle to
+           half-plane transformation.
+HIQUOT     Hardware interval quotient.
+HISIGN     Hardware interval sign.
+HISUM      Hardware interval sum.
+HSIGN      Hardware sign.
+IABSF      Integer absolute value function.
+IACOMPA    Integer absolute value comparison, array version.
+B          Integer to array integer.
+IBCIND     Integer binomial coefficient induction.
+IBCOEF     Integer binomial coefficient.
+IBCOEFFS   Integer binomial coefficients.
+IBCPS      Integer binomial coefficient partial sum.
+IBPPOL     Integral bivariate polynomial points on line.
+IBPPOS     Integral bivariate polynomial points on sections.
+ICOMP      Integer comparison.
+ICRAND     Integer, controlled random.
+IDEGCD     Integer doubly extended greatest common divisor algorithm.
+IDENTMAT   Identity matrix.
+IDEQ       Integer-digit exact quotient.
+IDIF       Integer difference.
+IDIFA      Integer difference, array version.
+IDIPR2     Integer digit inner product, length 2.
+IDLCOMB    Integer double linear combination.
+IDP2       Integer division by power of 2.
+IDPR       Integer-digit product.
+IDQ        Integer-digit quotient.
+IDQR       Integer-digit quotient and remainder.
+IDQRA      Integer-digit quotient and remainder, array version.
+IDREM      Integer-digit remainder.
+IEAS       Integer Euclidean algorithm step.
+IEEEDWRITE IEEE decimal write.
+IEEELBRN   IEEE to logarithmic binary rational number conversion.
+IEEENEIGH  IEEE neighbor.
+IEEEROUND  IEEE round.
+IEEEWRITE  IEEE write.
+IEGCD      Integer extended greatest common divisor algorithm.
+IEQ        Integer exact quotient.
+IEVEN      Integer even.
+IEXP       Integer exponentiation.
+IF         Integer to floating.
+IFACT      Integer factorization.
+IFACTL     Integer factorial.
+IFATL      Integer from array to list.
+IFCL2      Integer, floor and ceiling, logarithm, base 2.
+IFEC       Integer to floating, exact conversion.
+IFLTA      Integer from list to array.
+IGCD       Integer greatest common divisor.
+IGCDCF     Integer greatest common divisor and cofactors.
+IHDREM     Integer half-digit remainder.
+IHEAS      Integer half-extended Euclidean algorithm step.
+IHEGCD     Integer half-extended greatest common divisor.
+IHI        Integer to hardware interval.
+IIC        Isolating interval conversion.
+IIEEE      Integer to IEEE double.
+IIEEET     Integer to IEEE double - truncation.
+ILBRN      Integer to logarithmic binary rational number.
+ILCM       Integer least common multiple.
+ILCOMB     Integer linear combination.
+ILENGTH    Integer length.
+ILOG2      Integer logarithm, base 2.
+ILOG2A     Integer logarithm, base 2, array version.
+ILOGB      Integer logarithm, base BETA.
+ILPDS      Integer large prime divisor search.
+ILSA       Integer left shift in array.
+ILWORD     Integer leading word.
+ILWORDS    Integer leading words.
+ILWRITE    Integer list write.
+IMAX       Integer maximum.
+IMIN       Integer minimum.
+IMP2       Integer multiplication by power of 2.
+IMPB       Integer multiplication by power of BETA.
+IMPBAA     Integer multiply by power of BETA and add to array.
+IMPDS      Integer medium prime divisor search.
+INEG       Integer negation.
+INEGA      Integer negation, array version.
+INFOSACLIB Write out usage information for SACLIB.
+q          Integer nearest quotient.
+INQR       Integer nearest quotient and remainder.
+INSET      Is the element in the set?
+INV        Inverse.
+INVPERM    Invert permutation.
+IODD       Integer odd.
+IORD2      Integer, order of 2.
+IPABS      Integral polynomial absolute value.
+IPAFME     Integral polynomial, algebraic number field multiple
+           evaluation.
+IPBEILV    Integral polynomial binary rational evaluation, integral
+           polynomial result, leading variable.
+IPBEZM     Integral polynomial Bezout matrix.
+IPBHT      Integral polynomial binary homothetic transformation.
+IPBHTLV    Integral polynomial binary homothetic transformation,
+           leading variable.
+IPBHTMV    Integral polynomial binary homothetic transformation, main
+           variable.
+IPBREI     Integral polynomial binary rational evaluation, integral
+           polynomial result.
+IPC        Integral polynomial content.
+IPCA       Integral polynomial coefficient analysis.
+IPCEVP     Integral polynomial, choice of evaluation points.
+IPCONST    Integral polynomial constant.
+IPCPP      Integral polynomial content and primitive part.
+IPCRA      Integral polynomial chinese remainder algorithm.
+IPCSFB     Integral polynomial coarsest squarefree basis.
+IPDER      Integral polynomial derivative.
+IPDIF      Integral polynomial difference.
+IPDMV      Integral polynomial derivative, main variable.
+IPDQNR     Integral polynomial digit quotient and non-negative
+           remainder.
+IPDQR      Integral polynomial digit quotient and remainder.
+IPDSCR     Integral polynomial discriminant.
+IPDSCRBEZ  Integral polynomial discriminant, Bezout method.
+IPDWRITE   Integral polynomial distributive write.
+IPEMV      Integral polynomial evaluation of main variable.
+IPEQ       Integral polynomial exact quotient.
+IPEVAL     Integral polynomial evaluation.
+IPEXP      Integral polynomial exponentiation.
+IPEXPREAD  Integral polynomial expression read.
+IPEXPREADR Integral polynomial expression read, remove terminating
+           character.
+IPFAC      Integral polynomial factorization.
+IPFACTREAD Integral polynomial factor read.
+IPFCB      Integral polynomial factor coefficient bound.
+IPFLC      Integral polynomial factor list combine.
+IPFRP      Integral polynomial from rational polynomial.
+IPFSD      Integral polynomial factorization, second derivative.
+IPFSFB     Integral polynomial finest squarefree basis.
+IPGCDC     Integral polynomial greatest common divisor and cofactors.
+IPGFCB     Integral polynomial Gelfond factor coefficient bound.
+IPGSUB     Integral polynomial general substitution.
+IPGTDRAN   Integral polynomial, guaranteed total degree, random.
+IPHDMV     Integral polynomial higher derivative, main variable.
+IPIC       Integral polynomial integer content.
+IPICPP     Integral polynomial integer content and primitive part.
+IPICS      Integral polynomial integer content subroutine.
+IPIHOM     Integral polynomial mod ideal homomorphism.
+IPIIRB     Integral polynomial isolating interval refinement -
+           bisection.
+IPIIS      Integral polynomial isolating interval separation.
+IPIISS     Integral polynomial isolating interval search using a Sturm
+           sequence.
+IPIIWS     Integral polynomial isolating intervals weakly disjoint to
+           strongly disjoint.
+IPINT      Integral polynomial integration.
+IPIP       Integral polynomial integer product.
+IPIPP      Integral polynomial integer primitive part.
+IPIPR      Integral polynomial mod ideal product.
+IPIQ       Integral polynomial integer quotient.
+IPIQH      Integral polynomial mod ideal quadratic hensel lemma.
+IPLCPP     Integral polynomial list of contents and primitive parts.
+IPLEV      Integral polynomial list evaluation of signs. Inputs S : a
+           list (A_1,A_2,...,A_t) of univariate integral polynomials.
+           a : a binary rational number.
+IPLRRI     Integral polynomial list real root isolation.
+IPLSEVAL   Integral polynomial list sign evaluation, logarithmic.
+IPLSILM    Integral polynomial labeled standard isolation list merge.
+IPMAXN     Integral polynomial maximum norm.
+IPMONFACT  Integral polynomial monomial factors.
+IPNEG      Integral polynomial negative.
+IPNT       Integral polynomial negative transformation.
+IPONE      Integral polynomial one.
+IPOWER     Integer power.
+IPP2P      Integral polynomial power of 2 product.
+IPPFAC2    Integral primitive polynomial factorization, degree 2.
+IPPGSD     Integral polynomial primitive greatest squarefree divisor.
+IPPNPRS    Integral polynomial primitive negative polynomial remainder
+           sequence.
+IPPOWREAD  Integral polynomial power read.
+IPPP       Integral polynomial primitive part.
+IPPROD     Integral polynomial product.
+IPPSC      Integral polynomial principal subresultant coefficients.
+IPPSR      Integral polynomial pseudo-remainder.
+IPPVED     Integral polynomial powers-of-variables exact divisors.
+IPQ        Integral polynomial quotient.
+IPQR       Integral polynomial quotient and remainder.
+IPRAN      Integral polynomial, random.
+IPRCH      Integral polynomial real root calculation, high precision.
+IPRCHS     Integral polynomial real root calculation, high-precision
+           special.
+IPRCN1     Integral polynomial real root calculation, 1 root.
+IPRCNP     Integral polynomial real root calculation, Newton method
+           preparation.
+IPREAD     Integral polynomial read.
+IPRES      Integral polynomial resultant.
+IPRESBEZ   Integral polynomial resultant, Bezout.
+IPRESPRS   Integral polynomial resultant, polynomial remainder
+           sequence method.
+IPRICL     Integral polynomial real root isolation, Collins-Loos
+           algorithm.
+IPRIM      Integral polynomial real root isolation, modified Uspensky
+           method.
+IPRIMO     Integral polynomial real root isolation, modified Uspensky
+           method, open interval.
+IPRIMS     Integral polynomial real root isolation, modified Uspensky
+           method, standard interval.
+IPRIMU     Integral polynomial real root isolation, modified Uspensky
+           method, unit interval.
+IPRIMW     Integral polynomial real root isolation, modified Uspensky
+           method, weakly disjoint intervals.
+IPRIP      Integral polynomial real and imaginary parts.
+IPRIST     Integral polynomial real root isolation using a Sturm
+           sequence. Inputs A : in Z[X], non-zero, squarefree.
+IPRNME     Integral polynomial, rational number multiple evaluation.
+IPROD      Integer product.
+IPROD2X2   Integer product - 2x2-multiplication.
+IPROD3X2   Integer product - 3x2-multiplication.
+IPROD3X3   Integer product - 3x3-multiplication.
+IPRODA     Integer product - array representation. Classical
+           algorithm.
+IPRODAP    Integer product - array multiplication in place.
+IPRPRS     Integral polynomial reduced polynomial remainder sequence.
+IPRRID     Integral polynomial real root isolation, Descartes method.
+IPRRII     Integral polynomial real root isolation induction.
+IPRRIRDB   Integral polynomial real root isolation and refinement,
+           Descartes, bisection.
+IPRRIRSB   Integral polynomial real root isolation and refinement,
+           Sturm, bisection.
+IPRRIS     Integral polynomial real root isolation, Sturm method.
+           Inputs A : in Z[x], non-zero, squarefree.
+IPRRISD    Integral polynomial real root isolation, standard interval,
+           Descartes method.
+IPRRISI    Integral polynomial real root isolation in standard
+           interval.
+IPRRISS    Integral polynomial real root isolation, standard interval,
+           Sturm method.
+IPRRLS     Integral polynomial real root list separation.
+IPRRRI     Integral polynomial relative real root isolation.
+IPRRS      Integral polynomial real root separation.
+IPSBLSIL   Integral polynomial squarefree basis labeled standard
+           isolation list.
+IPSBLSSIL  Integral polynomial squarefree basis labeled strong
+           standard isolation list.
+IPSCPP     Integral polynomial sign, content, and primitive part.
+IPSF       Integral polynomial squarefree factorization.
+IPSFBA     Integral polynomial squarefree basis augmentation.
+IPSFSD     Integral squarefree factorization, second derivative.
+IPSIFI     Integral polynomial standard isolating interval from
+           isolating interval.
+IPSIGN     Integral polynomial sign.
+IPSIP      Integral polynomial to soft-float interval polynomial.
+IPSMV      Integral polynomial substitution for main variable.
+IPSPRS     Integral polynomial subresultant polynomial remainder
+           sequence.
+IPSQRT     Integral polynomial square root.
+IPSRM      Integral polynomial strong real root isolation, modified
+           Uspensky method.
+IPSRMS     Integral polynomial strong real root isolation, modified
+           Uspensky method, standard interval.
+IPSRP      Integral polynomial similar to rational polynomial.
+IPSTDRAN   Integral polynomial, specified total degree, random.
+IPSUB      Integral polynomial substitution.
+IPSUM      Integral polynomial sum.
+IPSUMN     Integral polynomial sum norm.
+IPTERMREAD Integral polynomial term read.
+IPTPR      Integral polynomial truncated product.
+IPTR       Integral polynomial translation, specified variable.
+IPTR1      Integral polynomial translation by one, specified variable.
+IPTR1LV    Integral polynomial translation by one, leading variable.
+IPTRAN     Integral polynomial translation.
+IPTRLV     Integral polynomial translation, leading variable.
+IPTRMV     Integral polynomial translation, main variable.
+IPTRUN     Integral polynomial truncation.
+IPVCHT     Integral polynomial variations after circle to half-plane
+           transformation.
+IPVCHTP    Integral polynomial variations after circle to half-plane
+           transformation, partial count.
+IPVDEG12   Integral polynomial variable of degree 1 or 2.
+IPWRITE    Integral polynomial write.
+IQ         Integer quotient.
+IQR        Integer quotient and remainder.
+IQRA       Integer quotient and remainder, array version.
+IRAND      Integer, random.
+IREAD      Integer read.
+IREM       Integer remainder.
+IRLSA      Integer restricted left shift in array.
+IROOT      Integer root.
+ISATOM     Test for atom.
+ISCSELT    Test for characteristic set membership.
+ISEM       Integer sign, exponent and mantissa.
+ISFPF      Integral squarefree polynomial factorization.
+ISFPIR     Integral squarefree polynomial isolating interval
+           refinement.
+ISGCA      Test for GCA handle.
+ISI        Integer to software interval.
+ISIGNA     Integer sign function, array version.
+ISIGNF     Integer sign function.
+ISLCOMB    Integer special linear combination.
+ISLIST     Is list.
+ISMC       Integer solution of modular congruence.
+ISNIL      Test for empty list.
+ISOBJECT   Test for object.
+ISPD       Integer small prime divisors.
+ISPFAC2    Integral squarefree polynomial factorization, degree 2.
+ISPROD     Integer special short product.
+ISPSFB     Integral squarefree polynomial squarefree basis.
+ISPT       Integer selfridge primality test.
+ISQRT      Integer square root.
+ISSUBSET   Is subset?
+ISUM       Integer sum.
+ISZERO     Test for zero.
+ITRUNC     Integer truncation.
+IUPBEI     Integral univariate polynomial binary rational evaluation.
+           Using arrays.
+IUPBES     Integral univariate polynomial binary rational evaluation
+           of sign.
+IUPBHT     Integral univariate polynomial binary homothetic
+           transformation.
+IUPBRE     Integral univariate polynomial binary rational evaluation.
+IUPBREA    Integral univariate polynomial binary rational evaluation -
+           array version.
+IUPBRES    Integral univariate polynomial binary rational evaluation
+           of sign.
+IUPBREV    Integral univariate polynomial binary rational evaluation.
+IUPCHT     Integral univariate polynomial circle to half-plane
+           transformation.
+IUPEFD     Integral univariate polynomial early factor detection.
+IUPENF     Integral univariate polynomial, estimate number of factors.
+IUPEVAL    Integral univariate polynomial evaluation.
+IUPFAC     Integral univariate polynomial factorization.
+IUPFCT     Integral univariate polynomial factor combination test.
+IUPFT      Integral univariate polynomial factor test.
+IUPFT2     Integral univariate polynomial factor test, degree at most
+           2.
+IUPHIP     Integral univariate polynomial to hardware interval
+           polynomial.
+IUPHLEFD   Integral univariate polynomial Hensel lifting with early
+           factor detection.
+IUPIHT     Integral univariate polynomial integer homothetic
+           transformation.
+IUPIIR     Integral univariate polynomial isolating interval
+           refinement.
+IUPILHS    Integral univariate polynomial initial linear Hensel step.
+IUPLB      Integral univariate polynomial lifting bound.
+IUPLHS     Integral univariate polynomial linear Hensel step.
+IUPLHSL    Integral univariate polynomial linear Hensel step, list.
+IUPLRB     Integral univariate polynomial logarithmic root bound.
+IUPNT      Integral univariate polynomial negative transformation.
+IUPPRB     Integral univariate polynomial positive root bound.
+IUPQH      Integral univariate polynomial quadratic hensel lemma.
+IUPQHL     Integral univariate polynomial quadratic hensel lemma,
+           list.
+IUPQS      Integral univariate polynomial quotient substitution.
+IUPRB      Integral univariate polynomial root bound.
+IUPRC      Integral univariate polynomial resultant and cofactor.
+IUPRLP     Integral univariate polynomial, root of a linear
+           polynomial.
+IUPRRAFE   Integral univariate polynomial real root approximation from
+           estimates.
+IUPSQHL    Integral univariate polynomial single-precion quadratic
+           Hensel lifting.
+IUPSQHLL   Integral univariate polynomial single-precision quadratic
+           Hensel lifting, list.
+IUPSR      Integral univariate polynomial semi-remainder.
+IUPSWN     Integral univariate polynomial, square of the weighted
+           norm.
+IUPTPR     Integral univariate polynomial truncated product.
+IUPTR      Integral univariate polynomial translation.
+IUPTR1     Integral univariate polynomial translation by 1.
+IUPVAR     Integral univariate polynomial variations.
+IUPVART    Integral univariate polynomial variation test.
+IUPVOI     Integral univariate polynomial, variations for open
+           interval.
+IUPVSI     Integral univariate polynomial, variations for standard
+           interval.
+IUPWRITE   Integral univariate polynomial write.
+IUSFPF     Integral univariate squarefree polynomial factorization.
+IUSFPF2    Integral univariate squarefree polynomial factorization,
+           degree 2.
+IUSFPMF    Integral univariate squarefree polynomial modular
+           factorization.
+IWRITE     Integer write.
+KARATSUBA  Integer product - array representation. Karatsuba's and
+           Maeder's method.
+LAST       Last element of list.
+LASTCELL   Last cell.
+LBIBMS     List of BETA-integers bubble-merge sort.
+LBIBS      List of BETA-integers bubble sort.
+LBIM       List of BETA-integers merge.
+LBRIBRI    Logarithmic binary rational interval to binary rational
+           interval.
+LBRIDWRITE Logarithmic binary rational interval decimal write.
+LBRIHI     Logarithmic binary rational interval to hardware interval.
+LBRIMID    Logarithmic binary rational interval midpoint.
+LBRINPROD  Logarithmic binary rational interval number product.
+LBRINSUM   Logarithmic binary rational interval number sum.
+LBRIREAD   Logarithmic binary rational interval read.
+LBRISI     Logarithmic binary rational interval to software interval.
+LBRIW      Logarithmic binary rational interval width.
+LBRIWRITE  Logarithmic binary rational interval write.
+LBRN       Logarithmic binary rational number.
+LBRNCOMP   Logarithmic binary rational number comparison.
+LBRNDIF    Logarithmic binary rational number difference.
+LBRNDWRITE Logarithmic binary rational number decimal write.
+LBRNF      Logarithmic binary rational to floating.
+LBRNFEC    Logarithmic binary rational to floating, exact conversion.
+LBRNFIE    Logarithmic binary rational number from integer and
+           exponent.
+LBRNIEEE   Logarithmic binary rational number to IEEE conversion.
+LBRNIEEEE  Logarithmic binary rational number to IEEE exact
+           conversion.
+LBRNNEG    Logarithmic binary rational number negative.
+LBRNP2PROD Logarithmic binary rational number power of 2 product.
+LBRNPROD   Logarithmic binary rational number product.
+LBRNREAD   Logarithmic binary rational number read.
+LBRNRN     Logarithmic binary rational number to rational number.
+LBRNSIGN   Logarithmic binary rational number sign.
+LBRNSUM    Logarithmic binary rational number sum.
+LBRNWRITE  Logarithmic binary rational number write.
+LCONC      List concatenation.
+LCOPY      List copy.
+LDELETE    List delete element.
+LDSMKB     Linear diophantine system solution, modified Kannan and
+           Bachem algorithm.
+LDSSBR     Linear diophantine system solution, based on Rosser ideas.
+LEINST     List element insertion.
+LELTI      List element.
+LENGTH     Length.
+LEROT      List element rotation.
+LETTER     Letter.
+LEXNEX     Lexicographically next.
+LEXNEXT    Lexicographically next.
+LEXNEXTC   Lexicographically next combination.
+M          List from multilist.
+LFS        List from String.
+LGIE       List, get indexed elements.
+LIBS       List of intervals bubble sort.
+LINS       List insertion.
+LINSRT     List insertion.
+LIST1      List, 1 element.
+LIST10     List, 10 elements.
+LIST2      List, 2 elements.
+LIST3      List, 3 elements.
+LIST4      List, 4 elements.
+LIST5      List, 5 elements.
+LIST6      List, 6 elements.
+LKAHEAD    Character lookahead.
+LLCOPY     List of lists copy.
+LLGIE      List of lists, get indexed elements.
+LLTGCA     List of lists to garbage-collected array.
+LMERGE     List merge.
+LPBSD      List of polynomials bubble-sort, by degrees.
+LPERM      List permute.
+LREAD      List read.
+LSHIFT1    Left shift one bit.
+LSICOMP    Logarithmic standard interval comparison test.
+LSIIT      Logarithmic standard interval inclusion test.
+LSILW      Logarithmic standard interval - logarithm of width.
+LSIM       Logarithmic standard interval midpoint.
+LSRCH      List search.
+LWRITE     List write.
+MAIPDE     Matrix of integral polynomials determinant, exact division
+           algorithm.
+MAIPDM     Matrix of integral polynomials determinant, modular
+           algorithm.
+MAIPDME    Matrix of integral polynomials determinant, minors
+           expansion method.
+MAIPHM     Matrix of integral polynomials homomorphism.
+MAIPP      Matrix of integral polynomials product.
+MAPASSIGN  Modular array polynomial assignment.
+MAPCOPY    Modular array polynomial copy.
+MAPDIF     Modular array polynomial difference.
+MAPFMD     Modular array polynomial from modular digit.
+MAPFMUP    Modular array polynomial from modular univariate
+           polynomial.
+MAPFMUPS   Modular array polynomial from modular univariate
+           polynomial, specify array size.
+MAPFV      Modular array polynomial from vector.
+MAPGCD     Modular array polynomial greatest common divisor.
+MAPHOM     Modular array polynomial homomorphism.
+MAPIDIF    Modular array polynomial in-place difference.
+MAPMADD    Modular array polynomial multiply and add.
+B          Modular array polynomial monic.
+MAPMPV     Modular array polynomial multiplication by a power of
+           variable.
+MAPPROD    Modular array polynomial product.
+MAPQR      Modular array polynomial quotient and remainder.
+MAPRS      Modular array polynomial remainder step.
+MAPSE      Modular array polynomial, solution of equation.
+MAPSEV     Modular array polynomial special evaluation.
+MAPSUM     Modular array polynomial sum.
+MAPTPR     Modular array polynomial truncated product.
+MARK       Mark.
+MAX        Maximum.
+MCPMV      Matrix of coefficients of polynomials, with respect to main
+           variable.
+MDCRA      Modular digit chinese remainder algorithm.
+MDDIF      Modular digit difference.
+MDEXP      Modular digit exponentiation.
+MDHOM      Modular digit homomorphism.
+MDINV      Modular digit inverse.
+MDINVB     Modular digit inverse, modulo BETA.
+MDLCRA     Modular digit list chinese remainder algorithm.
+MDNEG      Modular digit negative.
+MDPROD     Modular digit product.
+MDQ        Modular digit quotient.
+MDRAN      Modular digit, random.
+MDSUM      Modular digit sum.
+MEMBER     Membership test.
+MIAIM      Matrix of integers, adjoin identity matrix.
+MICINS     Matrix of integers column insertion.
+MICS       Matrix of integers column sort.
+MIDCRA     Modular integer digit chinese remainder algorithm.
+MIDIF      Modular integer difference.
+MIEXP      Modular integer exponentiation.
+MIHOM      Modular integer homomorphism.
+MIINV      Modular integer inverse.
+MIN        Minimum.
+MINEG      Modular integer negation.
+MINNCT     Matrix of integers, non-negative column transformation.
+MIPDIF     Modular integral polynomial difference.
+MIPEMV     Modular integral polynomial evaluation of main variable.
+MIPFSM     Modular integral polynomial from symmetric modular.
+MIPHOM     Modular integral polynomial homomorphism.
+MIPIPR     Modular integral polynomial mod ideal product.
+MIPISE     Modular integral polynomial mod ideal, solution of
+           equation.
+MIPMIP     Modular integral polynomial modular integer product.
+MIPMON     Modular integral polynomial monic.
+MIPNEG     Modular integral polynomial negation.
+MIPPR      Modular integral polynomial product.
+MIPRAN     Modular integral polynomial, random.
+MIPROD     Modular integer product.
+MIPSUM     Modular integral polynomial sum.
+MIQ        Modular integer quotient.
+MIRAN      Modular integer, random.
+MISUM      Modular integer sum.
+MIUPQR     Modular integral univariate polynomial quotient and
+           remainder.
+MIUPSE     Modular integral univariate polynomial, solution of
+           equation.
+MMAMNSB    Medium modulus array matrix null space basis.
+MMAPBM     Medium modulus array polynomial Berlekamp matrix.
+MMAPDEFL   Medium modulus array polynomial deflation.
+MMAPEVAL   Medium modulus array polynomial evaluation.
+MMAPEXP    Medium modulus array polynomial exponentiation.
+MMAPFS     Medium modulus array polynomial factorization, special.
+MMAPGCD    Medium modulus array polynomial greatest common divisor.
+MMAPHEG    Medium modulus array polynomial half-extended greatest
+           common divisor.
+MMAPMADD   Medium modulus array polynomial multiply and add.
+MMAPMDP    Medium modulus array polynomial modular digit product.
+MMAPMON    Medium modulus array polynomial monic.
+MMAPPROD   Medium modulus array polynomial product.
+MMAPQR     Medium modulus array polynomial quotient and remainder.
+MMAPRC     Medium modulus array polynomial resultant and cofactor.
+MMAPREM    Medium modulus array polynomial remainder.
+MMAPSE     Medium modulus array polynomial, solution of equation.
+MMAPTPR    Medium modulus array polynomial truncated product.
+MMDAH      Matrix of modular digits array representation - convert to
+           Hessenberg form.
+MMDAHCP    Matrix of modular digits array representation Hessenberg
+           form - characteristic polynomial. (A matrix is in
+           Hessenberg form if its entries below the first diagonal are
+           all zero.)
+MMDDET     Matrix of modular digits determinant.
+MMPDDF     Medium modulus polynomial distinct-degree factorization.
+MMPDMA     Matrix of modular polynomials determinant, modular
+           algorithm.
+MMPEGC     Medium modulus polynomial extended greatest common divisor.
+MMPEV      Matrix of modular polynomials evaluation.
+MMPFBL     Medium modulus polynomial factorization, Berlekamp
+           algorithm.
+MMPGCD     Medium modulus polynomial greatest common divisor.
+MMPIQR     Modular monic polynomial mod ideal quotient and remainder.
+MMUPIT     Medium Modulus univariate polynomial irreducibility test.
+MPDIF      Modular polynomial difference.
+MPEMV      Modular polynomial evaluation of main variable.
+MPEVAL     Modular polynomial evaluation.
+MPEXP      Modular polynomial exponentiation.
+MPFFAP     Medium prime finite field array of powers.
+MPFFAP1    Medium prime finite field array for plus 1.
+MPFFDP     Medium prime finite field defining polynomial.
+MPFFDPGT   Medium prime finite field defining polynomial, generator
+           and table.
+ MPFFEXP   Medium prime finite field exponentiation.
+MPFFGEN    Medium prime finite field generator.
+MPFFPROD   Medium prime finite field product.
+MPGCDC     Modular polynomial greatest common divisor and cofactors.
+MPHOM      Modular polynomial homomorphism.
+MPINT      Modular polynomial interpolation.
+MPIQH      Modular polynomial mod ideal, quadratic Hensel lemma.
+MPIQHL     Modular polynomial mod ideal quadratic hensel lemma, list.
+MPIQHS     Modular polynomial mod ideal, quadratic Hensel lemma on a
+           single variable.
+MPMDP      Modular polynomial modular digit product.
+MPMON      Modular polynomial monic.
+MPNEG      Modular polynomial negative.
+MPPROD     Modular polynomial product.
+MPPSR      Modular polynomial pseudo-remainder.
+MPQ        Modular polynomial quotient.
+MPQR       Modular polynomial quotient and remainder.
+MPRAN      Modular polynomial, random.
+MPRES      Modular polynomial resultant.
+MPRESDB    Modular polynomial resultant, degree bounds.
+MPSPRS     Modular polynomial subresultant polynomial remainder
+           sequence.
+MPSUM      Modular polynomial sum.
+MPUC       Modular polynomial univariate content.
+MPUCPP     Modular polynomial univariate content and primitive part.
+MPUCS      Modular polynomial univariate content subroutine.
+MPUP       Modular polynomial univariate product.
+MPUPP      Modular polynomial univariate primitive part.
+MPUQ       Modular polynomial univariate quotient.
+MRFMAP     Matrix row from modular array polynomial.
+MUPDER     Modular univariate polynomial derivative.
+MUPEGC     Modular univariate polynomial extended greatest common
+           divisor.
+MUPFAC     Modular univariate polynomial factorization.
+MUPFMAP    Modular univariate polynomial from modular array
+           polynomial.
+MUPFS      Modular univariate polynomial factorization, special.
+MUPGCD     Modular univariate polynomial greatest common divisor.
+MUPHEG     Modular univariate polynomial half-extended greatest common
+           divisor.
+MUPRAN     Modular univariate polynomial, random.
+MUPRC      Modular univariate polynomial resultant and cofactor.
+MUPRES     Modular univariate polynomial resultant.
+MUPSFF     Modular univariate polynomial squarefree factorization.
+NEXTSS     Next subset.
+NORMEFD    Norm polynomial early factor detection.
+NORMFAC    Norm polynomial factorization.
+NORMFCT    Norm polynomial factor combination test.
+NORMFCTS   Norm polynomial factor combination test subroutine.
+NORMFL     Norm polynomial flatten list.
+NORMFT     Norm polynomial factor test.
+NORMHLEFD  Norm polynomial Hensel lifting with early factor detection.
+NORMILHS   Norm polynomial initial linear Hensel step.
+NORMLHS    Norm polynomial linear Hensel step.
+NORMMF     Norm polynomial modular factorization.
+NORMRL     Norm polynomial regroup list.
+NORMSQHL   Norm polynomial single-precision quadratic Hensel lifting.
+ODD        Odd.
+ORDER      Order.
+OREAD      Object read.
+OWRITE     Object write.
+PADV       Polynomial advance.
+PAIR       Pair.
+PARTN      Partition, next.
+PARTR      Partition, random.
+PARTSS     Partition sumset.
+PBIN       Polynomial binomial.
+PCL        Polynomial coefficient list.
+PCOEFF     Polynomial coefficient.
+PCONST     Polynomial constant.
+PCPV       Polynomial cyclic permutation of variables.
+PDBORD     Polynomial divided by order.
+PDE        Polynomial division of exponents.
+PDEG       Polynomial degree.
+PDEGSV     Polynomial degree, specified variable.
+PDEGV      Polynomial degree vector.
+PDLOG2     Positive digit logarithm, base 2.
+PDPV       Polynomial division by power of variable.
+PDVAR      Polynomial divisibility by a variable.
+PERMCY     Permutation, cyclic.
+PERMR      Permutation, random.
+PFBRE      Polynomial from base ring element.
+PFDIP      Polynomial from distributive polynomial.
+PFDP       Polynomial from dense polynomial.
+PFFAP      Prime finite field array of powers.
+PFFAP1     Medium prime finite field array for plus 1.
+PFFGEN     Prime finite field generator.
+PGCDE      Polynomial greatest common divisor of exponents.
+PHDQR      Positive half-digit quotient and remainder.
+PHDREM     Positive half-digit remainder.
+PICPV      Polynomial inverse cyclic permutation of variables.
+PINV       Polynomial introduction of new variables.
+PLBCF      Polynomial leading base coefficient.
+PLDCF      Polynomial leading coefficient.
+PMDEG      Polynomial modified degree.
+PME        Polynomial multiplication of exponents.
+PMON       Polynomial monomial.
+PMONSV     Polynomial monomial, specified variable.
+PMPMV      Polynomial multiplication by power of main variable.
+PMPSV      Polynomial multiplication by power of specified variable.
+PNDQR      Positive normalized digit quotient and remainder.
+n          Polynomial number of monomials.
+PORD       Polynomial order.
+PPERMV     Polynomial permutation of variables.
+PPLT       Polynomial prefix leading term.
+PRED       Polynomial reductum.
+PRODUCT    Integer product - array representation. Classical method.
+PRT        Polynomial reciprocal transformation.
+PSDSV      Polynomial special decomposition, specified variable.
+PTBCF      Polynomial trailing base coefficient.
+n          Polynomial total degree.
+PTMV       Polynomial transpose main variables.
+PTRCF      Polynomial trailing coefficient.
+PTV        Polynomial transpose variables.
+PUFP       Polynomial, univariate, from polynomial.
+PUNT       Polynomial univariate test.
+QREM       Quotient and remainder.
+RED        Reductum 1.
+RED2       Reductum 2.
+RED3       Reductum 3.
+RED4       Reductum 4.
+REDI       Reductum.
+REM        Remainder.
+RHI        Ratio to hardware interval.
+RIB        Rational interval bisection.
+RIDWRITE   Rational interval decimal write.
+RIL        Rational interval length.
+RILC       Rational interval length comparison.
+RINEG      Rational interval negation.
+RINT       Rational interval normalizing transformation.
+RIPROD     Rational interval product.
+RIRNP      Rational interval rational number product.
+RISIGN     Rational interval sign.
+RISUM      Rational interval sum.
+RIWRITE    Rational interval write.
+RMDUP      Remove duplicate elements from a list.
+RNABS      Rational number absolute value.
+RNBCR      Rational number binary common representation.
+RNCEIL     Rational number, ceiling of.
+RNCOMP     Rational number comparison.
+RNDDWRITE  Rational number directed decimal write.
+RNDEN      Rational number denominator.
+RNDIF      Rational number difference.
+RNDWRITE   Rational number decimal write.
+RNFCL2     Rational number floor and ceiling of logarithm, base 2.
+RNFLOR     Rational number, floor of.
+RNFMR      Rational number from modular residue.
+RNFMRPP    Rational number from modular residue, modulus a power of a
+           prime.
+RNINT      Rational number from integer.
+RNINV      Rational number inverse.
+RNLBRN     Rational number to logarithmic binary rational number.
+RNMAX      Rational number max.
+RNMIN      Rational number min.
+RNNEG      Rational number negative.
+RNNUM      Rational number numerator.
+RNP2       Rational number power of 2.
+RNPROD     Rational number product.
+RNQ        Rational number quotient.
+RNRAND     Rational number, random.
+RNREAD     Rational number read.
+RNRED      Rational number reduction to lowest terms.
+RNROUND    Rational number rounding.
+RNSIGN     Rational number sign.
+RNSUM      Rational number sum.
+RNWRITE    Rational number write.
+RPAFME     Rational polynomial, algebraic number field multiple
+           evaluation.
+RPBLGS     Rational polynomial base coefficients least common
+           multiple, greatest common divisor, and sign.
+RPDIF      Rational polynomial difference.
+RPDMV      Rational polynomial derivative, main variable.
+RPDWRITE   Rational Polynomial Distributive Write.
+RPEMV      Rational polynomial evaluation, main variable.
+RPEV       Rational polynomial evaluation.
+RPEXPREAD  Rational polynomial expression read.
+RPFACTREAD Rational polynomial factor read.
+RPFIP      Rational polynomial from integral polynomial.
+RPIMV      Rational polynomial integration, main variable.
+RPMAIP     Rational polynomial monic associate of integral polynomial.
+RPME       Rational polynomial multiple evaluation.
+RPNEG      Rational polynomial negative.
+RPPOWREAD  Rational polynomial power read.
+RPPROD     Rational polynomial product.
+RPQR       Rational polynomial quotient and remainder.
+RPRAN      Rational polynomial, random.
+RPREAD     Rational polynomial read.
+RPRNP      Rational polynomial rational number product.
+RPSUM      Rational polynomial sum.
+RPTERMREAD Rational polynomial term read.
+RPWRITE    Rational polynomial write.
+RSI        Ratio to software interval.
+RUPFMRC    Rational univariate polynomial from modular residues, with
+           comparison.
+RUPWRITE   Rational univariate polynomial write.
+SDIFF      Set difference.
+SDR        System of distinct representatives.
+SECOND     Second.
+SEQUAL     Set equality.
+SFCS       Set from characteristic set.
+SFIRST     Set first element.
+SIAFEE     Software interval algebraic field element evaluation.
+SICOPY     Software interval copy.
+SIDWRITE   Software interval decimal write.
+SIGN       Sign.
+SILBRI     Software interval to logarithmic binary rational interval.
+SINTER     Set intersection.
+SIPBHT     Soft-float interval polynomial binary homothetic
+           transformation.
+SIPCOPY    Software interval polynomial copy.
+SIPES      Software interval polynomial evaluation of sign.
+SIPEVAL    Softeare interval polynomial evaluation.
+M          Software interval polynomial isolating interval refinement
+           and merge sort.
+SIPIIS     Software interval polynomial isolating interval separation.
+SIPIR      Software interval polynomial interval refinement.
+SIPNT      Software interval polynomial negative transformation.
+SIPPRB     Software interval polynomial positive root bound.
+SIPR       Software-float interval polynomial reciprocal
+           transformation.
+SIPROD     Software interval product.
+SIPRRID    Software interval polynomial real root isolation, Descartes
+           method.
+SIPRRISD   Software interval polynomial real root isolation, standard
+           interval, Descartes' method.
+SIPSIZE    Software interval polynomial size.
+SIPTR1     Software interval polynomial translation by 1.
+SIPVCHT    Software interval polynomial, variations after circle to
+           half-plane transformation.
+SIQUOT     Software interval quotient.
+SISIGN     Software interval sign.
+SISUM      Software interval sum.
+SLBRNIM    Small logarithmic binary rational near interval midpoint.
+SLELTI     Set list element.
+SLIWE      Standard logarithmic interval width and endpoints.
+SMDM       Sylvester matrix degree matrix.
+SMFMI      Symmetric modular from modular integer.
+SMFMIP     Symmetric modular from modular integral polynomial.
+SNLBRN     Small nearby logarithmic binary rational number.
+SPOWER     Sign power.
+SRED       Set reductum.
+STATSACLIB Statistics of saclib.
+SUBFROM    Subtract array from array.
+SUFFIX     Suffix.
+SUNION     Set union.
+SWRITE     String write.
+TANGENTNUM Tangent numbers.
+THIRD      Third.
+v          Table lookup in list.
+TSVSLI     Test sign variation on standard logarithmic interval.
+USDIFF     Unordered set difference.
+USINT      Unordered set intersection.
+USUN       Unordered set union.
+VAR        Variations.
+VCOMP      Vector comparison.
+VIAZ       Vector of integers, adjoin zeros.
+VIDIF      Vector of integers difference.
+VIERED     Vector of integers, element reduction.
+VILCOM     Vector of integers linear combination.
+VINEG      Vector of integers negation.
+VISPR      Vector of integers scalar product.
+VISUM      Vector of integers sum.
+VIUT       Vector of integers, unimodular transformation.
+VLREAD     Variable list read.
+VLSRCH     Variable list search.
+VLWRITE    Variable list write.
+VMAX       Vector maximum.
+VMIN       Vector minimum.
+VMPIP      Vector of modular polynomial inner product.
+VREAD      Variable read.
+VWRITE     Variable write.
+external  
+           ===========================================================================*/
+           #include "sacsys.h" #include "sactypes.h"
+main       Default main routine.

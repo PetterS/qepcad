@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# USAGE
+#   mkproto
+#
+# FUNCTION
+#   Creates the file "$saclib/include/sacproto.h" from the files in 
+#   "$saclib/src".
+
+if [ $# -ne 0 ] 
+then
+    echo "USAGE:"
+    echo "  mkproto"
+else
+    cd $saclib/src
+    echo >$saclib/include/sacproto.h \
+	"extern void FAIL P__((const char *algName, const char *msg,...));"
+    for fname in *.c
+    do
+	if [ $fname != FAIL.c -a $fname != main.c ] ; then 
+	    awk -f $saclib/bin/mkproto.awk $fname >>$saclib/include/sacproto.h
+	fi
+    done
+fi

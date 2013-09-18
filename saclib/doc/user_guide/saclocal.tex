@@ -1,0 +1,114 @@
+\documentstyle[saclib]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+Addendum\\to the\\\saclib\ User's Guide\thanks{
+  \saclib\ version 1.0, ``Addendum'' version 1.0.
+}
+}
+
+\author{Andreas Neubacher}
+\date{June 26, 1992}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Availability}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\saclib\ is installed on \ldots in the directory ``{\tt\~{ }saclib/saclib}''.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Environment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is recommended to define an environment variable ``{\tt \$saclib}''
+containing the name of the \saclib\ directory. This can be done by adding the
+line
+\begin{verbatim}
+  setenv saclib ~saclib/saclib
+\end{verbatim}
+to your ``{\tt .login}'' or ``{\tt .cshrc}'' file. \saclib\ header and
+library files should then only be accessed by using this variable. If the
+installation is moved to a different directory you will only have to change
+the definition of this variable.
+
+If you want to use the shell scripts provided with \saclib, the environment
+variable ``{\tt \$saclib}'' is required, and you also need
+\begin{verbatim}
+  set path=($path $saclib/bin)
+\end{verbatim}
+in your ``{\tt .login}'' or ``{\tt .cshrc}'' file.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Compiling and Linking}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sloppy
+
+The compiled library is ``{\tt \$saclib/lib/saclib.a}'', an optimized version
+is ``{\tt \$saclib/lib/saclibo.a}'', a version compiled with the debug option
+is ``{\tt \$saclib/lib/saclibd.a}'', and the header files are in ``{\tt
+\$saclib/include}''.
+
+Figure \ref{fMF} shows what a makefile for linking with the standard
+library might look like.
+
+\begin{figure}[htb]
+\ \hrulefill\ \small
+\begin{verbatim}
+CFLAGS  = -DNO_SACLIB_MACROS -I${saclib}/include
+LIB = ${saclib}/lib/saclib.a
+
+OBJS = example.o
+
+example: $(OBJS)
+        ${CC} $(OBJS) $(LIB) -o example
+\end{verbatim}
+\ \hrulefill\ \normalsize
+\caption{A sample makefile.}
+\label{fMF}
+\end{figure}
+
+\fussy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Additional Documentation, Tools, etc.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In ``{\tt \$saclib/example}'' you will find sample programs which are a bit
+more sophisticated than the ones given in the ``\saclib\ User's Guide''. They
+should be of help in learning how to work with \saclib.
+
+There are also two shell scripts which should facilitate searching for a
+certain algorithm and displaying \saclib\ functions:
+\begin{description}
+\item[sdesc]
+  takes a regular expression in the style of {\tt grep} and lists all
+  \saclib\ functions whose description matches the regular expression.
+\item[sman]
+  takes a full \saclib\ function name and displays the corresponding source
+  file.
+\end{description}
+Calling the scripts without parameters produces a usage message.
+
+For experimenting with \saclib\ functions interactively, use ``{\tt isac}'',
+which gives you a simple shell environment from which you can call all
+\saclib\ functions.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Where to Look for Help}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Apart from sending e-mail to the adresses given in Section 1.3 of the ``User's
+Guide'' you can also ask \ldots
+
+\end{document}
+

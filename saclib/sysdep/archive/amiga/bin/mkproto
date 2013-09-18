@@ -1,0 +1,11 @@
+; USAGE:
+;   mkproto
+;
+; FUNCTION
+;   Creates the file "SACLIB:include/sacproto.h" from the files in
+;   "SACLIB:src".
+
+Echo >SACLIB:include/sacproto.h "extern void FAIL P__((char *algName,char *msg,...));"
+
+List SACLIB:src/*.c FILES SORT LFORMAT "%s%s" | SACLIB:bin/mkproto.aux >>SACLIB:include/sacproto.h
+

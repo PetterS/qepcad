@@ -1,0 +1,33 @@
+.key infile,outfile,sc,kc,ll
+.bra {
+.ket }
+.def infile SACLIB:doc/desc.doc
+.def outfile SACLIB:doc/kwic.doc
+.def sc 8
+.def kc 43
+.def ll 77
+
+; USAGE:
+;   mkkwic [input file name] [output file name] [sc] [kc] [ll]
+;
+; FUNCTION
+;   Creates a KWIC index from an input file which consists of one or more
+;   blocks of the following format:
+;
+;   <subject> <text>
+;     <0 or more lines of additional text beginning with at least one blank>
+;
+;   The keywords will be taken from the text in the subject line and in the
+;   optional subsequent indented text lines. "bin/mkkwic.sed" contains a
+;   set of commands which remove irrelevant keywords like "the", "for",
+;   etc.
+;
+;   The output file consists of lines of the following format, sorted
+;   alphabetically by keyword and subject:
+;         COLUMN : 1         sc     kc             ll
+;                  <subject> <text> <keyword> <text>
+;
+;   Default values for input and output file, sc, kc, and ll are
+;   "SACLIB:doc/desc.doc", "SACLIB:doc/kwic.doc", 8, 43, and 77, resp.
+
+awk -f SACLIB:bin/b2l.awk {infile} | awk -f SACLIB:bin/mkkwic.awk sc={sc} kc={kc} ll={ll} | sed -f SACLIB:bin/mkkwic.sed | sort | awk >{outfile} -f SACLIB:bin/strip1st.awk

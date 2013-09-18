@@ -1,0 +1,39 @@
+\unitlength0.5pt
+\begin{picture}(640,120)
+\savebox{\cell}(0,0)[t]{
+  \put( 15,  8){\oval(30, 8)[bl]}
+  \put( 15,  0){\oval(30, 8)[tr]}
+  \put( 45,  0){\oval(30, 8)[tl]}
+  \put( 45,  8){\oval(30, 8)[br]}
+  \put( 30, -4){\makebox(0,0)[t]{cell}}
+}
+
+\put( 65, 0){\begin{picture}(550,100)
+  \put(  0,  5){\SPACE}
+  \put(  0,  0){\line(  1,0){ 50}}
+  \put( 50,  0){\vector(  2,  1){ 50}}
+  \put(110, 30){\framebox(210, 30){}}
+  \multiput(140,30)(30,0){6}{\line(0,1){30}}
+  \put(321, 30){\usebox{\dline}}
+  \put(321, 60){\usebox{\dline}}
+  \multiput(340, 45)(15,0){3}{\circle*{2}}
+  \put(374, 30){\usebox{\dline}}
+  \put(374, 60){\usebox{\dline}}
+  \put(390, 30){\framebox(150, 30){}}
+  \multiput(420,30)(30,0){4}{\line(0,1){30}}
+\end{picture}}
+\put(  0, 70){\begin{picture}(200,50)
+  \put(  0,  0){\shortstack[l]{Value of the\\SACLIB\\list handle: \BETA\ +}}
+\end{picture}}
+\put(175, 70){\begin{picture}(450,50)
+  \put( 10,  0){0}
+  \put( 40,  0){1}
+  \put(100,  0){3}
+  \put(160,  0){5}
+  \multiput( 30,-45)( 60,  0){3}{\usebox{\cell}}
+  \put(325,  0){\makebox(0,0)[b]{\NU-3}}
+  \put(385,  0){\makebox(0,0)[b]{\NU-1}}
+  \multiput(310,-45)( 60,  0){2}{\usebox{\cell}}
+\end{picture}}
+\end{picture}
+

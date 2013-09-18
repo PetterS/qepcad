@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DinA4.sty - LaTeX style file adjusting page layout to Din A4 size paper
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 1991-08-29  A. Neubacher  : Created this file (Parts taken from
+%                             "rep10.sty" and John Pavel's "a4.sty".
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% HEAD
+
+\topmargin 0 pt
+
+\headheight 12pt
+\headsep 25pt
+
+% FOOT
+
+\footheight 12pt
+\footskip 30pt
+
+
+% HEIGHT
+%
+% Adjusting \textheight will adjust position of the bottom of the page.
+% Must preserve "(\textheight - \topskip) divides \baselineskip".
+% \topskip always appears to be 10pt.
+% So only add/subtract multiples of \baselineskip if you want shorter pages.
+
+\ifcase \@ptsize
+    % mods for 10 pt (\baselineskip=12pt)
+    \textheight 646 pt  % Height of text (including footnotes and figures)
+\or % mods for 11 pt (\baselineskip=13.6pt)
+    \textheight 649.2 pt    % Height of text (including footnotes and figures)
+\or % mods for 12 pt  (\baselineskip=15pt)
+    \textheight 655 pt    % Height of text (including footnotes and figures)
+\fi
+
+% MARGINS
+
+\oddsidemargin 0.5 cm
+\if@twoside
+   \evensidemargin 1.5 cm
+\else
+   \evensidemargin 0.5 cm
+\fi
+
+\marginparwidth 2.5 cm
+\marginparsep 11pt
+\marginparpush 5pt
+
+\textwidth 13.92 cm
+

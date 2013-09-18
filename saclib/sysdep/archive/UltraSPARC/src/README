@@ -1,0 +1,131 @@
+                 SPARC VERSION INSTALLATION INFORMATION
+                 ========================================
+
+
+
+1. Introduction
+===============
+
+1.1. Where to look for help
+---------------------------
+
+SACLIB Maintenance
+
+RISC-LINZ
+Research Institute for Symbolic Computation
+Johannes Kepler University
+A-4040 Linz, Austria
+
+E-Mail:   saclib@risc.uni-linz.ac.at  (Internet)
+
+
+1.2. System configuration
+-------------------------
+
+         Machine: Sun SPARC
+
+Operating system: SunOS
+
+           Shell: csh
+
+      C Compiler: cc
+
+
+2. Installing
+=============
+
+If you are reading this file you will already have recreated the SACLIB
+directory tree from your distribution '.tar' file. This will be the location
+of the installed version of SACLIB. All you have to do is to simply execute
+the script "saclib/sysdep/SPARC/install". (If you are not using 'csh' you
+should first check if your shell can digest it - this should not be much of a
+problem as it is rather simple.)
+    This installation script needs one parameter, namely the full path to the
+"saclib" directory. So if your SACLIB root directory is "/usr/local/saclib"
+you would type:
+
+  % /usr/local/saclib/sysdep/SPARC/install /usr/local/saclib
+
+Note that it might be a good idea to use the complete path for calling the
+install script as there might be some system command 'install' which might
+get executed instead of the SACLIB install script.
+	First all system dependent files and scripts from the "SPARC"
+directory are copied to where they belong. Then the files
+ - "saclib/include/sacproto.h" (which contains the prototypes for all
+   functions in SACLIB),
+ - "saclib/lib/saclib.a" (the default version of the library), and
+ - "saclib/doc/desc.doc" (which is used by the 'sdesc' script) are created.
+
+To finish the installation you need to add a line to your ".cshrc" and
+".login" files which sets the shell variable '$saclib' to the path of the
+"saclib" directory. Following the example above, this line would look as
+follows:
+
+  setenv saclib /usr/local/saclib
+
+Finally, if you want to use the scripts in "saclib/bin", you should also add
+this directory to your 'path' variable, e.g. by adding a line similar to the
+following to your ".cshrc" file:
+
+  set path=($path $saclib/bin)
+
+Note that from now on *all* accesses to SACLIB should only be done via the
+'$saclib' environment variable. For example we used it for adding the SACLIB
+'bin' directory to the path.
+	For making sure that all this was done correctly, you should log out,
+log in again, and check if the 'saclib' environment variable is set. Then the
+installation is complete.
+
+
+
+3. Compiling
+============
+
+3.1 Default compilation with mklib
+----------------------------------
+
+If you just need to recompile, use the command 'mklib' from "saclib/bin". This
+shell script takes one of the following parameters:
+
+'std' causes a standard library to be built. The library file will have
+      the name "saclib.a" and the corresponding object files are in
+      "saclib/lib/obj". (Note that this library was already built by the
+      install script.)
+'deb' switches on the '-g' option of the compiler which includes 
+      debugging information in the object files. The library file will have
+      the name "saclibd.a" and the corresponding object files are in
+      "saclib/lib/objd".  
+'opt' switches on the '-O' option which produces optimized code. The
+      library file will have the name "saclibo.a" and the corresponding object
+      files are in "saclib/lib/objo".
+'all' builds all three types of libraries.
+
+If you want to recompile after having added files to "saclib/src", you need to
+recreate the file 'include/sacproto.h' and the makefiles first, which is done
+by issuing the commands 'mkproto' and 'mkmake'.
+
+3.1  Using gcc instead of cc
+----------------------------
+
+If you want to use a different C compiler such as the Gnu C compiler (gcc)
+all you need to do is set the environment variable CC.  This can be
+accomplished with the command (setenv CC=gcc).  ANSI C type type declarations
+can be used if the variable __STDC__ is set.  To see how this is done look
+in the file include/sacsys.h
+
+
+
+4. Tools
+========
+
+The following shell scripts can be found in the directory "saclib/bin":
+
+sdesc   ... displays the description of a SACLIB algorithm (uses
+            "saclib/doc/desc.doc").
+sman    ... displays a SACLIB algorithm.
+mkproto ... creates the file 'include/sacproto.h'.
+mkmake  ... creates the makefiles for SACLIB.
+mklib   ... compiles the library (uses the makefiles created by 'mkmake').
+mkdesc  ... creates the file "doc/desc.doc" from the files in "saclib/src".
+
+The headers of these scripts contain more information on their usage.

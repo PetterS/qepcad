@@ -1,0 +1,11 @@
+#!/bin/csh
+
+# lists all RCS files that have the state value of the first argument.
+
+set RCSDIR = $saclib/RCS
+
+if ($#argv != 1) then
+  echo "Usage: slist <algo|bug|del|new>"
+else
+  nawk -f $saclib/bin/slist.awk state=$1 rcsdir=$RCSDIR $RCSDIR/*.c,v
+endif

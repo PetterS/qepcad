@@ -1,0 +1,232 @@
+#!/bin/csh
+######################################################
+# This is a ISAC Help Program
+#     
+# Written by Hoon Hong  April 24, 1991
+# Modified by Herbert Vielhaber in March, 1992
+#
+# This shell script is called by the system "isac".
+# The isac always passes one argument
+# which is either "general" or a saclib algorithm name.
+######################################################
+
+
+#####################################################
+#         PLEASE  ADJUST THE FOLLOWING!!!!
+#####################################################
+# The paths to be searched for algorithms:
+set searchPaths = ($saclib/src)
+
+# The number of lines displayed by more:
+set moreNumLines = 15
+
+#####################################################
+# Defaults
+#####################################################
+set view_flag = false
+set general_flag = true
+set module = ""
+
+#####################################################
+# Process command line
+#####################################################
+while ($#argv > 0)
+  set a=$argv[1]
+  shift
+  switch ($a)
+  case '-general':
+    set general_flag = true
+    breaksw
+  case '-view':
+    set view_flag = true
+    breaksw
+  default:
+    if ($module == "") then
+      set general_flag = false
+      set module = $a
+    endif
+    breaksw
+  endsw
+end
+
+#######################################################
+# If the user asked for a help on a specific algorithm,
+######################################################
+if ($general_flag == false) then
+  foreach aPath ($searchPaths)
+    if (-e $aPath/${module}.c) then
+      if ($view_flag == true) then
+	view $aPath/${module}.c
+      else
+	more -$moreNumLines $aPath/${module}.c
+      endif
+      exit 0
+    endif
+  end
+  echo ${module} not found.
+  exit 1
+endif
+
+
+####################################################
+# If the user asked for a general help,
+####################################################
+more -$moreNumLines <<\END_GENERAL_HELP
+========================================================
+	    Help  on  ISAC   (Version 2.0)
+========================================================
+
+
+Disclaimer
+----------
+
+This help text was written in a very short time, thus is not 
+really helpful yet!  
+-- Herbert Vielhaber, March 10, 1992
+
+
+Currently supported SACLIB algorithms
+-------------------------------------
+
+All the SACLIB library algorithms and macros are accessible.
+NIL and BETA are available as constants.
+
+
+Command line options
+--------------------
+
+Several command line options are available for initializing
+certain SACLIB global variables.  In order to find out what
+is available, issue the command:
+  isac +h
+
+
+Interface functionality
+-----------------------
+
+An ISAC session consists of one or more statements.
+Every statement must end with a semicolon ';'.
+A statement can be one of the three kinds
+
+     command
+     call
+     assignment
+
+The commands supported in this version are:
+
+     quit;                 : For quitting the session.
+     vars;                 : For displaying the contents of the variables.
+			     Values are displayed in internal SACLIB format.
+     help [algName];       : For displaying a general help or an algorithm.
+                             For example, in order to display the algorithm
+                             IPROD, issue the the command:
+                                  help IPROD; 
+     view algName;	   : For displaying an algorithm with the editor vi(1).
+     save fileName;	   : For saving the current state of the session 
+			     (i.e. the variable binding) to a file.
+     restore fileName;	   : For restoring the state of a session from a file.
+
+A call statement is a call to any procedures in the SACLIB library.
+For example,  
+    IPFAC(r,A; s,c,F);
+    IPWRITE(r,IPSUM(r,A,B),V);
+
+An assignment statement is of the form:  
+    var := expression;
+For example,
+    A := IPROD(a,ISUM(b,c));
+    a := 2 * 3 + 4;
+    a := 3 % 2;
+
+
+Interface Grammar
+-----------------
+
+Below we give a context-free grammar for a session.
+
+Conventions: 
+  upper-case strings and quoted strings denote tokens,
+  lower-case strings denote non-terminals.
+
+
+session
+	: statement
+	| session statement
+	;
+	
+statement	
+	: command ';'
+	| proc_call ';'
+	| assignment ';'
+	;
+
+command
+	: IDENT	
+	| IDENT CMDARGS	
+	;
+
+proc_call
+	: IDENT '(' proc_arg_star ')' 
+	;
+
+assignment
+	: IDENT ':=' expr
+	;
+
+proc_arg_star
+	: val_star 
+	| val_star ';' ref_star	
+	;
+
+val_star
+	: /* empty */
+	| val_plus
+	;
+
+val_plus
+	: expr
+	| val_plus ',' expr
+	;
+
+ref_star
+	: /* empty */
+	| ref_plus
+	;
+
+ref_plus
+	: ref
+	| ref_plus ',' ref
+	;
+
+ref
+	: IDENT	
+
+expr
+	: expr '+' expr	
+	| expr '-' expr
+	| expr '*' expr
+	| expr '/' expr
+	| expr '%' expr
+	| '+' expr
+	| '-' expr
+	| '(' expr ')'
+	| func_call
+	| atom
+	;
+
+func_call
+	: IDENT '(' func_arg_star ')' 
+	;
+
+func_arg_star
+	: val_star 
+	;
+
+atom
+	: IDENT
+	| INTEGER
+	;
+
+==================================================
+\END_GENERAL_HELP
+exit 0

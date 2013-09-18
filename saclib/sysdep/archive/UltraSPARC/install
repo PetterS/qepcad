@@ -1,0 +1,78 @@
+#!/bin/csh
+
+# USAGE
+#   install <path to sac root directory>
+#
+# FUNCTION
+#   Copies all system dependent files to the directories where they belong,
+#   compiles the library and creates the documentation files.
+
+set system=SPARC
+
+# Check
+
+if ($#argv != 1) then
+  echo "USAGE:"
+  echo "  install <path to sac root directory>"
+  exit
+endif
+if (! -e $1/sysdep/$system/install) then
+  echo "'$1/sysdep/$system/install' does not exist."
+  echo "I assume you gave me an invalid path to the saclib root directory."
+  echo "USAGE:"
+  echo "  install <path to saclib root directory>"
+  exit
+endif
+
+if ($?saclib) then
+  if ($saclib != $1) then
+    echo Warning: '$saclib' exists "($saclib)" and is different from $1.
+    echo "         Make sure" '$saclib' is either set to $1
+    echo "         or not set at all (check also '.cshrc')."
+    exit
+  endif
+endif
+
+# Set environment
+
+setenv saclib $1
+set path=($saclib/bin $path)
+
+# Copy files
+
+echo "Copying files from '$saclib/sysdep/$system' ..."
+foreach i ($saclib/sysdep/$system/*)
+  if (-d $i) cp $i/* $saclib/$i:t
+end
+rehash
+
+# Compile
+
+echo "Creating $saclib/include/sacproto.h ..."
+mkproto
+echo "Creating makefiles ..."
+mkmake
+echo "Compiling standard SACLIB ..."
+# setenv CC gcc
+mklib std
+
+# Make docs
+
+echo "Creating '$saclib/doc/desc.doc' ..."
+pushd >/dev/null $saclib/src
+mkdesc >$saclib/doc/desc.doc 8 79 *.c
+
+# echo "Creating '$saclib/doc/kwic.doc' ..."
+# mkkwic >$saclib/doc/kwic.doc
+
+# echo "Creating '$saclib/doc/spec.doc' ..."
+# mkspec >$saclib/doc/spec.doc *.c
+popd >/dev/null
+
+# Finished
+
+echo "The install script is done."
+echo "Now add"
+echo "  setenv saclib $1"
+echo "  set" 'path=($path $saclib/bin)'
+echo "to your '.login' and '.cshrc' files to make the installation complete."

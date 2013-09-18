@@ -1,0 +1,52 @@
+#!/bin/csh
+
+# USAGE:
+#   sdesc <pattern> [<input file name> [<output file name> [<sc> [<ll>]]]]
+#
+# FUNCTION
+#   Takes an an input file which consists of one or more blocks of the
+#   following format:
+#
+#   <subject> <text>
+#     <0 or more lines of additional text beginning with at least one blank>
+#
+#   The text part of these blocks is searched for the pattern. If it is
+#   found, the block is displayed in the following format:
+#
+#   COLUMN  1         sc                                         ll
+#           <subject> <text......................................>
+#                     <0 or more lines of additional text........>
+#
+#   The default input file is "$saclib/doc/desc.doc", the default output file
+#   is STDOUT, default values for sc and ll are 8 and 77.
+
+if ($#argv < 1) then
+  echo "USAGE:"
+  echo "  sdesc <pattern> [<input file name> [<output file name> [<sc> [<ll>]]]]"
+  exit
+endif
+if ($#argv < 2) then
+  set infile=$saclib/doc/desc.doc
+else
+  set infile=$2
+endif
+if ($#argv < 3) then
+  set outfile=`tty`
+else
+  set outfile=$3
+endif
+if ($#argv < 4) then
+  set sc=8
+else
+  set sc=$4
+endif
+if ($#argv < 5) then
+  set ll=77
+else
+  set ll=$5
+endif
+
+awk -f $saclib/bin/b2l.awk $infile |\
+grep -i "$1" |\
+awk >$outfile -f $saclib/bin/l2b.awk sc=$sc ll=$ll -
+

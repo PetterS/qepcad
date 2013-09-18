@@ -1,0 +1,8 @@
+#!/bin/csh
+
+if ($#argv != 1) then
+  echo "Usage: supdate <SACfile.ext>"
+else
+  rcp $1 jade:/usr/local/saclib/`pwd | sed 's/.*\/saclib2.1/saclib2.1/g'`/.
+  rcp $1 crocus:/usr/local/saclib/`pwd | sed 's/.*\/saclib2.1/saclib2.1/g'`/.
+endif

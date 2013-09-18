@@ -1,0 +1,14 @@
+; USAGE:
+;   mktags
+;
+; FUNCTION
+;   Creates a tags file for SACLIB.
+
+pushd T:
+Delete >NIL: tags
+List SACLIB:src/*.c SORT LFORMAT "%s%s" | SACLIB:bin/mktags.aux
+List SACLIB:include/*.h SORT LFORMAT "%s%s" | SACLIB:bin/mktags.aux
+Copy tags SACLIB:src/tags
+Delete >NIL: tags
+popd
+

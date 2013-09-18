@@ -1,0 +1,205 @@
+\begin{description}
+\item[Basic Arithmetic:] \ \
+  \begin{description}
+  \item[{\tt C <- ISUM(A,B) 
+}]\index{ISUM}  Integer sum.
+  \item[{\tt C <- IDIF(A,B) 
+}]\index{IDIF}  Integer difference.
+  \item[{\tt B <- INEG(A) 
+}]\index{INEG}  Integer negation.
+  \item[{\tt C <- IPROD(A,B) 
+}]\index{IPROD}  Integer product.
+  \item[{\tt C <- IDPR(A,b) 
+}]\index{IDPR}  Integer-digit product.
+  \item[{\tt  DPR(a,b; c,d) 
+}]\index{DPR}  Digit Product.
+  \item[{\tt C <- IPRODK(A,B) 
+}]\index{IPRODK}  Integer product, Karatsuba algorithm.
+  \item[{\tt C <- IQ(A,B) 
+}]\index{IQ}  Integer quotient.
+  \item[{\tt C <- IDQ(A,b) 
+}]\index{IDQ}  Integer-digit quotient.
+  \item[{\tt  IQR(A,B; Q,R) 
+}]\index{IQR}  Integer quotient and remainder.
+  \item[{\tt  IDQR(A,b; Q,r) 
+}]\index{IDQR}  Integer-digit quotient and remainder.
+  \item[{\tt  DQR(a1,a0,b; q,r) 
+}]\index{DQR}  Digit quotient and remainder.
+  \item[{\tt C <- IREM(A,B) 
+}]\index{IREM}  Integer remainder.
+  \item[{\tt r <- IDREM(A,b) 
+}]\index{IDREM}  Integer-digit remainder.
+  \item[{\tt c <- IMAX(a,b) 
+}]\index{IMAX}  Integer maximum. {\em Returns the greater of two integers.}
+  \item[{\tt c <- IMIN(a,b) 
+}]\index{IMIN}  Integer minimum. {\em Returns the smaller of two integers.}
+  \item[{\tt s <- ISIGNF(A) 
+}]\index{ISIGNF}  Integer sign function.
+  \item[{\tt B <- IABSF(A) 
+}]\index{IABSF}  Integer absolute value function.
+  \item[{\tt s <- ICOMP(A,B) 
+}]\index{ICOMP}  Integer comparison. {\em Compares two integers and returns
+    $-1, 0,$ and $+1$ in case of $<, =,$ and $>$, respectively.}
+  \item[{\tt t <- IEVEN(A) 
+}]\index{IEVEN}  Integer even. {\em Tests whether the argument is even.}
+  \item[{\tt t <- IODD(A) 
+}]\index{IODD}  Integer odd. {\em Tests whether the argument is odd.}
+  \end{description}
+
+\item[Exponentiation:] \ \
+  \begin{description}
+  \item[{\tt B <- IEXP(A,n) 
+}]\index{IEXP}  Integer exponentiation.
+  \item[{\tt  IROOT(A,n; B,t) 
+}]\index{IROOT}  Integer root.
+  \item[{\tt  ISQRT(A; B,t) 
+}]\index{ISQRT}  Integer square root.
+  \item[{\tt  DSQRTF(a; b,t) 
+}]\index{DSQRTF}  Digit square root function.
+  \item[{\tt  IPOWER(A,L; B,n) 
+}]\index{IPOWER}  Integer power. {\em If the argument can be expressed as
+    $b^n$, such integers $b$ and $n$ are computed.}
+  \end{description}
+
+\item[Greatest Common Divisor:] \ \
+  \begin{description}
+  \item[{\tt C <- IGCD(A,B) 
+}]\index{IGCD}  Integer greatest common divisor.
+  \item[{\tt c <- DGCD(a,b) 
+}]\index{DGCD}  Digit greatest common divisor.
+  \item[{\tt  IGCDCF(A,B; C,Ab,Bb) 
+}]\index{IGCDCF}  Integer greatest common divisor and cofactors.
+  \item[{\tt  IEGCD(a,b; c,u1,v1) 
+}]\index{IEGCD}  Integer extended greatest common divisor algorithm.
+  \item[{\tt  DEGCD(a,b; c,u,v) 
+}]\index{DEGCD}  Digit extended greatest common divisor.
+  \item[{\tt  IDEGCD(a,b; c,u1,v1,u2,v2) 
+}]\index{IDEGCD}  Integer doubly extended greatest common divisor algorithm.
+  \item[{\tt  IHEGCD(A,B; C,V) 
+}]\index{IHEGCD}  Integer half-extended greatest common divisor.
+  \item[{\tt C <- ILCM(A,B) 
+}]\index{ILCM}  Integer least common multiple.
+  \end{description}
+
+\item[Factorization:] \ \
+  \begin{description}
+  \item[{\tt F <- IFACT(n) 
+}]\index{IFACT}  Integer factorization.
+  \item[{\tt s <- ISPT(m,mp,F) 
+}]\index{ISPT}  Integer selfridge primality test. {\em Returns 1 if the
+    argument is prime, -1 if it is not prime, and 0 if the primality could
+    not be determined.}
+  \item[{\tt  ILPDS(n,a,b; p,np) 
+}]\index{ILPDS}  Integer large prime divisor search.
+  \item[{\tt  IMPDS(n,a,b; p,q) 
+}]\index{IMPDS}  Integer medium prime divisor search.
+  \item[{\tt  ISPD(n; F,m) 
+}]\index{ISPD}  Integer small prime divisors.
+  \end{description}
+
+\item[Prime Number Generation:] \ \
+  \begin{description}
+  \item[{\tt L <- DPGEN(m,k) 
+}]\index{DPGEN}  Digit prime generator.
+  \end{description}
+
+\item[Random Number Generation:] \ \
+  \begin{description}
+  \item[{\tt A <- IRAND(n) 
+}]\index{IRAND}  Integer, random.
+  \item[{\tt a <- DRAN() 
+}]\index{DRAN}  Digit, random.
+  \item[{\tt a <- DRANN() 
+}]\index{DRANN}  Digit, random non-negative.
+  \end{description}
+
+\item[Combinatorial:] \ \
+  \begin{description}
+  \item[{\tt A <- IFACTL(n) 
+}]\index{IFACTL}  Integer factorial.
+  \item[{\tt A <- IBCOEF(n,k) 
+}]\index{IBCOEF}  Integer binomial coefficient. {\em Returns
+    $\left(\raisebox{-.5ex}{$\stackrel{\textstyle n}{k}$}\right)$.}
+  \item[{\tt B <- IBCIND(A,n,k) 
+}]\index{IBCIND}  Integer binomial coefficient induction. {\em Returns
+    $\left(\raisebox{-.5ex}{$\stackrel{\textstyle n}{k+1}$}\right)$ given
+    $n$, $k$, and $\left(\raisebox{-.5ex}{$\stackrel{\textstyle
+    n}{k}$}\right)$.}
+  \item[{\tt A <- IBCPS(n,k) 
+}]\index{IBCPS}  Integer binomial coefficient partial sum. {\em Returns
+    $\sum_{i=0}^k\left(\raisebox{-.5ex}{$\stackrel{\textstyle
+    n}{i}$}\right)$.}
+  \end{description}
+
+\item[Binary Arithmetic:] \ \
+  \begin{description}
+  \item[{\tt n <- ILOG2(A) 
+}]\index{ILOG2}  Integer logarithm, base 2. {\em Returns 1 + (the floor
+    of the base 2 logarithm of the argument).}
+  \item[{\tt n <- DLOG2(a) 
+}]\index{DLOG2}  Digit logarithm, base 2.
+  \item[{\tt  IFCL2(a; m,n) 
+}]\index{IFCL2}  Integer, floor and ceiling, logarithm, base 2. {\em Returns
+    the floor and the ceiling of the base 2 logarithm of the argument.}
+  \item[{\tt B <- IMP2(A,h) 
+}]\index{IMP2}  Integer multiplication by power of 2. {\em Multiplies the
+    argument by a non-negative power of 2.}
+  \item[{\tt B <- IDP2(A,k) 
+}]\index{IDP2}  Integer division by power of 2. {\em Divides the argument by
+    a non-negative power of 2.}
+  \item[{\tt B <- ITRUNC(A,n) 
+}]\index{ITRUNC}  Integer truncation. {\em Divides the argument by a
+    positive or negative power of 2.}
+  \item[{\tt n <- IORD2(a) 
+}]\index{IORD2}  Integer, order of 2. {\em Returns the largest $n$ such that
+    $2^n$ divides the argument.}
+  \end{description}
+
+\item[Boolean:] \ \
+  \begin{description}
+  \item[{\tt  c <- DAND(a,b) 
+}]\index{DAND}  Digit and. {\em Returns the bit-wise $\wedge$ of two digits.}
+  \item[{\tt  c <- DOR(a,b) 
+}]\index{DOR}  Digit or. {\em Returns the bit-wise $\vee$ of two digits.}
+  \item[{\tt  b <- DNOT(a) 
+}]\index{DNOT}  Digit not. {\em Returns the bit-wise $\neg$ of a digit.}
+  \item[{\tt  c <- DNIMP(a,b) 
+}]\index{DNIMP}  Digit non-implication. {\em Returns the bit-wise $\neg(a
+    \Rightarrow b)$ of digits $a$ and $b$.}
+  \end{description}
+
+\item[Input/Output:] \ \
+  \begin{description}
+  \item[{\tt A <- IREAD() 
+}]\index{IREAD}  Integer read.
+  \item[{\tt  IWRITE(A) 
+}]\index{IWRITE}  Integer write.
+  \item[{\tt  ILWRITE(L) 
+}]\index{ILWRITE}  Integer list write. {\em Writes a list of integers in the
+    form \\$(n_1,n_2,\ldots,n_k)$ to the output stream.}
+  \end{description}
+
+\item[Auxiliary Functions:] \ \
+  \begin{description}
+  \item[{\tt C <- ISSUM(n,L) 
+}]\index{ISSUM}  Integer shifted sum. {\em Computes $\sum_{i=0}^k C_i
+    \BETA^{in}$ given $n$ and the $C_i$.}
+  \item[{\tt  ISEG(A,n; A1,A0) 
+}]\index{ISEG}  Integer segmentation. {\em Splits an integer at a
+    \BETA-digit boundary.}
+  \item[{\tt C <- IDIPR2(A,B,a,b) 
+}]\index{IDIPR2}  Integer digit inner product, length 2. {\em Computes $Aa +
+    Bb$ for integers $A, B$ and \BETA-digits $a, b$.}
+  \item[{\tt C <- ILCOMB(A,B,u,v) 
+}]\index{ILCOMB}  Integer linear combination. {\em Computes $Aa +
+    Bb$ for integers $A, B$ and \BETA-digits $a, b$ with $Aa + Bb \geq 0$.}
+  \item[{\tt  DPCC(a1,a2; u,up,v,vp) 
+}]\index{DPCC}  Digit partial cosequence calculation.
+  \item[{\tt  AADV(L; a,Lp) 
+}]\index{AADV}  Arithmetic advance. {\em Returns the first element and the
+    reductum of a non-empty list, returns 0 as the first element if the
+    list is empty.}
+  \end{description}
+
+\end{description}
+

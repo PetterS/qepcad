@@ -1,0 +1,16 @@
+#!/bin/csh
+
+# USAGE:
+#   sman <SAC function name>
+#
+# FUNCTION
+#   Displays the SAC source file containing the given function.
+
+
+if ($#argv < 1) then
+  echo "USAGE:"
+  echo "  sman <SAC function name>"
+else
+  more $saclib/src/$1.c
+endif
+

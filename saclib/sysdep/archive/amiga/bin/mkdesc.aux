@@ -1,0 +1,27 @@
+.key sc,ll
+.bra {
+.ket }
+.def sc 8
+.def ll 77
+
+; USAGE
+;   mkdesc.aux
+;
+; FUNCTION
+;   Reads names of SACLIB source files from STDIN (for use with pipes) until
+;   an EOF is read. The files are processed by awk (script 'mkdesc.awk')
+;   to extract the function description in the header.
+
+LAB loop
+
+Read fname
+IF $? EQ 1 VAL
+  Skip End
+ENDIF
+
+awk -f SACLIB:bin/mkdesc.awk sc={sc} ll={ll} $fname
+fname=
+
+Skip BACK loop
+
+LAB End

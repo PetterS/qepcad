@@ -1,0 +1,82 @@
+.key type
+.bra {
+.ket }
+
+; USAGE:
+;   mklib <std|deb|opt|all>
+;
+; FUNCTION
+;   Creates ".a" files in "SACLIB:lib/" depending on the argument:
+;   - 'std' causes a standard library to be built. The library file will have
+;     the name "saclib.lib" and the corresponding object files are in
+;     "OBJ:sac".
+;   - 'deb' switches on the '-s' and '-gs' options of the compiler which cause
+;     the inclusion of debugging information in the object files. The library
+;     file has the name "saclibd.lib" and the corresponding object files are
+;     in "OBJ:sacd".
+;   - 'opt' switches on the '-O' option which produces optimized code. The
+;     library file will have the name "saclibo.lib" and the corresponding object
+;     files are in "OBJ:saco".
+;     [THIS OPTION IS NOT SUPPORTED, YET.]
+;   - 'all' builds all three types of libraries.
+
+CC=dcc
+
+if "{type}" eq "std"
+  if not exists OBJ:sac
+    echo "'mklib' needs the directory 'OBJ:sac' for storing the '.o' files!"
+    quit
+  endif
+  pushd SACLIB:src
+  List >T:names.tmp (*.c|*.a) LFORMAT "%s" SORT
+  $CC @T:names.tmp -v -S -ISACLIB:include -c -new -O OBJ:sac
+  Join OBJ:sac/*.o AS T:saclib.lib
+  Copy T:saclib.lib SACLIB:lib/saclib.lib
+  Delete >NIL: T:saclib.lib T:names.tmp
+  popd
+else
+if "{type}" eq "deb"
+  if not exists OBJ:sacd
+    echo "'mklib' needs the directory 'OBJ:sacd' for storing the '.o' files!"
+    quit
+  endif
+  pushd SACLIB:src
+  List >T:names.tmp (*.c|*.a) LFORMAT "%s" SORT
+  $CC @T:names.tmp -v -S -s -gs -ISACLIB:include -c -new -O OBJ:sacd
+  Join OBJ:sacd/*.o AS T:saclibd.lib
+  Copy T:saclibd.lib SACLIB:lib/saclibd.lib
+  Delete >NIL: T:saclibd.lib T:names.tmp
+  popd
+else
+if "{type}" eq "all"
+  if not exists OBJ:sac
+    echo "'mklib' needs the directory 'OBJ:sac' for storing the '.o' files!"
+    quit
+  endif
+  pushd SACLIB:src
+  List >T:names.tmp (*.c|*.a) LFORMAT "%s" SORT
+  $CC @T:names.tmp -v -S -ISACLIB:include -c -new -O OBJ:sac
+  Join OBJ:sac/*.o AS T:saclib.lib
+  Copy T:saclib.lib SACLIB:lib/saclib.lib
+  Delete >NIL: T:saclib.lib
+  if not exists OBJ:sacd
+    echo "'mklib' needs the directory 'OBJ:sacd' for storing the '.o' files!"
+    quit
+  endif
+  $CC @T:names.tmp -v -S -s -gs -ISACLIB:include -c -new -O OBJ:sacd
+  Join OBJ:sacd/*.o AS T:saclibd.lib
+  Copy T:saclibd.lib SACLIB:lib/saclibd.lib
+  Delete >NIL: T:saclibd.lib T:names.tmp
+  popd
+else
+  echo "USAGE:"
+  echo "  mklib <std|deb|opt|all>"
+  Quit
+endif
+endif
+endif
+
+CC=
+
+echo "mklib done."
+

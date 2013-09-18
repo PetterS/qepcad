@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# -eq 0 ] ; then
+  perl $saclib/bin/mksysdep.pl
+fi
+if [ $# -eq 1 ] ; then
+  perl $saclib/bin/mksysdep.pl $1
+fi
+

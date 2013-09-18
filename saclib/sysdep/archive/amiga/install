@@ -1,0 +1,52 @@
+.key dir/a
+.bra {
+.ket }
+
+; FILE
+;   install <saclib root directory>
+;
+; FUNCTION
+;   Copies all system dependent files to the directories where they belong
+;   and compiles the library.
+
+; Check
+
+IF NOT EXISTS "{dir}/sysdep/amiga/install"
+  echo "'{dir}' is not the SACLIB root directory!"
+  quit
+ENDIF
+
+; Set environment
+
+Assign SACLIB: "{dir}"
+Path SACLIB:bin add
+
+; Copy files
+
+Echo "Copying files from '{dir}/sysdep/amiga."
+
+Copy SACLIB:sysdep/amiga/src SACLIB:src
+Copy SACLIB:sysdep/amiga/bin SACLIB:bin
+Copy SACLIB:sysdep/amiga/include SACLIB:include
+Copy SACLIB:sysdep/amiga/example SACLIB:example
+
+; Compile
+
+echo "Creating 'SACLIB:include/sacproto.h' ..."
+mkproto
+echo "Compiling standard SACLIB ..."
+mklib std
+
+; Make docs
+
+echo "Creating 'SACLIB:doc/desc.doc' ..."
+mkdesc
+
+; Finished
+
+echo "The install script is done."
+echo "Now add"
+echo "  Assign SACLIB: {dir}"
+echo "  Path SACLIB:bin add"
+echo "to your 'startup-sequence' to make the installation complete."
+

@@ -1,0 +1,22 @@
+#! /bin/csh
+
+# USAGE:
+#   mkisac
+#
+# FUNCTION
+#   makes isac.
+
+if ($#argv > 0) then
+  echo "USAGE:"
+  echo "  mkisac"
+  exit
+endif
+
+# use gcc
+set CC=gcc
+
+pushd >/dev/null  $saclib/isac
+make  CC=$CC
+popd >/dev/null
+
+echo "mkisac done."

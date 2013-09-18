@@ -1,0 +1,17 @@
+#!/bin/csh
+
+if ($#argv < 1) then
+  echo "Usage: slog <SACfile.ext> [rev]"
+else 
+  if !(-f ${saclib}/RCS/$1,v) then
+    echo $1": No RCS record."
+  else
+    if ($#argv == 1) then
+      echo "============================================================================="
+      echo $1
+      rlog ${saclib}/RCS/$1,v | sed '1,13d' | more
+    else 
+      co -q -p$2 ${saclib}/RCS/$1,v | more
+    endif
+  endif
+endif

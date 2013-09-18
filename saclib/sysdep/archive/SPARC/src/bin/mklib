@@ -1,0 +1,58 @@
+#! /bin/csh
+
+# USAGE:
+#   mklib <std|deb|opt|all>
+#
+# FUNCTION
+#   Creates ".a" files in "$saclib/lib/" depending on the argument:
+#   - 'std' causes a standard library to be built. The library file will have
+#     the name "saclib.a" and the corresponding object files are in
+#     "saclib/lib/obj".   
+#   - 'deb' switches on the '-g' option of the compiler which includes 
+#     debugging information in the object files. The library file will have
+#     the name "saclibd.a" and the corresponding object files are in
+#     "saclib/lib/objd".  
+#   - 'opt' switches on the '-O' option which produces optimized code. The
+#     library file will have the name "saclibo.a" and the corresponding object
+#     files are in "saclib/lib/objo".
+#   - 'all' builds all three types of libraries.
+
+if ($#argv < 1) then
+  echo "USAGE:"
+  echo "  mklib <std|deb|opt|all>"
+  exit
+endif
+
+if (! $?CC) then
+  set CC=cc
+endif
+
+if ($1 == "std") then
+  pushd >/dev/null  $saclib/lib/obj
+  make  CC=$CC SACFLAG= EXTENSION=
+  popd >/dev/null
+else if ($1 == "deb") then
+  pushd >/dev/null  $saclib/lib/objd
+  make  CC=$CC "SACFLAG=-g -DNO_SACLIB_MACROS" EXTENSION=d
+  popd >/dev/null
+else if ($1 == "opt") then
+  pushd >/dev/null  $saclib/lib/objo
+  make  CC=$CC SACFLAG=-O EXTENSION=o
+  popd >/dev/null
+else if ($1 == "all") then
+  pushd >/dev/null  $saclib/lib/obj
+  make  CC=$CC SACFLAG= EXTENSION=
+  popd >/dev/null
+  pushd >/dev/null  $saclib/lib/objd
+  make  CC=$CC "SACFLAG=-g -DNO_SACLIB_MACROS" EXTENSION=d
+  popd >/dev/null
+  pushd >/dev/null  $saclib/lib/objo
+  make  CC=$CC SACFLAG=-O EXTENSION=o
+  popd >/dev/null
+else
+  echo "USAGE:"
+  echo "  mklib <std|deb|opt|all>"
+  exit
+endif
+
+echo "mklib done."

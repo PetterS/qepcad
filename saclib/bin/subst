@@ -1,0 +1,33 @@
+#! /bin/tcsh
+
+# USAGE:
+#   subst [-b] <sed substitution expression> <file names>
+#
+# FUNCTION
+#   The sed substitution expression is applied globally to every file.
+#   The format of this expression is 
+#         /regular expression/replacement string/
+#   For more information see sed(1).
+#     If option "-b" is set, the original files are renamed with the 
+#   extension ".bak", otherwise the original files are replaced.
+
+if ("$1" == "-b") then
+  set backup
+  set sedexp="$2"
+  set names=3
+else
+  unset backup
+  set sedexp="$1"
+  set names=2
+endif
+if ($#argv < $names) then
+  echo "USAGE:"
+  echo "  subst [-b] <sed substitution expression> <file names>"
+  exit
+endif
+
+foreach i ($argv[$names-])
+  mv $i $i.bak
+  sed -e "s${sedexp}g" $i.bak > $i
+  if (! $?backup)  rm $i.bak
+end

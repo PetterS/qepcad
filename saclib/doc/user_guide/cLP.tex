@@ -1,0 +1,334 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mathematical Preliminaries}
+\label{c:LP s:MP}
+
+Let $A$ be a finite domain and let $C$ be the closure of $A$ under the
+operation of finite sequence formation. Then
+\begin{itemize}
+\item the elements of $C$ are called {\em objects},
+\item the elements of $A$ are called {\em atoms}, and
+\item the elements of $C \backslash\! A$ are called {\em lists}.
+\end{itemize}
+Note that the atom $a$ and the list $(a)$ containing $a$ as its only
+element are distinct objects. Furthermore, the set of lists also
+encompasses the empty sequence, which we call the empty list.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Purpose}
+\label{c:LP s:P}
+
+Lists are the basis for nearly all \saclib\ internal representations of
+elements of domains like the integers, polynomials, algebraic numbers, etc.
+The \saclib\ list processing package implements the abstract concept of
+lists described above.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definitions of Terms}
+\label{c:LP s:D}
+
+\begin{description}
+\item[atom]\index{atom}
+  An integer \tta\ such that $-\BETA < \tta < \BETA$.
+\item[list (handle)]\index{list}\index{handle!of a list}
+  An integer \ttL\ such that $\BETA \leq \ttL < \BETAp$, where \BETA\ and
+  \BETAp\ are positive integer constants\footnote{
+    See Section \ref{c:NIW s:CGV} for more information on \BETA\ and \BETAp.
+  }.
+  \ttL\ is a reference to the memory location of the first cell of the
+  list $L$.
+
+  The term {\em list} is used to denote the \saclib\ internal
+  representation of an element of $C \backslash\! A$ as given in Section
+  \ref{c:LP s:MP}. If emphasis is on the reference to memory, the term {\em
+  list handle} is used.
+\item[(list) cell]\index{cell}
+  The memory space used to store a (reference to a) single list element and
+  bookkeeping information needed to combine several cells into a list.
+\item[(list) element]\index{element!of a list}
+  If $L$ is the list $(l_1, l_2, \ldots, l_n)$, then $l_1$ is its {\em
+  first element}, $l_2$ is its {\em second element}, etc.
+\item[empty list]\index{list!empty}\index{\NIL}
+  A list containing no elements, represented by the constant \NIL.
+\item[object]\index{object}
+  A term denoting both atoms and lists.
+\item[composition]\index{composition}
+  of an object $l$ and a list $(l_1, l_2, \ldots, l_n)$ is the list $(l,
+  l_1, l_2, \ldots, l_n)$.
+\item[reductum]\index{reductum!of a list}
+  of a list $(l_1, l_2, \ldots, l_n)$ is the list $(l_2, l_3, \ldots,
+  l_n)$. The reductum of the empty list is undefined.
+\item[concatenation]\index{concatenation}
+  of lists $(l_1, l_2, \ldots, l_n)$ and $(m_1, m_2, \ldots, m_k)$ is
+  the list $(l_1, \ldots,\\l_n, m_1, \ldots, m_k)$.
+\item[inverse]\index{inverse!of a list}
+  of a list $(l_1, l_2, \ldots, l_n)$ is the list $(l_n, l_{n-1}, \ldots,
+  l_1)$.
+\item[length]\index{length!of a list}
+  of a list $(l_1,l_2,\ldots,l_n)$ is $n$. The length of the empty list is 0.
+\item[extent]\index{extent}
+  The number of cells used by an object. More precisely:
+  \begin{itemize}
+  \item
+    ${\tt EXTENT}(a) = 0$ if $a$ is an atom.
+  \item
+    ${\tt EXTENT}(\NIL) = 0$.
+  \item
+    ${\tt EXTENT}(L) = 1 + {\tt EXTENT}(l_1) + {\tt EXTENT}((l_2,
+    \ldots, l_n))$, where $L$ is the non-empty list $(l_1, l_2, \ldots, l_n)$.
+  \end{itemize}
+\item[order]\index{order!of a list}
+  The depth of an object. More precisely:
+  \begin{itemize}
+  \item
+    ${\tt ORDER}(a) = 0$ if $a$ is an atom.
+  \item
+    ${\tt ORDER}(\NIL) = 1$.
+  \item
+    ${\tt ORDER}(L) = {\tt MAX}({\tt ORDER}(l_1)+1, {\tt ORDER}((l_2, \ldots,
+    l_n)))$, where $L$ is the non-empty list $(l_1, l_2, \ldots, l_n)$.
+  \end{itemize}
+\item[side effects]\index{side effects}
+  When a function modifies the content of one or more cells of the input
+  list(s), it is said to cause {\em side effects}. This is always noted
+  in the function specifications.
+\item[destructive]\index{destructive}
+  An operation on lists causing side effects is called {\em destructive}.
+\item[(unordered) set]\index{set!unordered}
+  An (unordered) list of atoms.
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Functions}
+\label{c:LP s:F}
+
+\begin{description}
+\item[Constructors:] \ \
+  \begin{description}
+  \item[{\tt M <- COMP(a,L) 
+}]\index{COMP}  Composition. {\em Prefixes an object to a list.}
+  \item[{\tt M <- COMP2(a,b,L) 
+}]\index{COMP2}  Composition 2. {\em Prefixes 2 objects to a list.}
+  \item[{\tt M <- COMP3(a1,a2,a3,L) 
+}]\index{COMP3}  Composition 3. {\em Prefixes 3 objects to a list.}
+  \item[{\tt M <- COMP4(a1,a2,a3,a4,L) 
+}]\index{COMP4}  Composition 4. {\em Prefixes 4 objects to a list.}
+  \item[{\tt L <- LIST1(a) 
+}]\index{LIST1}  List, 1 element. {\em Builds a list from one object.}
+  \item[{\tt L <- LIST2(a,b) 
+}]\index{LIST2}  List, 2 elements. {\em Builds a list from 2 objects.}
+  \item[{\tt L <- LIST3(a1,a2,a3) 
+}]\index{LIST3}  List, 3 elements. {\em Builds a list from 3 objects.}
+  \item[{\tt L <- LIST4(a1,a2,a3,a4) 
+}]\index{LIST4}  List, 4 elements. {\em Builds a list from 4 objects.}
+  \item[{\tt L <- LIST5(a1,a2,a3,a4,a5) 
+}]\index{LIST5}  List, 5 elements. {\em Builds a list from 5 objects.}
+  \item[{\tt L <- LIST10(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) 
+}]\index{LIST10}  List, 10 elements. {\em Builds a list from 10 objects.}
+  \end{description}
+
+\item[Selectors:] \ \
+  \begin{description}
+  \item[{\tt  ADV(L; a,Lp) 
+}]\index{ADV}  Advance. {\em Returns the first element and the reductum of a
+  list.}
+  \item[{\tt  ADV2(L; a,b,Lp) 
+}]\index{ADV2}  Advance 2. {\em Returns the first 2 elements and the 2nd
+  reductum of a list.}
+  \item[{\tt  ADV3(L; a1,a2,a3,Lp) 
+}]\index{ADV3}  Advance 3. {\em Returns the first 3 elements and the 3rd
+  reductum of a list.}
+  \item[{\tt  ADV4(L; a1,a2,a3,a4,Lp) 
+}]\index{ADV4}  Advance 4. {\em Returns the first 4 elements and the 4th
+  reductum of a list.}
+  \item[{\tt  AADV(L; a,Lp) 
+}]\index{AADV}  Arithmetic advance. {\em Returns the first element and the
+    reductum of a non-empty list, returns 0 as the first element if the
+    list is empty.}
+  \item[{\tt  a <- FIRST(L) 
+}]\index{FIRST}  First. {\em Returns the first element of a list.}
+  \item[{\tt  FIRST2(L; a,b) 
+}]\index{FIRST2} First 2. {\em Returns the first 2 elements of a list.}
+  \item[{\tt  FIRST3(L; a1,a2,a3) 
+}]\index{FIRST3}  First 3. {\em Returns the first 3 elements of a list.}
+  \item[{\tt  FIRST4(L; a1,a2,a3,a4) 
+}]\index{FIRST4}  First 4. {\em Returns the first 4 elements of a list.}
+  \item[{\tt  a <- SECOND(L) 
+}]\index{SECOND}  Second. {\em Returns the 2nd element of a list.}
+  \item[{\tt a <- THIRD(L) 
+}]\index{THIRD}  Third. {\em Returns the 3rd element of a list.}
+  \item[{\tt a <- FOURTH(L) 
+}]\index{FOURTH}  Fourth. {\em Returns the 4th element of a list.}
+  \item[{\tt Lp <- LASTCELL(L) 
+}]\index{LASTCELL}  Last cell. {\em Returns the list handle of the last cell
+     of a list.}
+  \item[{\tt a <- LELTI(A,i) 
+}]\index{LELTI}  List element. {\em Returns the i-th element of a list.}
+  \item[{\tt  Lp <- RED(L) 
+}]\index{RED}  Reductum. {\em Returns the reductum of a list.}
+  \item[{\tt  Lp <- RED2(L) 
+}]\index{RED2}  Reductum 2. {\em Returns the 2nd reductum of a list.}
+  \item[{\tt M <- RED3(L) 
+}]\index{RED3}  Reductum 3. {\em Returns the 3rd reductum of a list.}
+  \item[{\tt M <- RED4(L) 
+}]\index{RED4}  Reductum 4. {\em Returns the 4th reductum of a list.}
+  \item[{\tt B <- REDI(A,i) 
+}]\index{REDI} Reductum. {\em Returns the i-th reductum of a list.}
+  \end{description}
+
+\item[Information and Predicates:] \ \
+  \begin{description}
+  \item[{\tt  t <- ISOBJECT(a) 
+}]\index{ISOBJECT}  Test for object. {\em Tests whether the argument
+    represents an object.}
+  \item[{\tt  t <- ISATOM(a) 
+}]\index{ISATOM}  Test for atom. {\em Tests whether the argument represents
+  an atom.}
+  \item[{\tt  t <- ISLIST(a) 
+}]\index{ISLIST}  Test for list. {\em Tests whether the argument represents
+  a list.}
+  \item[{\tt  t <- ISNIL(L) 
+}]\index{ISNIL}  Test for empty list. {\em Tests whether the argument
+  represents the empty list.}
+  \item[{\tt t <- EQUAL(a,b) 
+}]\index{EQUAL}  Equal. {\em Tests whether two objects are equal.}
+  \item[{\tt t <- MEMBER(a,L) 
+}]\index{MEMBER}  Membership test. {\em Tests whether an object is an element of
+  a list.}
+  \item[{\tt i <- LSRCH(a,A) 
+}]\index{LSRCH}  List search. {\em Returns the index of an object in a list.}
+  \item[{\tt n <- EXTENT(a) 
+}]\index{EXTENT}  Extent.
+  \item[{\tt n <- LENGTH(L) 
+}]\index{LENGTH}  Length.
+  \item[{\tt n <- ORDER(a) 
+}]\index{ORDER}  Order.
+  \end{description}
+
+\item[Concatenation:] \ \
+  \begin{description}
+  \item[{\tt L <- CCONC(L1,L2) 
+}]\index{CCONC}  Constructive concatenation. {\em Builds a list
+    $(l_1,\ldots,l_m,\\l_{m+1},\ldots,l_n)$ from lists $(l_1,\ldots,l_m)$ and
+    $(l_{m+1},\ldots,l_n)$.}
+  \item[{\tt L <- CONC(L1,L2) 
+}]\index{CONC} Concatenation. {\em Concatenates two lists destructively.}
+  \item[{\tt M <- LCONC(L) 
+}]\index{LCONC}  List concatenation. {\em Concatenates the elements of a
+    list of lists destructively.}
+  \end{description}
+
+\item[Inversion:] \ \
+  \begin{description}
+  \item[{\tt M <- CINV(L) 
+}]\index{CINV}  Constructive inverse. {\em Builds a list containing the
+    elements of the argument in inverse order.}
+  \item[{\tt M <- INV(L) 
+}]\index{INV}  Inverse. {\em Inverts a list destructively.}
+  \end{description}
+
+\item[Insertion:] \ \
+  \begin{description}
+  \item[{\tt  LINS(a,L) 
+}]\index{LINS}  List insertion. {\em Inserts an object after the first
+    element of a list.}
+  \item[{\tt L <- LEINST(A,i,a) 
+}]\index{LEINST}  List element insertion. {\em Inserts an object after the
+    i-th element of a list.}
+  \item[{\tt Lp <- SUFFIX(L,b) 
+}]\index{SUFFIX}  Suffix. {\em Appends an object after the last element of a
+    list.}
+  \item[{\tt B <- LINSRT(a,A) 
+}]\index{LINSRT}  List insertion. {\em Inserts an atom into a sorted list of
+    atoms.}
+  \end{description}
+
+\item[Combinatorial:] \ \
+  \begin{description}
+  \item[{\tt M <- LEROT(L,i,j) 
+}]\index{LEROT}  List element rotation. {\em Rotates some consecutive
+    elements of a list.}
+  \item[{\tt Lp <- LPERM(L,P) 
+}]\index{LPERM}  List permute. {\em Permutes the elements of a list.}
+  \item[{\tt Pp <- PERMCY(P) 
+}]\index{PERMCY}  Permutation, cyclic. {\em Rotates a list to the left.}
+  \item[{\tt L <- PERMR(n) 
+}]\index{PERMR}  Permutation, random. {\em Builds a list of the first n
+    integers in random order.}
+  \item[{\tt B <- LEXNEX(A) 
+}]\index{LEXNEX}  Lexicographically next. {\em Computes the lexicographical
+    successor of a permutation.}
+  \end{description}
+
+\item[Set Operations:] \ \
+  \begin{description}
+  \item[{\tt b <- SEQUAL(A,B) 
+}]\index{SEQUAL}  Set equality. {\em Tests whether two sets represented as
+    unordered redundant lists are equal.}
+  \item[{\tt C <- SDIFF(A,B) 
+}]\index{SDIFF}  Set difference.
+  \item[{\tt B <- SFCS(A) 
+}]\index{SFCS}  Set from characteristic set.
+  \item[{\tt C <- SINTER(A,B) 
+}]\index{SINTER}  Set intersection.
+  \item[{\tt C <- SUNION(A,B) 
+}]\index{SUNION}  Set union.
+  \item[{\tt C <- USDIFF(A,B) 
+}]\index{USDIFF}  Unordered set difference.
+  \item[{\tt C <- USINT(A,B) 
+}]\index{USINT}  Unordered set intersection.
+  \item[{\tt C <- USUN(A,B) 
+}]\index{USUN}  Unordered set union.
+  \end{description}
+
+\item[Sorting:] \ \
+  \begin{description}
+  \item[{\tt M <- LBIBMS(L) 
+}]\index{LBIBMS}  List of BETA-integers bubble-merge sort. {\em Sorts a list
+    of atoms into non-descending order.}
+  \item[{\tt  LBIBS(L) 
+}]\index{LBIBS}  List of BETA-integers bubble sort. {\em Sorts a list of
+    atoms into non-descending order.}
+  \item[{\tt L <- LBIM(L1,L2) 
+}]\index{LBIM}  List of BETA-integers merge. {\em Merges two sorted lists of
+    atoms.}
+  \item[{\tt B <- LINSRT(a,A) 
+}]\index{LINSRT}  List insertion. {\em Inserts an atom into a sorted list of
+    atoms.}
+  \item[{\tt C <- LMERGE(A,B) 
+}]\index{LMERGE}  List merge. {\em Constructively merges two lists avoiding
+  duplicate elements.}
+  \end{description}
+
+\item[Input/Output:] \ \
+  \begin{description}
+  \item[{\tt A <- AREAD() 
+}]\index{AREAD}  Atom read.
+  \item[{\tt  AWRITE(A) 
+}]\index{AWRITE}  Atom write.
+  \item[{\tt L <- LREAD() 
+}]\index{LREAD}  List read.
+  \item[{\tt  LWRITE(L) 
+}]\index{LWRITE}  List write.
+  \item[{\tt B <- OREAD() 
+}]\index{OREAD}  Object read.
+  \item[{\tt  OWRITE(B) 
+}]\index{OWRITE}  Object write.
+  \end{description}
+
+\item[Miscellaneous:] \ \
+  \begin{description}
+  \item[{\tt C <- PAIR(A,B) 
+}]\index{PAIR}  Pair. {\em Builds a list by interleaving the elements of two
+    lists.}
+  \item[{\tt  SFIRST(L,a) 
+}]\index{SFIRST}  Set first element. {\em Sets the first element of a list.}
+  \item[{\tt  SLELTI(A,i,a) 
+}]\index{SLELTI}  Set list element. {\em Sets the i-th element of a list.}
+  \item[{\tt  SRED(L,Lp) 
+}]\index{SRED}  Set reductum. {\em Sets the reductum of a list.}
+  \end{description}
+\end{description}
+

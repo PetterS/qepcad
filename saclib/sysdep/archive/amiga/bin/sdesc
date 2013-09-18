@@ -1,0 +1,31 @@
+.key pat/a,infile,outfile,sc,ll
+.bra {
+.ket }
+.def infile SACLIB:doc/desc.doc
+.def outfile *
+.def sc 8
+.def ll 77
+
+; USAGE:
+;   sdesc <pattern> [input file name] [output file name] [sc] [ll]
+;
+; FUNCTION
+;   Takes an an input file which consists of one or more blocks of the
+;   following format:
+;
+;   <subject> <text>
+;     <0 or more lines of additional text beginning with at least one blank>
+;
+;   The text part of these blocks is searched for the pattern. If it is
+;   found, the block is displayed in the following format:
+;
+;   COLUMN  1         sc                                         ll
+;           <subject> <text......................................>
+;                     <0 or more lines of additional text........>
+;
+;   The default input file is "SACLIB:doc/desc.doc", the default output file
+;   is the console, default values for sc and ll are 8 and 77.
+
+; BUG in ArpShell: without this line, the default value for {infile} is invalid!
+awk -f SACLIB:bin/b2l.awk {infile} | Search STDIN {pat} NONUM | awk >{outfile} -f SACLIB:bin/l2b.awk sc={sc} ll={ll}
+

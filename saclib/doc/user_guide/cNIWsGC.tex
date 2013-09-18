@@ -1,0 +1,132 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Implementation of Lists}
+
+When \saclib\ is initialised, the array \SPACE\ containing $\NU+1$ \Word s is
+allocated from the heap. This array is used as the memory space for list
+processing. Lists are built from {\em cells}, which are pairs of
+consecutive \Word s the first of which is at an odd position in the \SPACE\
+array. {\em List handles} (``pointers'' to lists) are defined to be \BETA\
+plus the index of the first cell of the list in the \SPACE\ array with the
+handle of the empty list being \NIL\ (which is equal to \BETA). Figure
+\ref{f:SPACE} shows the structure of the \SPACE\ array.
+
+\begin{figure}[htb]
+\input{fSPACE.tex}
+\caption{The \SPACE\ array.}
+\label{f:SPACE}
+\end{figure}
+
+The first \Word\ of each cell is used to store the handle of the next cell
+in the list (i.e.\ the value returned by {\tt RED()}), while the second
+\Word\ contains the data of the list element represented by the cell (i.e.\ 
+the value returned by {\tt FIRST()}). Figure \ref{f:LIST} gives a graphical
+representation of the cell structure for a sample list. The arrows stand
+for list handles.
+
+\begin{figure}[htb]
+\input{fLIST.tex}
+\caption{The cell structure of the list $\ttL = (1,(9,6),8)$.}
+\label{f:LIST}
+\end{figure}
+
+As already mentioned in Chapter \ref{c:LP}, atoms are required to be
+integers $a$ with $-\BETA < a < \BETA$. This allows the garbage collector
+and other functions operating on objects to decide whether a variable of
+type \Word\ contains an atom or a list handle. Note that values less or
+equal $-\BETA$ are legal only during garbage collection while values
+greater than $\BETA + \NU$ are used for referencing other garbage collected
+structures.
+
+The \Word s of a cell adressed by a list handle \ttL\ are {\tt
+\SPACE[$\ttL-\BETA$]} and {\tt \SPACE[$\ttL-\BETA+1$]}. To simplify these
+computations, the C pointers \SPACEB\ and \SPACEBone\ are set to the memory
+addresses of {\tt \SPACE[$-\BETA$]} and {\tt \SPACE[$-\BETA+1$]},
+respectively. This is used by the functions {\tt FIRST(L)}, which returns
+{\tt SPACEB1[L]}, and {\tt RED(L)}, which returns {\tt SPACEB[L]}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Implementation of GCA Handles}
+
+When \saclib\ is initialised, the array \GCASPACE\ containing $\NUp+1$
+structures of type \GCArray\ is allocated. A {\em GCA handle} is defined to be
+\BETAp plus the index of the corresponding \GCArray\ structure in the
+\GCASPACE\ array, with the null handle being \NIL.
+
+The \GCArray\ structure contains the following fields:
+\begin{itemize}
+\item {\tt next}\ \ldots\
+  a \Word, used for linking empty \GCArray s to the \GCAAVAIL\ list and for
+  marking (see Section \ref{cNIWsGCssGC}).
+\item {\tt flag}\ \ldots\
+  a \Word, set to one of {\tt GC\_CHECK} and {\tt GC\_NO\_CHECK} (see Section
+  \ref{cNIWsGCssGC}).
+\item {\tt len}\ \ldots\
+  a \Word, the length of the array in \Word s.
+\item {\tt array}\ \ldots\
+  a C pointer to an array of \Word s of size {\tt len}.
+\end{itemize}
+
+When {\tt GCAMALLOC()(} is called, it takes the first \GCArray\ from the
+\GCAAVAIL\ list and initializes its fields.
+
+{\tt GCA2PTR()} simply returns the C pointer in the {\tt array} field.
+
+{\tt GCAFREE()} deallocates the memory addressed by the {\tt array} field,
+sets all fields to zero, and links the \GCArray\ to the beginning of the 
+\GCAAVAIL\ list. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Garbage Collector}
+\label{cNIWsGCssGC}
+
+Garbage collection is invoked when {\tt COMP()} or {\tt GCAMALLOC()} call
+{\tt GC()} in the case of \AVAIL\ or \GCAAVAIL\ being \NIL. The garbage
+collector consists of two parts:
+\begin{itemize}
+\item
+  The function {\tt GC()}\index{GC} is system dependent. It must ensure that
+  the contents of all processor registers are pushed onto the stack and pass
+  alignment information and the address of the end of the stack to
+  {\tt GCSI()}.
+\item
+  {\tt GCSI()}\index{GCSI} is the system independent part of the garbage
+  collector. It uses a mark-and-sweep method for identifying unused cells:
+  \begin{description}
+  \item[Marking:]
+    The processor registers, the system stack, and the variables and GCA
+    arrays to which pointers are stored in the \GCGLOBALS\ list are
+    searched for non-\NIL\ list and GCA handles. All the cells accessible
+    from these handles are marked by a call to {\tt MARK()}.
+
+    If a list handle is found, this function traverses the cells of the
+    list, marking them by negating the contents of their first \Word. If
+    the second \Word\ of a cell contains a list or GCA handle, {\tt MARK()}
+    calls itself recursively on this handle.
+
+    In case of a GCA handle, the GCA cell adressed by the handle is marked
+    by negating the contents of its {\tt next} field. If the cell's {\tt
+    flag} field is not set to {\tt GC\_NO\_CHECK}, the \Word s in the array
+    pointed to by the {\tt array} field are searched for list or GCA
+    handles with {\tt MARK()} calling itself recursively on valid handles.
+  \item[Sweeping:]
+    In the sweep step, the \AVAIL\ and \GCAAVAIL\ lists are built:
+
+    Cells in \SPACE\ whose first \Word\ contains a positive value are
+    linked to the \AVAIL\ list. If the first \Word\ of a cell contains a
+    negative value, it is made positive again and the cell is not changed
+    in any other way.
+
+    Cells in \GCASPACE\ whose {\tt next} field contains a positive value
+    are linked to the \GCAAVAIL\ list and the array pointed to by the {\tt
+    array} field is deallocated. If the {\tt next} field contains a
+    negative value, it is made positive again and the cell is not changed
+    in any other way.
+  \end{description}
+\end{itemize}
+
+If the \AVAIL\ list contains no more than $\NU/\RHO$ cells at the end of
+garbage collection, an error message is written to the output stream and
+the program is aborted.
+

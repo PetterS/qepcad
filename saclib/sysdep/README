@@ -1,0 +1,17 @@
+Saclib 2.2 & higher system dependent files & configuration
+
+0) System-dependent configuration is done by calling
+   $saclib/bin/sconf, which in turn calls 
+   $saclib/bin/mksysdep.pl, which tries to diagnose the 
+   processor type and OS type and call the "install" script 
+   from the appropriate (we hope!) subdirectory of
+   $saclib/sysdep.
+
+2) To add a port, you need a subdirectory for the target
+   system in $saclib/sysdep, and you need to modify
+   $saclib/bin/sconf to recognize your target system
+   and call the appropriate install.
+
+NOTE: The macosX86 port is for Mac OS X on x86 in 32-bit
+      mode.  Presumably, the port to 64-bit Mac OS X wouldn't
+      be too hard given the 64-bit Linux on x86 port. 

@@ -1,0 +1,260 @@
+\documentstyle[saclib,makeidx,DinA4]{report}
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+\saclib\ 1.1 User's Guide\thanks{
+  RISC--Linz Report Series Technical Report Number 93-19
+  (Research Institute for Symbolic Computation, Johannes Kepler University,
+  A-4040 Linz, Austria)
+}
+\\\bigskip \small
+\copyright\ 1993 by Kurt G\"{o}del Institute
+}
+
+\author{
+Bruno Buchberger \and George E.\ Collins \and Mark J.\ Encarnaci\'{o}n \and
+Hoon Hong \and Jeremy R.\ Johnson \and Werner Krandick \and R\"{u}diger Loos
+\and Ana M. Mandache \and Andreas Neubacher \and Herbert Vielhaber
+}
+
+\date{March 12, 1993}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage \vfill
+\begin{center}
+  \saclib\ \copyright\ 1993 by Kurt G\"{o}del Institute
+\end{center}
+
+\bigskip
+
+The \saclib\ system source code and User's Guide are made available free
+of charge by the Kurt Goedel Institute on behalf of the \saclib\ Group.
+
+Persons or institutions receiving it are pledged not to distribute it to
+others.  Instead, individuals wishing to acquire the system should obtain it
+by ftp directly from the Kurt Goedel Institute, informing the Institute of
+the acquisition.  Thereby the \saclib\ Group will know who has the system and
+be able to inform all users of any corrections or newer versions.
+
+Users are kindly asked to cite their use of the system in any resulting
+publications or in any application packages built upon \saclib.
+
+Neither \saclib\ nor any part thereof may be incorporated in any commercial
+software product without the consent of the authors.  Users developing
+non-commercial application packages are kindly asked to inform us.
+
+Requests or proposals for changes or additions to the system will
+be welcomed and given consideration.
+
+\saclib\ is offered without warranty of any kind, either expressed or implied.
+However reports of bugs or problems are encouraged.
+
+
+\vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+This paper lists most of the algorithms provided by \saclib\ and shows how
+to call them from C. There is also a brief explanation of the inner
+workings of the list processing and garbage collection facilities of
+\saclib.
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:I}
+
+\input{cI.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{List Processing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:LP}
+
+\input{cLP.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Arithmetic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:A}
+
+\section{Introduction}
+\label{c:A s:I}
+
+\input{cAsI.tex}
+
+\section{Integer Arithmetic}
+\label{c:A s:IA}
+
+\input{cAsIA.tex}
+
+\section{Modular Number Arithmetic}
+\label{c:A s:MA}
+
+\input{cAsMA.tex}
+
+\section{Rational Number Arithmetic}
+\label{c:A s:RA}
+
+\input{cAsRA.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Polynomial Arithmetic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:PA}
+
+\section{Introduction}
+\label{c:PA s:I}
+
+\input{cPAsI.tex}
+
+\section{Polynomial Input and Output}
+\label{cPAsPIO.tex}
+
+\input{cPAsPIO.tex}
+
+\section{Domain Independent Polynomial Arithmetic}
+\label{c:PA s:DIPA}
+
+\input{cPAsDIPA.tex}
+
+\section{Integral Polynomial Arithmetic}
+\label{c:PA s:IPA}
+
+\input{cPAsIPA.tex}
+
+\section{Modular Polynomial Arithmetic}
+\label{c:PA s:MPA}
+
+\input{cPAsMPA.tex}
+
+\section{Rational Polynomial Arithmetic}
+\label{c:PA s:RPA}
+
+\input{cPAsRPA.tex}
+
+\section{Miscellaneous Representations}
+\label{c:PA s:MR}
+
+\input{cPAsMR.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Linear Algebra}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:LA}
+
+\input{cLA.tex}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Polynomial GCD and Resultants}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:GCD}
+
+\input{cGCD.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Polynomial Factorization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:PF}
+
+\input{cPF.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Real Root Calculation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:RRC}
+
+\input{cRRC.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Algebraic Number Arithmetic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:AN}
+
+\input{cAN.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Calling \saclib\ Functions from C}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:CFC}
+
+\input{cCFC.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{\isac: An Interactive Interface to \saclib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:ISAC}
+
+\input{cISAC.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Notes on the Internal Workings of \saclib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{c:NIW}
+
+\section{Lists, GCA Handles, and Garbage Collection}
+\label{c:NIW s:GC}
+
+\input{cNIWsGC.tex}
+
+\section{Constants and Global Variables}
+\label{c:NIW s:CGV}
+
+\input{cNIWsCGV.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Here we should have an extensive bibliography of Symbolic Algebraic 
+% Computation literature. Any volunteers?
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The index.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+
+\end{document}

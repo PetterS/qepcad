@@ -1,0 +1,75 @@
+% SHORTHAND FOR FREQUENTLY USED EXPRESSIONS
+\newcommand{\saclib}{\mbox{\rm SACLIB}}
+\newcommand{\isac}{\mbox{\rm ISAC}}
+
+\newcommand{\Word}{{\tt Word}}
+\newcommand{\BDigit}{{\tt BDigit}}
+\newcommand{\GCArray}{{\tt GCArray}}
+\newcommand{\Wordptr}{{\tt (Word *)}}
+\newcommand{\NIL}{{\tt NIL}}
+\newcommand{\BETA}{{\tt BETA}}
+\newcommand{\BETAone}{{\tt BETA1}}
+\newcommand{\GAMMA}{{\tt GAMMA}}
+\newcommand{\SLOGV}{{\tt SLOGV}}
+\newcommand{\SLOGA}{{\tt SLOGA}}
+\newcommand{\SPACE}{{\tt SPACE}}
+\newcommand{\SPACEB}{{\tt SPACEB}}
+\newcommand{\SPACEBone}{{\tt SPACEB1}}
+\newcommand{\GCASPACE}{{\tt GCASPACE}}
+\newcommand{\GCASPACEBp}{{\tt GCASPACEBp}}
+\newcommand{\BETAp}{{\tt BETAp}}
+\newcommand{\BETApp}{{\tt BETApp}}
+\newcommand{\NU}{{\tt NU}}
+\newcommand{\NUp}{{\tt NUp}}
+\newcommand{\RHO}{{\tt RHO}}
+\newcommand{\AVAIL}{{\tt AVAIL}}
+\newcommand{\GCAAVAIL}{{\tt GCAAVAIL}}
+\newcommand{\GCGLOBALS}{{\tt GCGLOBALS}}
+
+\newcommand{\ttA}{{\tt A}}
+\newcommand{\tta}{{\tt a}}
+\newcommand{\ttD}{{\tt D}}
+\newcommand{\ttE}{{\tt E}}
+\newcommand{\ttI}{{\tt I}}
+\newcommand{\ttL}{{\tt L}}
+\newcommand{\ttN}{{\tt N}}
+\newcommand{\ttP}{{\tt P}}
+\newcommand{\ttR}{{\tt R}}
+
+\newcommand{\BbbZ}{{\bf Z}}
+\newcommand{\BbbQ}{{\bf Q}}
+\newcommand{\BbbD}{{\bf D}}
+
+\newcommand{\mod}{\,{\rm mod}\,}
+\newcommand{\sign}{\mbox{\rm sign}}
+\newcommand{\norm}{{\rm Norm}}
+\newcommand{\res}{{\rm res}}
+
+% LIST WITH USER-DEFINED INDENTATION
+\newenvironment{glists}[4]{
+  \begin{list}{}{
+    \setlength{\labelwidth}{#2}
+    \setlength{\labelsep}{#3}
+    \setlength{\leftmargin}{#1}
+    \addtolength{\leftmargin}{\labelwidth}
+    \addtolength{\leftmargin}{\labelsep}
+    \setlength{\parsep}{#4}
+    \setlength{\topsep}{\parsep}
+    \setlength{\itemsep}{\parsep}
+    \setlength{\listparindent}{0in}
+  }
+}{
+  \end{list}
+}
+\newcommand{\iteml}[1]{\item[\tt #1 \hfill]}
+
+
+% GRAPHICS
+\newsavebox{\arrow}
+\newsavebox{\cell}
+\newsavebox{\dline}
+
+\unitlength0.5pt
+\savebox{\dline}(0,0)[lb]{
+  \multiput(  0, 0)(3,0){5}{\line(1,0){1}}
+}

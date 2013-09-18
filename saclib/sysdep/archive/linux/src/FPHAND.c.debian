@@ -1,0 +1,38 @@
+/*======================================================================
+                      FPHAND(i,sip,uap)
+
+Floating-point handler.
+
+Inputs
+  i,sip,uap: Look at the man pages for "sigaction".
+  
+Side Effects
+  This function is the exception handler for floating point exceptions.
+  It sets the global flag FPFLAG to 1 to indicate error.  Also, it
+  turns off *all* floating-point traps, so no floating-point operation
+  causes a trap.
+======================================================================*/
+#include "saclib.h"
+#include <sigcontext.h>
+#include <stdio.h>
+#include <fpu_control.h>
+
+void FPHAND(i,p)
+       int i;
+       struct sigcontext p;
+       
+{
+
+Step1: /* Set floating-point state register mask for 
+enabling traps. (bits 23 - 27 on this architecture) */
+      //      p = (struct sigcontext *)uap;
+      p.fpstate->cw 
+ 	|= (_FPU_MASK_IM | _FPU_MASK_DM | _FPU_MASK_ZM | 
+	    _FPU_MASK_OM | _FPU_MASK_UM);
+ 
+Step2: /* Set error flag. */
+       FPFLAG = 1;
+
+Return: /* Prepare to return. */
+       return;
+}

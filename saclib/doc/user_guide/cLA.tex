@@ -1,0 +1,190 @@
+\section{Mathematical Preliminaries}
+A {\em matrix} $A$ of {\em order $m \times n$} over a domain $D$ is a
+rectangular array of elements of $D$ of the form
+
+$$A = \left[
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots &        &        & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\right]$$
+which we will sometimes denote by $A = (a_{ij})$.  If $A$ has order $n
+\times n$ then we say that $A$ is a {\em square} matrix.  When
+appropriate, we will denote a matrix $A$ by $A_{m \times n}$ to
+indicate that the order of $A$ is $m \times n$.
+
+If $A$ is a square matrix then the {\em determinant} of $A$, denoted
+$\det(A)$, is defined to be $\det(A) =
+\sum \epsilon(\sigma)a_{\sigma(1),1}\cdots a_{\sigma(n),n}$,
+the sum being taken over all permutations $\sigma$ of $\{1,\ldots,n\}$
+with $\epsilon(\sigma)$ equal to the sign\footnote{If $\sigma$ is the
+product of $m$ transpositions, then the {\em sign} of $\sigma$ is
+$\epsilon(\sigma) = (-1)^m$.} of $\sigma$.
+
+An {\em m-vector $V$} is a matrix of order $m \times 1$ and will be
+denoted by $V = (v_i)$. If $A$ is a matrix of order $m \times n$, $b$
+is an $m$-vector and $x$ is an $n$-vector then the equation $Ax = b$
+can be viewed as representing the system of linear equations
+$\sum_{j=1}^n a_{ij}x_j = b_i$, $i = 1,\ldots,m$. If a solution to the
+system $Ax = b$ exists then we say that the system is {\em
+consistent}. The {\em null space} of a matrix $A_{m \times n}$ is the
+set of all $n$-vectors $x$ that satisfy $Ax = 0$. A {\em basis} $B$
+for the null-space of $A$ is a set of $n$-vectors such that each
+element of the null-space can be expressed as a linear combination of
+elements of $B$.
+
+\section{Purpose}
+The \saclib\ linear algebra package provides algorithms for solving
+systems of linear diophantine equations, for computing null-space
+bases, for computing determinants and for matrix multiplication.
+
+\section{Methods and Algorithms}
+To solve a system of linear diophantine equations one may use either
+of the two algorithms {\tt LDSMKB} and {\tt LDSSBR}.  Both algorithms
+take as inputs a matrix $A_{m \times n}$ and an $m$-vector $b$, with
+$A$ represented column-wise, i.e.\ $A$ is a list of $n$ columns each
+of which is a list of $m$ integers.  Either algorithm returns an
+$n$-vector $x^*$ and a list $N$ where $x^*$ is a particular solution
+of the system of linear diophantine equations $Ax = b$ and $N$ is a list of
+$n$-vectors that form a basis for the null space of $A$.  In case the
+system $Ax = b$ is not consistent, both $x^*$ and $N$ are null lists.
+{\tt LDSMKB} implements a modification of the Kannan-Bachem algorithm
+while {\tt LDSSBR} implements an algorithm based on ideas of Rosser.
+
+Determinants of matrices over $\BbbZ[x_1,\ldots,x_r]$ may be computed
+by using either {\tt MAIPDE} or {\tt MAIPDM}.  {\tt MAIPDE} implements
+an algorithm which is based on exact division while {\tt MAIPDM} is
+based on modular homomorphisms and Chinese remaindering.
+
+{\tt MMDDET} computes determinants of matrices over $\BbbZ_p$ while
+{\tt MMPDMA}, which is based on evaluation homomorphisms and
+interpolation, computes determinants of matrices over
+$\BbbZ_p[x_1,\ldots,x_r]$.
+
+\section{Functions}
+
+\begin{description}
+
+\item[Systems of linear equations:] \ \
+
+\begin{description}
+
+\item[{\tt  LDSMKB(A,b; xs,N) 
+}]\index{LDSMKB} Linear diophantine system solution, modified Kannan and
+Bachem algorithm. {\em Given an integral matrix $A_{m \times n}$,
+represented column-wise, and an integral $m$-vector $b$, uses a 
+modification of the Kannan and Bachem algorithm to
+compute $x^*$ and $N$ where $x^*$ is a particular solution of the
+system of linear equations $Ax = b$ and $N$ is a list of vectors which
+form a basis for the solution module of $Ax = 0$.  If $Ax = b$ is not
+consistent then both $x^*$ and $N$ are null lists.}
+
+\item[{\tt  LDSSBR(A,b; xs,N) 
+}]\index{LDSSBR} Linear diophantine system solution, based on Rosser
+ideas. {\em Similar to {\rm LDSMKB} but the computations are performed
+using an algorithm based on ideas of Rosser.}
+
+\item[{\tt B <- MMDNSB(p,M) 
+}]\index{MMDNSB} Matrix of modular digits null-space basis. {\em Given a
+matrix $A_{m \times n}$ over $\BbbZ _p$, represented row-wise,
+computes a list $B = (B_1,\ldots,b_r)$ of $m$-vectors representing a
+basis for the null-space of $A$.}
+
+\end{description} % systems of linear equations
+
+
+\item[Determinants:] \ \
+
+\begin{description}
+
+\item[{\tt D <- MAIPDE(r,M) 
+}]\index{MAIPDE} Matrix of integral polynomials determinant, exact
+division algorithm. {\em Given a square matrix $A$ over $\BbbZ$
+computes $\det(A)$.}
+
+\item[{\tt D <- MAIPDM(r,M) 
+}]\index{MAIPDM} Matrix of integral polynomials determinant, modular
+algorithm. {\em Similar to {\tt MAIPDE} but uses an algorithm based on
+modular homomorphisms and Chinese remaindering.}
+
+\item[{\tt d <- MMDDET(p,M) 
+}]\index{MMDDET} Matrix of modular digits determinant. {\em Given a
+square matrix $A$ over $\BbbZ _p$, computes $\det(M)$.}
+
+\item[{\tt D <- MMPDMA(r,p,M) 
+}]\index{MMPDMA} Matrix of modular polynomials determinant, modular
+algorithm. {\em Given a matrix $M$ over $\BbbZ _p[x_1,\ldots,x_r]$,
+computes $\det(M)$ using a method based on evaluation homomorphisms
+and interpolation.}
+
+\end{description} % determinants
+
+
+\item[Matrix arithmetic:] \ \
+
+\begin{description}
+
+\item[{\tt C <- MAIPP(r,A,B) 
+}]\index{MAIPP} Matrix of integral polynomials product.
+
+\end{description} % matrix arithmetic
+
+
+\item[Vector computations:] \ \
+
+\begin{description}
+
+\item[{\tt B <- VIAZ(A,n) 
+}]\index{VIAZ} Vector of integers, adjoin zeros. 
+
+\item[{\tt C <- VIDIF(A,B) 
+}]\index{VIDIF} Vector of integers difference. 
+
+\item[{\tt W <- VIERED(U,V,i) 
+}]\index{VIERED} Vector of integers, element reduction.
+
+\item[{\tt C <- VILCOM(a,b,A,B) 
+}]\index{VILCOM} Vector of integers linear combination.
+
+\item[{\tt B <- VINEG(A) 
+}]\index{VINEG} Vector of integers negation.
+
+\item[{\tt C <- VISPR(a,A) 
+}]\index{VISPR} Vector of integers scalar product.
+
+\item[{\tt C <- VISUM(A,B) 
+}]\index{VISUM} Vector of integers sum.
+
+\item[{\tt  VIUT(U,V,i; Up,Vp) 
+}]\index{VIUT} Vector of integers, unimodular transformation.
+
+\end{description} % vector computations
+
+
+\item[Miscellaneous functions:] \ \
+
+\begin{description}
+
+\item[{\tt B <- MAIPHM(r,m,A) 
+}]\index{MAIPHM} Matrix of integral polynomials homomorphism.
+
+\item[{\tt B <- MIAIM(A) 
+}]\index{MIAIM} Matrix of integers, adjoin identity matrix.
+
+\item[{\tt B <- MICINS(A,V) 
+}]\index{MICINS} Matrix of integers column insertion.
+
+\item[{\tt B <- MICS(A) 
+}]\index{MICS} Matrix of integers column sort.
+
+\item[{\tt B <- MINNCT(A) 
+}]\index{MINNCT} Matrix of integers, non-negative column transformation.
+
+\item[{\tt B <- MMPEV(r,m,A,k,a) 
+}]\index{MMPEV} Matrix of modular polynomials evaluation.
+
+\end{description} % miscellaneous functions
+
+\end{description}  % functions

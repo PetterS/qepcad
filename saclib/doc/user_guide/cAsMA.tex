@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modular Digit Arithmetic}
+
+\begin{description}
+\item[Basic Arithmetic:] \ \
+  \begin{description}
+  \item[{\tt  c <- MDSUM(m,a,b) 
+}]\index{MDSUM}  Modular digit sum.
+  \item[{\tt  c <- MDDIF(m,a,b) 
+}]\index{MDDIF}  Modular digit difference.
+  \item[{\tt  b <- MDNEG(m,a) 
+}]\index{MDNEG}  Modular digit negative.
+  \item[{\tt c <- MDPROD(m,a,b) 
+}]\index{MDPROD}  Modular digit product.
+  \item[{\tt c <- MDQ(m,a,b) 
+}]\index{MDQ}  Modular digit quotient.
+  \item[{\tt b <- MDINV(m,a) 
+}]\index{MDINV}  Modular digit inverse.
+  \item[{\tt b <- MDEXP(m,a,n) 
+}]\index{MDEXP}  Modular digit exponentiation.
+  \end{description}
+
+\item[Chinese Remainder Algorithm:] \ \
+  \begin{description}
+  \item[{\tt a <- MDCRA(m1,m2,mp1,a1,a2) 
+}]\index{MDCRA}  Modular digit chinese remainder algorithm.
+  \item[{\tt L <- MDLCRA(m1,m2,L1,L2) 
+}]\index{MDLCRA}  Modular digit list chinese remainder algorithm.
+  \item[{\tt b <- MDHOM(m,A) 
+}]\index{MDHOM}  Modular digit homomorphism. {\em Computes $n \mod m$.}
+  \end{description}
+
+\item[Random Number Generation:] \ \
+  \begin{description}
+  \item[{\tt a <- MDRAN(m) 
+}]\index{MDRAN}  Modular digit, random.
+  \end{description}
+
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modular Integer Arithmetic}
+
+\begin{description}
+\item[Basic Arithmetic:] \ \
+  \begin{description}
+  \item[{\tt C <- MISUM(M,A,B) 
+}]\index{MISUM}  Modular integer sum.
+  \item[{\tt C <- MIDIF(M,A,B) 
+}]\index{MIDIF}  Modular integer difference.
+  \item[{\tt B <- MINEG(M,A) 
+}]\index{MINEG}  Modular integer negation.
+  \item[{\tt C <- MIPROD(M,A,B) 
+}]\index{MIPROD}  Modular integer product.
+  \item[{\tt C <- MIQ(M,A,B) 
+}]\index{MIQ}  Modular integer quotient.
+  \item[{\tt B <- MIINV(M,A) 
+}]\index{MIINV}  Modular integer inverse.
+  \item[{\tt B <- MIEXP(M,A,N) 
+}]\index{MIEXP}  Modular integer exponentiation.
+  \end{description}
+
+\item[Chinese Remainder Algorithm:] \ \
+  \begin{description}
+  \item[{\tt As <- MIDCRA(M,m,mp,A,a) 
+}]\index{MIDCRA}  Modular integer digit chinese remainder algorithm.
+  \item[{\tt As <- MIHOM(M,A) 
+}]\index{MIHOM}  Modular integer homomorphism. {\em Computes $n \mod m$.}
+  \end{description}
+
+\item[Random Number Generation:] \ \
+  \begin{description}
+  \item[{\tt R <- MIRAN(M) 
+}]\index{MIRAN}  Modular integer, random.
+  \end{description}
+
+\item[Conversion:] \ \
+  \begin{description}
+  \item[{\tt B <- SMFMI(M,A) 
+}]\index{SMFMI}  Symmetric modular from modular integer. {\em Computes the
+  isomorphism from $\BbbZ_m$ to $\{-\left\lfloor\frac{m}{2}\right\rfloor+1,
+  \ldots, \left\lfloor\frac{m}{2}\right\rfloor\}$.}
+  \end{description}
+
+\end{description}
+

@@ -1,0 +1,21 @@
+#! /bin/csh 
+
+# USAGE
+#   mkproto
+#
+# FUNCTION
+#   Creates the file "$saclib/include/sacproto.h" from the files in 
+#   "$saclib/src".
+
+if ($#argv != 0) then
+  echo "USAGE:"
+  echo "  mkproto"
+else
+  cd $saclib/src
+  echo >$saclib/include/sacproto.h \
+    "extern void FAIL P__((char *algName, char *msg,...));"
+  foreach fname (*.c)
+    if ($fname != FAIL.c && $fname != main.c) \
+      awk -f $saclib/bin/mkproto.awk $fname >>$saclib/include/sacproto.h
+  end
+endif

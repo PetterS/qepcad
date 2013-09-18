@@ -1,0 +1,24 @@
+#! /bin/csh 
+
+# USAGE
+#   mkdesc <sc> <ll> <filenames>
+#
+# FUNCTION
+#   The files are assumed to be text files beginning with the standard SAC
+#   function specification header. The function name and the description of
+#   each file are extracted and formatted as follows:
+#   COLUMN  1      sc                                         ll
+#           <name> <text......................................>
+#                  <0 or more lines of additional text........>
+#
+#   If the function name consists of more than 'sc-2' characters the text in
+#   the first line will begin to the right of column 'sc'.
+
+if ($#argv < 3) then
+  echo "USAGE:"
+  echo "  mkdesc <sc> <ll> <filenames>"
+else
+  foreach fname (${argv[3-]})
+    awk -f $saclib/bin/mkdesc.awk sc=$1 ll=$2 $fname
+  end
+endif

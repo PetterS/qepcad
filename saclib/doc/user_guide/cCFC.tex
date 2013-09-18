@@ -1,0 +1,397 @@
+This chapter describes how the \saclib\ environment has to be set up for
+\saclib\ functions to work correctly. We will start with a quick
+introduction to the basics using a sample program in Section \ref{c:CFC
+s:SP}. In Section \ref{c:CFC s:MA} we describe the steps necessary for
+combining dynamic allocation with \saclib\ list processing. Special care
+has to be taken with \saclib\ data structures addressed by global
+variables. This is explained in Section \ref{c:CFC s:GV}. Finally, Section
+\ref{c:CFC s:IS} describes how \saclib\ can be initialized without using
+{\tt sacMain()}, and Section \ref{c:CFC s:EH} gives some information on
+error handling in \saclib.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A Sample Program}
+\label{c:CFC s:SP}
+
+Figure \ref{f:sample} shows the basic layout of a program using \saclib\
+functions.
+
+\begin{figure}[htb]
+\ \hrulefill\ \small
+\begin{verbatim}
+#include "saclib.h"
+
+int sacMain(argc, argv)
+        int argc;
+        char **argv;
+{
+        Word    I1,I2,I3,t;
+        Word    i,n;
+
+Step1:  /* Input. */
+        SWRITE("Please enter the first integer: "); I1 = IREAD();
+        SWRITE("Please enter the second integer: "); I2 = IREAD();
+        SWRITE("How many iterations? "); n = GREAD();
+
+Step2:  /* Processing. */
+        t = CLOCK();
+        for (i=0; i<n; i++)
+          I3 = IPROD(I1,I2);
+        t = CLOCK() - t;
+
+Step3:  /* Output. */
+        IWRITE(I1); SWRITE(" * "); IWRITE(I2); SWRITE(" =\n"); IWRITE(I3);
+        SWRITE("\nRepeating the above computation "); GWRITE(n);
+	SWRITE(" times took\n"); GWRITE(t); SWRITE(" milliseconds.\n");
+
+Return:
+	return(0);
+}
+\end{verbatim}
+\ \hrulefill\ \normalsize
+\caption{A sample program.}
+\label{f:sample}
+\end{figure}
+
+Note that the only thing which is different from ordinary C programs are
+the {\tt \#include "saclib.h"} statement and the fact that the main routine
+is called {\tt sacMain} instead of {\tt main}.
+
+One important point is that the {\tt argc} and {\tt argv} variables passed
+to {\tt sacMain} will not contain all command line parameters. Parameters
+starting with ``{\tt +}'' are filtered out and used for initializing some
+\saclib\ global variables. Information on these parameters is written out
+when a program is called with the parameter ``{\tt +h}''.
+
+In Section \ref{c:CFC s:IS} we give some more details on the
+initializations done before {\tt sacMain} is called.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dynamic Memory Allocation in \saclib}
+\label{c:CFC s:MA}
+
+When one needs to {\em randomly} (as opposed to {\em sequentially}) access
+elements in a data structure, one may prefer to use arrays instead of lists.
+If the size and the number of these arrays is determined at runtime, they have
+to be dynamically allocated. Furthermore, one may need to mix them with lists,
+in which case the garbage collector must be able to handle them.
+
+The concept of the GCA (Garbage Collected Array) handle\index{handle!of a GCA}
+provides this kind of dynamic data structure.
+
+Nevertheless it is recommended to first check whether it might be possible to
+reformulate the algorithm so that lists can be used instead of arrays. In many
+cases one uses arrays only because one is more familiar with them, although
+lists may be better suited to the problem at hand.
+
+The following functions are to be used for initializing GCA handles and for
+accessing the elements of the corresponding arrays:
+\begin{description}
+\item[{\tt A <- GCAMALLOC(s,f)}]\index{GCAMALLOC}
+  is used for memory allocation. It takes a \BETA-digit giving the size of
+  the array in \Word s as input, uses {\tt malloc()} to allocate the array,
+  and returns a GCA handle (a \Word). {\em This GCA handle is not a C
+  pointer to the array so you cannot address the elements of the array in
+  C-style using this handle.} Rather, it can be used to store a reference to
+  the array in \saclib\ lists.
+
+  The second parameter to {\tt GCAMALLOC()} may take one of the following two
+  values (which are constants defined in ``saclib.h''):
+  \begin{itemize}
+  \item {\tt GC\_CHECK}\index{GC\_CHECK}\ \ldots\
+    This will cause the garbage collector to check the contents of the
+    array for list or GCA handles.
+  \item {\tt GC\_NO\_CHECK}\index{GC\_NO\_CHECK}\ \ldots\
+    With this setting, the garbage collector will ignore the contents of
+    the array. Therefore, {\tt GC\_NO\_CHECK} should only be used if it is
+    guaranteed that the array will never contain list or GCA handles (e.g.\ if
+    it is used to store \BETA-digits).  
+  \end{itemize}
+  If you are not sure which one to choose, use {\tt GC\_CHECK}, as
+  inappropriate use of {\tt GC\_NO\_CHECK} may cause the program to crash.
+
+\item[{\tt GCASET(A,i,a)}]\index{GCASET}
+  sets the {\tt i}-th element of the array referenced by the GCA handle {\tt
+  A} to the value {\tt a}. Here, {\tt a} can be any \Word.
+
+\item[{\tt a <- GCAGET(A,i)}]\index{GCAGET}
+  returns the value of the {\tt i}-th element of the array referenced by the
+  GCA handle {\tt A}.
+
+\end{description}
+
+Figure \ref{f:GCA1} shows how the mechanism of GCA handles is used.
+
+\begin{figure}[htb]
+\ \hrulefill\ \small
+\begin{verbatim}
+        .
+        .
+        .
+        Word   A, L, I,i;
+        .
+        .
+        .
+Step2:  /* Here we do some allocation. */
+        L = NIL;
+        do {
+          SWRITE("Enter an integer (0 to quit): "); I = IREAD();
+          A = GCAMALLOC(10,GC_CHECK);
+          for (i=0; i<10; i++)
+            GCASET(A,i,IDPR(I,i+1));
+          L = COMP(A,L);
+        }
+        until (ISZERO(I));
+        .
+        .
+        .
+\end{verbatim}
+\ \hrulefill\ \normalsize
+\caption{Sample code using GCA handles.}
+\label{f:GCA1}
+\end{figure}
+
+The code inside the {\tt do/until} loop reads an integer \ttI, allocates an
+array \ttA\ of 10 \Word s, stores the value ${\ttI * ({\tt i}+1)}$ at position
+{\tt i} in the array using {\tt GCASET()}, and then appends a new element
+containing the GCA handle of the array \ttA\ to the beginning of the list
+\ttL.
+
+Always remember that GCA handles must be used whenever you want to store
+references to \saclib\ structures (i.e.\ lists) in dynamically allocated
+memory. Using the standard UNIX function {\tt malloc()} may crash your program
+sometime after a garbage collection or at least cause some strange bugs.
+
+Furthermore, GCA handles are also implemented in such a way that they can
+be used as input to list processing functions in places where objects are
+regarded as data. E.g.\ in the {\tt COMP()} function, a GCA handle can be
+used as the first argument (the element to be appended to the list) but not
+as the second argument (the list being appended to). Nevertheless note that
+the functions {\tt LWRITE(), EXTENT()}, and {\tt ORDER()} are not defined
+for lists containing GCA handles.
+
+There are two more functions taking GCA handles as input. {\em It is not
+recommended to call these functions directly.} They are listed here only for
+completeness.
+\begin{description}
+\item[{\tt p <- GCA2PTR(A)}]\index{GCA2PTR}
+  gives access to the array referenced by a GCA handle. It takes a GCA
+  handle as input and returns a C pointer to the array of \Word s allocated
+  by a previous call to {\tt GCAMALLOC()}. {\em This C pointer must not be
+  used as input to \saclib\ functions or stored in \saclib\ lists.} Rather,
+  it can be used to address the elements of the array directly.
+
+  Note that this is {\em not} the recommended way of accessing array elements.
+  If you overwrite the variable containing the GCA handle (e.g.\ an optimizing
+  compiler might remove it if it is not used anymore), you can still access
+  the array using the C pointer, but the garbage collector will free the
+  allocated memory the next time it is invoked.
+
+\item[{\tt GCAFREE(A)}]\index{GCAFREE}
+  can be used to explicitly free the memory allocated by {\tt GCAMALLOC()}.
+  It takes a GCA handle as input which becomes invalid after the call.
+
+  You should consider calling {\tt GCAFREE()} only in cases where you are
+  sure you will not need the memory referenced by a GCA handle any more and
+  want to deallocate it immediately instead of putting this off until the
+  next garbage collection or until the \saclib\ cleanup.
+
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Declaring Global Variables to \saclib}
+\label{c:CFC s:GV}
+
+If you are using global variables, arrays, or structures containing
+\saclib\ list or GCA handles other than those defined within \saclib\ (in
+``external.c''), you have to make them visible to the garbage collector.
+This is done by the function {\tt GCGLOBAL()}.
+
+Figure \ref{f:GV} shows how these macros are used:
+
+\begin{figure}[htb]
+\ \hrulefill\ \small
+\begin{verbatim}
+#include "saclib.h"
+
+Word       GL = NIL;
+Word       GA = NIL;
+
+char       buffer[81];
+int        flag;
+
+
+int sacMain(argc, argv)
+        int argc;
+        char **argv;
+{
+ ... /* Variable declarations. */
+
+Step1:  /* Declare global variables. */
+        GCGLOBAL(&GL);
+        GCGLOBAL(&GA);
+
+Step2:  /* Initialize global variables. */
+        GA = GCAMALLOC(10,GC_CHECK);
+        .
+        .
+        .
+
+\end{verbatim}
+\ \hrulefill\ \normalsize
+\caption{Declaring global variables.}
+\label{f:GV}
+\end{figure}
+
+First two global variables {\tt GL} and {\tt GA} of type \Word, a global
+array {\tt buffer} of 81 characters, and a global variable {\tt flag} of
+type {\tt int} are declared.
+
+The variables {\tt GL} and {\tt GA} are declared to the garbage collector
+by calls to {\tt GCGLOBAL()} {\em before} they are initialized. Note that
+for the variables {\tt buffer} and {\tt flag} this is not necessary because
+they will not hold \saclib\ list or GCA handles at any time during program
+execution.
+
+Calling {\tt GCGLOBAL} on a pointer to a global variable tells the garbage
+collector not to free cells or arrays referenced by the corresponding
+variable. You should be careful about not missing any global variables which
+ought to be declared: while declaring too much does not really matter,
+declaring too little will cause weird bugs and crashes \ldots
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Initializing \saclib\ by Hand}
+\label{c:CFC s:IS}
+
+If it is desired to have complete control over command line parameters or
+if \saclib\ is used only as part of some bigger application, then the
+necessary initializations can also be done directly without using {\tt
+sacMain()}.
+
+There are three functions which are of interest:
+\begin{description}
+\item[{\tt ARGSACLIB(argc,argv;ac,av)}]\index{ARGSACLIB}
+  does argument processing for \saclib\ command line arguments. These must
+  start with a ``{\tt +}'' and are used to set various global variables. The
+  argument ``{\tt +h}'' causes a usage message to be printed (by {\tt
+  INFOSACLIB()}). Then the program is aborted.
+
+  {\tt ARGSACLIB} takes the {\tt argc} and {\tt argv} parameters of {\tt
+  main()} as input. It returns the number of non-\saclib\ command line
+  arguments in {\tt ac} and a pointer to an array of non-\saclib\ command line
+  arguments in {\tt av}. This means that the output of {\tt ARGSACLIB()} is
+  similar to {\tt argc} and {\tt argv} with the exception that all arguments
+  starting with ``{\tt +}'' have been removed.
+\item[{\tt BEGINSACLIB(p)}]\index{BEGINSACLIB}
+  initializes \saclib\ by allocating memory, setting the values of various
+  global variables, etc. It must be passed the address of a variable
+  located on the stack before any variable containing \saclib\ structures
+  such as lists or GCA handles. One variable which fulfills this requirement is
+  {\tt argc}, for example.
+\item[{\tt ENDSACLIB(f)}]\index{ENDSACLIB}
+  frees the memory allocated by {\tt BEGINSACLIB()}. It must be passed one of
+  the following values (which are constants defined in ``saclib.h''):
+  \begin{itemize}
+  \item {\tt SAC\_FREEMEM}\index{SAC\_FREEMEM}\ \ldots\
+    This will cause it to also free all remaining memory allocated by {\tt
+    GCAMALLOC()}.
+  \item {\tt SAC\_KEEPMEM}\index{SAC\_FREEMEM}\ \ldots\
+    This will cause it not to free the remaining memory allocated by {\tt
+    GCAMALLOC()}. Nevertheless, all GCA handles become invalid after {\tt
+    ENDSACLIB()} has been called, so the memory can only be accessed by C
+    pointers which were initialized by calls to {\tt GCA2PTR()} {\em
+    before} calling {\tt ENDSACLIB()}. Furthermore, if any of the arrays
+    contains list or GCA handles, these will also become invalid, so keeping
+    the allocated memory only makes sense when the arrays contain \BETA- or
+    \GAMMA-digits. 
+
+    Deallocation then has to be done by the standard UNIX function {\tt
+    free()}, because {\tt GCAFREE()} only works when the \saclib\
+    environment is valid.
+  \end{itemize}
+\end{description}
+
+Figure \ref{f:IS} gives an example of how the \saclib\ environment can be
+initialized, used, and removed inside a function.
+
+\begin{figure}[htb]
+\ \hrulefill\ \small
+\begin{verbatim}
+#include "saclib.h"
+
+void symbolic_computation()
+{
+        Word    stack;
+
+Step1:  /* Initialise SACLIB. */
+        BEGINSACLIB(&stack);
+
+Step2:  /* Use SACLIB. */
+        .
+        .
+        .
+
+Step3:  /* Remove SACLIB. */
+        ENDSACLIB(SAC_FREEMEM);
+}
+\end{verbatim}
+\ \hrulefill\ \normalsize
+\caption{Sample code for initializing SACLIB by hand.}
+\label{f:IS}
+\end{figure}
+
+The function {\tt symbolic\_computation()} in this example encapsulates
+\saclib\ as part of some bigger application whose main routine is {\tt main()}
+instead of {\tt sacMain()}. From Step 2 on the \saclib\ environment is
+initialized and any \saclib\ function may be used. Outside the area enclosed
+by {\tt BEGINSACLIB / ENDSACLIB}, calls to \saclib\ functions may crash the
+program.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\saclib\ Error Handling}
+\label{c:CFC s:EH}
+
+\saclib\ functions do not check whether the parameters passed to them are
+correct and fulfill their input specifications. Calling a function with
+invalid inputs will most probably cause the program to crash instead of
+aborting in a controlled way.
+
+Nevertheless, there are situations where \saclib\ functions may fail and
+exit the program cleanly with an error message. For example, this is the
+case when an input functions discovers a syntax error.
+
+All error handling (i.e.\ writing a message and aborting the program) is
+done by the function {\tt FAIL()}. If some more sophisticated error
+processing is desired, the simplest way is to replace it by a custom
+written function.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Compiling}
+\label{c:CFC s:C}
+
+The \saclib\ header files must be visible to the compiler and the compiled
+\saclib\ library must be linked. How this is done is explained in the
+``Addendum to the \saclib\ User's Guide'', which should be supplied by the
+person installing \saclib.
+
+A point worth mentioning is the fact that several \saclib\ functions are also
+defined as macros. By default, the macro versions are used, but there is a
+constant for switching on the C function versions: {\tt NO\_SACLIB\_MACROS}
+switches off all macros except for {\tt FIRST}, {\tt RED}, {\tt SFIRST}, {\tt
+SRED}, {\tt ISNIL}, {\tt GCASET}, {\tt GCAGET}.  These elementary list and GCA
+functions are always defined as macros.
+
+If you want to use this constant, you must add the statement
+\begin{quote}
+\tt \#define NO\_SACLIB\_MACROS
+\end{quote}
+{\em before} you include the file ``saclib.h''.
+
+Alternatively, you can use the ``{\tt -D}'' option of the C compiler (see
+the ``Addendum to the \saclib\ User's Guide'' for more information).

@@ -1,0 +1,148 @@
+                  AMIGA VERSION INSTALLATION INFORMATION
+                  ======================================
+
+
+
+1. Introduction
+===============
+
+1.1. Where to look for help
+---------------------------
+
+SACLIB Maintenance
+
+RISC-LINZ
+Research Institute for Symbolic Computation
+Johannes Kepler University
+A-4040 Linz, Austria
+
+E-Mail:   saclib@risc.uni-linz.ac.at  (Internet)
+
+or
+
+Andreas Neubacher
+
+E-Mail: aneubach@risc.uni-linz.ac.at  (Internet)
+         k318577@alijku11             (Bitnet)
+
+
+1.2. System configuration
+-------------------------
+
+This port was done using the following software:
+
+- AmigaOS 1.3
+- ARP 1.3 shell and commands
+- DICE 2.06 C-Compiler
+- gawk, grep, make, sed from various FISH-Disks
+
+Note that this software is entirely in the public domain except for AmigaOS
+and DICE. A free version of DICE with reduced functionality is available in
+the FISH library.
+
+The machine used was an AMIGA 1000 with a MC68000 processor, 2.5 MB RAM and
+a harddisk.
+        If you haven't got a harddisk you may run into trouble soon - I
+believe that you won't be able to compile the full library or use any of
+the tools provided.
+
+
+
+2. Installing
+=============
+
+If you are reading this file you will already have recreated the SACLIB
+directory tree from your distribution '.tar' file. This will be the
+location of the installed version of SACLIB. All you have to do is to
+simply execute the script "saclib/sysdep/amiga/install". (If you are not
+using the 'Arp Shell' you should first check if your shell can digest it -
+this should not be much of a problem as it is rather simple.)
+        This installation script needs one parameter, namely the full path
+to the "saclib" directory. So if your harddisk is "dh0:" and your SAC root
+directory is "dh0:saclib" you would type:
+
+  1> execute dh0:saclib/sysdep/amiga/install dh0:saclib
+
+        First all system dependent files and scripts from the "amiga"
+directory are copied to where they belong. Then the files
+ - "saclib/include/sacproto.h" (which contains the prototypes for all
+   functions in SACLIB),
+ - "saclib/lib/saclib.lib" (the default version of the library), and
+ - "saclib/doc/desc.doc" (which is used by the 'sdesc' script) are created.
+
+Note that for compiling you need to create the directories 'OBJ:sac' and
+'OBJ:sacd', where 'OBJ:' can be assigned to any directory on your harddisk.
+These directories are used to store the '.o' files (about 260 kB for 'OBJ:sac' and
+300 kB for 'OBJ:sacd').
+
+To finish the installation you need to add a line to your
+"startup-sequence" which assigns the logical name "SACLIB:" to the "saclib"
+directory. Following the example above, this line would look as follows:
+
+  Assign SAC: dh0:saclib
+
+Finally, if you want to use the scripts in "saclib/bin", you should also add
+this directory to your path by adding a line similar to the
+following to your "startup-sequence":
+
+  Path SACLIB:bin add
+
+Note that from now on *all* accesses to SACLIB should only be done via the
+'SACLIB:' assignment. For example we used it for adding the SACLIB 'bin'
+directory to the path.
+        For making sure that all this was done correctly, you should reset
+your machine and check if 'SACLIB:' is assigned to the SACLIB root
+directory. Then the installation is complete.
+
+
+
+3. Compiling
+============
+
+3.1. You have DICE
+------------------
+
+Hopefully you also have "make", because I do not provide you with a
+DMakefile. So either you can just use my makefile or you have to write your
+own DMakefile.
+
+If you just need to recompile, use the command 'mklib' from "saclib/bin". This
+shell script takes one of the following parameters:
+
+'std' causes a standard library to be built. The library file will have
+      the name "saclib.lib" and the corresponding object files are in
+      "OBJ:sac". (Note that this library was already built by the
+      install script.)
+'deb' switches on the '-s' and '-gs' options of the compiler which include
+      debugging information and stack checking code in the object files.
+      The library file will have the name "saclibd.lib" and the corresponding
+      object files are in "OBJ:sacd".
+'all' builds both types of libraries.
+
+If you want to recompile after having added files to "saclib/src", you need
+to recreate the file 'include/sacproto.h' first, which is done by issuing
+the command 'mkproto'.
+
+
+3.2. You have some other C Compiler
+-----------------------------------
+
+You will have to modify the 'mklib' script provided and perhaps also change
+some definitions in "saclib/include/sysdep.h".
+
+
+
+4. Tools
+========
+
+The following shell scripts can be found in the directory "saclib/bin":
+
+sdesc   ... displays the description of a SACLIB algorithm (uses
+            "saclib/doc/desc.doc").
+sman    ... displays a SACLIB algorithm.
+mkproto ... creates the file 'include/sacproto.h'.
+mklib   ... compiles the library.
+mkdesc  ... creates the file "doc/desc.doc" from the files in "saclib/src".
+
+The headers of these scripts contain more information on their usage.
+

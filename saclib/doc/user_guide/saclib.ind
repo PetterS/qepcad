@@ -1,0 +1,748 @@
+\begin{theindex}
+
+  \item \BETA, 63
+  \item \NIL, 4, 63
+
+  \indexspace
+
+  \item AADV, 6, 12
+  \item absolute value
+    \subitem of a polynomial, 16
+  \item ADV, 5
+  \item ADV2, 6
+  \item ADV3, 6
+  \item ADV4, 6
+  \item AFCOMP, 47
+  \item AFCR, 49
+  \item AFDIF, 47
+  \item AFDWRITE, 50
+  \item AFFINT, 49
+  \item AFFRN, 49
+  \item AFICR, 49
+  \item AFINV, 47
+  \item AFNEG, 47
+  \item AFPAFP, 47
+  \item AFPAFQ, 47
+  \item AFPCMV, 48
+  \item AFPCR, 49
+  \item AFPDIF, 47
+  \item AFPDMV, 47
+  \item AFPEMV, 48
+  \item AFPEV, 48
+  \item AFPFIP, 49
+  \item AFPFRP, 49
+  \item AFPICR, 49
+  \item AFPINT, 47
+  \item AFPME, 48
+  \item AFPMON, 47
+  \item AFPNEG, 47
+  \item AFPNIP, 48
+  \item AFPNORM, 48
+  \item AFPPR, 47
+  \item AFPQR, 47
+  \item AFPROD, 47
+  \item AFPSUM, 47
+  \item AFPWRITE, 50
+  \item AFQ, 47
+  \item AFSIGN, 47
+  \item AFSUM, 47
+  \item AFUPBRI, 48
+  \item AFUPFAC, 47
+  \item AFUPGC, 48
+  \item AFUPGS, 48
+  \item AFUPIIR, 49
+  \item AFUPIIWS, 49
+  \item AFUPMPR, 48
+  \item AFUPRB, 48
+  \item AFUPRICL, 48
+  \item AFUPRICS, 49
+  \item AFUPRL, 49
+  \item AFUPRLS, 49
+  \item AFUPRRI, 49
+  \item AFUPRRS, 49
+  \item AFUPSF, 48
+  \item AFUPSR, 48
+  \item AFUPVAR, 49
+  \item AFUPWRITE, 50
+  \item AFWRITE, 50
+  \item AIFAN, 50
+  \item algebraic
+    \subitem field element, 46
+    \subitem integer, 46
+    \subitem number, 46
+    \subitem number, real, 46
+  \item AMPSAFP, 50
+  \item AMSIGN, 47
+  \item AMSIGNIR, 47
+  \item AMUPBES, 48
+  \item AMUPBHT, 48
+  \item AMUPIIR, 49
+  \item AMUPIIWS, 49
+  \item AMUPMPR, 49
+  \item AMUPNT, 48
+  \item AMUPRICS, 49
+  \item AMUPRICSW, 49
+  \item AMUPRINCS, 49
+  \item AMUPRLS, 49
+  \item AMUPRRS, 49
+  \item AMUPSR, 48
+  \item AMUPTR, 48
+  \item AMUPTR1, 48
+  \item AMUPVARIR, 49
+  \item ANDWRITE, 50
+  \item ANFAF, 50
+  \item ANIIPE, 47
+  \item ANPEDE, 47
+  \item ANPROD, 47
+  \item ANREPE, 47
+  \item ANSUM, 47
+  \item AREAD, 7
+  \item ARGSACLIB, 55
+  \item atom, 4
+  \item AWRITE, 7
+
+  \indexspace
+
+  \item base domain, 16
+  \item base ring, 16
+  \item basis
+    \subitem coarsest squarefree, 32
+    \subitem finest squarefree, 32
+  \item BEGINSACLIB, 55
+  \item binary rational number, 41
+
+  \indexspace
+
+  \item CCONC, 6
+  \item ceiling, 10
+  \item cell, 4
+  \item CINV, 7
+  \item coefficient
+    \subitem leading, 16
+    \subitem leading base, 16
+    \subitem trailing base, 16
+  \item cofactors, 32
+  \item COMP, 5
+  \item COMP2, 5
+  \item COMP3, 5
+  \item COMP4, 5
+  \item composition, 5
+  \item CONC, 6
+  \item concatenation, 5
+  \item constant polynomial, 16
+  \item content, 16, 33
+    \subitem integer, 16
+    \subitem univariate, 33
+
+  \indexspace
+
+  \item DAND, 12
+  \item DEGCD, 11
+  \item degree, 16
+  \item dense recursive representation, 15
+  \item destructive, 5
+  \item DGCD, 11
+  \item digit, 9
+    \subitem \BETA-, 9
+    \subitem \GAMMA-, 9
+    \subitem modular, 9
+  \item DIIPREAD, 26
+  \item DIIPWRITE, 27
+  \item DIPDEG, 27
+  \item DIPFP, 26
+  \item DIPINS, 27
+  \item DIRPREAD, 27
+  \item DIRPWRITE, 27
+  \item discriminant, 32
+  \item disjoint intervals, 41
+  \item DLOG2, 12
+  \item DMPPRD, 27
+  \item DMPSUM, 27
+  \item DMUPNR, 27
+  \item DNIMP, 12
+  \item DNOT, 12
+  \item DOR, 12
+  \item DPCC, 12
+  \item DPFP, 27
+  \item DPGEN, 11
+  \item DPR, 10
+  \item DQR, 10
+  \item DRAN, 11
+  \item DRANN, 11
+  \item DSQRTF, 11
+
+  \indexspace
+
+  \item element
+    \subitem of a list, 4
+  \item ENDSACLIB, 55
+  \item EQUAL, 6
+  \item EXTENT, 6
+  \item extent, 5
+
+  \indexspace
+
+  \item factorization
+    \subitem complete, 37
+    \subitem squarefree, 17, 33
+  \item FIRST, 6
+  \item FIRST2, 6
+  \item FIRST3, 6
+  \item FIRST4, 6
+  \item floor, 10
+  \item FOURTH, 6
+
+  \indexspace
+
+  \item GC, 62
+  \item GC\_CHECK, 52
+  \item GC\_NO\_CHECK, 52
+  \item GCA2PTR, 53
+  \item GCAFREE, 53
+  \item GCAGET, 52
+  \item GCAMALLOC, 52
+  \item GCASET, 52
+  \item GCSI, 62
+
+  \indexspace
+
+  \item handle
+    \subitem of a GCA, 51
+    \subitem of a list, 4
+
+  \indexspace
+
+  \item IABSF, 11
+  \item IBCIND, 12
+  \item IBCOEF, 12
+  \item IBCPS, 12
+  \item ICOMP, 11
+  \item IDEGCD, 11
+  \item IDIF, 10
+  \item IDIPR2, 12
+  \item IDP2, 12
+  \item IDPR, 10
+  \item IDQ, 10
+  \item IDQR, 10
+  \item IDREM, 11
+  \item IEGCD, 11
+  \item IEVEN, 11
+  \item IEXP, 11
+  \item IFACT, 11
+  \item IFACTL, 12
+  \item IFCL2, 12
+  \item IGCD, 11
+  \item IGCDCF, 11
+  \item IHEGCD, 11
+  \item ILCM, 11
+  \item ILCOMB, 12
+  \item ILOG2, 12
+  \item ILPDS, 11
+  \item ILWRITE, 12
+  \item IMAX, 11
+  \item IMIN, 11
+  \item IMP2, 12
+  \item IMPDS, 11
+  \item INEG, 10
+  \item inflectionless isolating interval, 41
+  \item inflectionless isolation list, 41
+  \item integer, 9
+    \subitem \BETA-, 9
+    \subitem \GAMMA-, 9
+    \subitem algebraic, 46
+    \subitem modular, 9
+  \item integer content, 16
+  \item integral polynomial, 16
+  \item interval, 41
+    \subitem isolating, 41
+      \subsubitem acceptable, 46
+      \subsubitem inflectionless, 41
+      \subsubitem strongly, 41
+      \subsubitem weakly, 41
+    \subitem standard, 41
+  \item intervals
+    \subitem disjoint, 41
+      \subsubitem strongly, 41
+  \item INV, 7
+  \item inverse
+    \subitem of a list, 5
+  \item IODD, 11
+  \item IORD2, 12
+  \item IPABS, 21
+  \item IPAFME, 48
+  \item IPBEILV, 22
+  \item IPBHT, 22
+  \item IPBHTLV, 22
+  \item IPBHTMV, 22
+  \item IPBREI, 22
+  \item IPC, 23, 34
+  \item IPCEVP, 38
+  \item IPCONST, 23
+  \item IPCPP, 23, 34
+  \item IPCRA, 24
+  \item IPCSFB, 35
+  \item IPDER, 22
+  \item IPDIF, 21
+  \item IPDMV, 22
+  \item IPDSCR, 35
+  \item IPDWRITE, 23
+  \item IPEMV, 22
+  \item IPEVAL, 22
+  \item IPEXP, 21
+  \item IPEXPREAD, 23
+  \item IPFAC, 38
+  \item IPFCB, 38
+  \item IPFLC, 38
+  \item IPFRP, 23
+  \item IPFSD, 24
+  \item IPFSFB, 35, 38
+  \item IPGCDC, 34
+  \item IPGFCB, 38
+  \item IPGSUB, 22
+  \item IPHDMV, 22
+  \item IPIC, 23
+  \item IPICPP, 23
+  \item IPICS, 23
+  \item IPIHOM, 24
+  \item IPIIWS, 42
+  \item IPINT, 22
+  \item IPIP, 21
+  \item IPIPP, 23
+  \item IPIPR, 24
+  \item IPIQ, 21
+  \item IPIQH, 38
+  \item IPLCPP, 23, 34
+  \item IPLRRI, 42
+  \item IPMAXN, 23
+  \item IPNEG, 21
+  \item IPNT, 22
+  \item IPONE, 23
+  \item IPOWER, 11
+  \item IPP2P, 21
+  \item IPPGSD, 35
+  \item IPPNPRS, 42
+  \item IPPP, 23, 34
+  \item IPPROD, 21
+  \item IPPSC, 35
+  \item IPPSR, 21
+  \item IPQ, 21
+  \item IPQR, 21
+  \item IPRAN, 23
+  \item IPRCH, 41
+  \item IPRCHS, 41
+  \item IPRCN1, 41
+  \item IPRCNP, 41
+  \item IPREAD, 23
+  \item IPRES, 35
+  \item IPRICL, 42
+  \item IPRIM, 42
+  \item IPRIMO, 42
+  \item IPRIMS, 42
+  \item IPRIMU, 42
+  \item IPRIMW, 42
+  \item IPRIST, 42
+  \item IPROD, 10
+  \item IPRODK, 10
+  \item IPRPRS, 36
+  \item IPRRII, 42
+  \item IPRRLS, 42
+  \item IPRRRI, 42
+  \item IPRRS, 42
+  \item IPSCPP, 23, 34
+  \item IPSF, 24, 35
+  \item IPSFBA, 35
+  \item IPSFSD, 24
+  \item IPSIFI, 42
+  \item IPSIGN, 21
+  \item IPSMV, 22
+  \item IPSPRS, 36
+  \item IPSRM, 42
+  \item IPSRMS, 42
+  \item IPSRP, 23
+  \item IPSUB, 22
+  \item IPSUM, 21
+  \item IPSUMN, 23
+  \item IPTPR, 24
+  \item IPTR, 23
+  \item IPTR1, 23
+  \item IPTR1LV, 23
+  \item IPTRAN, 22
+  \item IPTRLV, 23
+  \item IPTRMV, 22
+  \item IPTRUN, 24
+  \item IPVCHT, 42
+  \item IPWRITE, 23
+  \item IQ, 10
+  \item IQR, 10
+  \item IRAND, 11
+  \item IREAD, 12
+  \item IREM, 10
+  \item IROOT, 11
+  \item ISATOM, 6
+  \item ISEG, 12
+  \item ISFPF, 38
+  \item ISIGNF, 11
+  \item ISLIST, 6
+  \item ISNIL, 6
+  \item ISOBJECT, 6
+  \item ISPD, 11
+  \item ISPSFB, 35
+  \item ISPT, 11
+  \item ISQRT, 11
+  \item ISSUM, 12
+  \item ISUM, 10
+  \item ITRUNC, 12
+  \item IUPBEI, 22
+  \item IUPBES, 22
+  \item IUPBHT, 22
+  \item IUPBRE, 22
+  \item IUPCHT, 43
+  \item IUPFAC, 38
+  \item IUPFDS, 38
+  \item IUPIHT, 22
+  \item IUPIIR, 42
+  \item IUPNT, 22
+  \item IUPQH, 38
+  \item IUPQHL, 38
+  \item IUPQS, 22
+  \item IUPRB, 42
+  \item IUPRC, 35
+  \item IUPRLP, 42
+  \item IUPSR, 21
+  \item IUPTPR, 24
+  \item IUPTR, 23
+  \item IUPTR1, 23
+  \item IUPVAR, 43
+  \item IUPVOI, 43
+  \item IUPVSI, 43
+  \item IUSFPF, 38
+  \item IWRITE, 12
+
+  \indexspace
+
+  \item LASTCELL, 6
+  \item LBIBMS, 7
+  \item LBIBS, 7
+  \item LBIM, 7
+  \item LCONC, 6
+  \item LDSMKB, 29
+  \item LDSSBR, 29
+  \item leading base coefficient, 16
+  \item leading coefficient, 16
+  \item leading term, 16
+  \item LEINST, 7
+  \item LELTI, 6
+  \item LENGTH, 6
+  \item length
+    \subitem of a list, 5
+  \item LEROT, 7
+  \item LEXNEX, 7
+  \item LINS, 7
+  \item LINSRT, 7
+  \item list, 4
+    \subitem empty, 4
+    \subitem of characters, 17
+    \subitem of variables, 17
+  \item LIST1, 5
+  \item LIST10, 5
+  \item LIST2, 5
+  \item LIST3, 5
+  \item LIST4, 5
+  \item LIST5, 5
+  \item LMERGE, 7
+  \item LPERM, 7
+  \item LREAD, 7
+  \item LSRCH, 6
+  \item LWRITE, 8
+
+  \indexspace
+
+  \item main variable, 16
+  \item MAIPDE, 29
+  \item MAIPDM, 29
+  \item MAIPHM, 30
+  \item MAIPP, 29
+  \item MCPMV, 38
+  \item MDCRA, 13
+  \item MDDIF, 13
+  \item MDEXP, 13
+  \item MDHOM, 13
+  \item MDINV, 13
+  \item MDLCRA, 13
+  \item MDNEG, 13
+  \item MDPROD, 13
+  \item MDQ, 13
+  \item MDRAN, 13
+  \item MDSUM, 13
+  \item MEMBER, 6
+  \item MIAIM, 30
+  \item MICINS, 30
+  \item MICS, 30
+  \item MIDCRA, 13
+  \item MIDIF, 13
+  \item MIEXP, 13
+  \item MIHOM, 13
+  \item MIINV, 13
+  \item MINEG, 13
+  \item MINNCT, 30
+  \item MIPDIF, 24
+  \item MIPFSM, 25
+  \item MIPHOM, 25
+  \item MIPIPR, 24
+  \item MIPISE, 38
+  \item MIPNEG, 24
+  \item MIPPR, 24
+  \item MIPRAN, 25
+  \item MIPROD, 13
+  \item MIPSUM, 24
+  \item MIQ, 13
+  \item MIRAN, 13
+  \item MISUM, 13
+  \item MIUPQR, 24
+  \item MIUPSE, 38
+  \item MMDDET, 29
+  \item MMDNSB, 29
+  \item MMPDMA, 29
+  \item MMPEV, 30
+  \item MMPIQR, 25
+  \item modular
+    \subitem digit, 9
+    \subitem integer, 9
+    \subitem integral polynomial, 16
+    \subitem polynomial, 16
+    \subitem symmetric, 9
+  \item monic polynomial, 16
+  \item MPDIF, 24
+  \item MPEMV, 25
+  \item MPEVAL, 25
+  \item MPEXP, 25
+  \item MPGCDC, 34
+  \item MPHOM, 25
+  \item MPINT, 25
+  \item MPIQH, 39
+  \item MPIQHL, 39
+  \item MPIQHS, 39
+  \item MPMDP, 24
+  \item MPMON, 25
+  \item MPNEG, 24
+  \item MPPROD, 24
+  \item MPPSR, 25
+  \item MPQ, 24
+  \item MPQR, 24
+  \item MPRAN, 25
+  \item MPRES, 35
+  \item MPSPRS, 36
+  \item MPSUM, 24
+  \item MPUC, 25, 34
+  \item MPUCPP, 25, 34
+  \item MPUCS, 25, 34
+  \item MPUP, 24
+  \item MPUPP, 25, 34
+  \item MPUQ, 24
+  \item MUPBQP, 39
+  \item MUPDDF, 39
+  \item MUPDER, 25
+  \item MUPEGC, 36
+  \item MUPFBL, 38
+  \item MUPFS, 39
+  \item MUPGCD, 35
+  \item MUPHEG, 36
+  \item MUPRAN, 25
+  \item MUPRC, 35
+  \item MUPRES, 35
+  \item MUPSFF, 25, 35
+
+  \indexspace
+
+  \item name
+    \subitem of a variable, 17
+  \item negative, 10
+  \item non-negative, 10
+  \item non-positive, 10
+  \item number
+    \subitem algebraic, 46
+    \subitem rational, 10
+    \subitem real algebraic, 46
+
+  \indexspace
+
+  \item object, 5
+  \item ORDER, 6
+  \item order
+    \subitem of a list, 5
+    \subitem of a polynomial, 16
+  \item OREAD, 8
+  \item OWRITE, 8
+
+  \indexspace
+
+  \item PAIR, 8
+  \item PBIN, 20
+  \item PCL, 21
+  \item PCONST, 20
+  \item PCPV, 21
+  \item PDBORD, 20
+  \item PDEG, 20
+  \item PDEGSV, 20
+  \item PDEGV, 20
+  \item PDPV, 20
+  \item PERMCY, 7
+  \item PERMR, 7
+  \item PFBRE, 20
+  \item PFDIP, 21, 26
+  \item PFDP, 21, 27
+  \item PICPV, 21
+  \item PINV, 21
+  \item PLBCF, 20
+  \item PLDCF, 20
+  \item PMDEG, 20
+  \item PMON, 20
+  \item PMPMV, 20
+  \item polynomial, 16
+    \subitem constant, 16
+    \subitem dense recursive representation, 15
+    \subitem integral, 16
+    \subitem integral minimal, 46
+    \subitem modular, 16
+    \subitem modular integral, 16
+    \subitem monic, 16
+    \subitem positive, 16
+    \subitem primitive, 16, 33
+    \subitem rational, 16
+    \subitem rational minimal, 46
+    \subitem sparse distributive representation, 15
+    \subitem sparse recursive representation, 15
+    \subitem squarefree, 17, 33
+  \item PORD, 20
+  \item positive, 10
+  \item positive polynomial, 16
+  \item PPERMV, 21
+  \item PRED, 20
+  \item primitive part, 33
+    \subitem univariate, 33
+  \item primitive polynomial, 16, 33
+  \item PRT, 20
+  \item PSDSV, 20
+  \item PTBCF, 20
+  \item PTMV, 21
+  \item PTV, 21
+  \item PUFP, 21
+  \item PUNT, 20
+
+  \indexspace
+
+  \item rational
+    \subitem number, 10
+    \subitem polynomial, 16
+  \item RED, 6
+  \item RED2, 6
+  \item RED3, 6
+  \item RED4, 6
+  \item REDI, 6
+  \item reductum
+    \subitem of a list, 5
+    \subitem of a polynomial, 16
+  \item RNABS, 14
+  \item RNBCR, 14
+  \item RNCEIL, 14
+  \item RNCOMP, 14
+  \item RNDEN, 14
+  \item RNDIF, 14
+  \item RNDWRITE, 14
+  \item RNFCL2, 14
+  \item RNFLOR, 14
+  \item RNINT, 14
+  \item RNINV, 14
+  \item RNMAX, 14
+  \item RNMIN, 14
+  \item RNNEG, 14
+  \item RNNUM, 14
+  \item RNP2, 14
+  \item RNPROD, 14
+  \item RNQ, 14
+  \item RNRAND, 14
+  \item RNREAD, 14
+  \item RNRED, 14
+  \item RNSIGN, 14
+  \item RNSUM, 14
+  \item RNWRITE, 14
+  \item RPAFME, 48
+  \item RPBLGS, 26
+  \item RPDIF, 26
+  \item RPDMV, 26
+  \item RPDWRITE, 26
+  \item RPEMV, 26
+  \item RPEXPREAD, 26
+  \item RPFIP, 26
+  \item RPIMV, 26
+  \item RPMAIP, 26
+  \item RPNEG, 26
+  \item RPPROD, 26
+  \item RPQR, 26
+  \item RPREAD, 26
+  \item RPRNP, 26
+  \item RPSUM, 26
+  \item RPWRITE, 26
+
+  \indexspace
+
+  \item SAC\_FREEMEM, 55
+  \item SDIFF, 7
+  \item SECOND, 6
+  \item SEQUAL, 7
+  \item set
+    \subitem unordered, 5
+  \item SFCS, 7
+  \item SFIRST, 8
+  \item side effects, 5
+  \item sign
+    \subitem of a polynomial, 16
+  \item SINTER, 7
+  \item SLELTI, 8
+  \item SMFMI, 13
+  \item SMFMIP, 25
+  \item sparse distributive representation, 15
+  \item sparse recursive representation, 15
+  \item squarefree
+    \subitem basis
+      \subsubitem coarsest, 32
+      \subsubitem finest, 32
+    \subitem divisor, greatest, 33
+    \subitem factorization, 17, 33
+    \subitem polynomial, 17, 33
+  \item SRED, 8
+  \item standard interval, 41
+  \item SUFFIX, 7
+  \item SUNION, 7
+
+  \indexspace
+
+  \item term
+    \subitem leading, 16
+  \item THIRD, 6
+  \item trailing base coefficient, 16
+
+  \indexspace
+
+  \item univariate content, 33
+  \item univariate primitive part, 33
+  \item USDIFF, 7
+  \item USINT, 7
+  \item USUN, 7
+
+  \indexspace
+
+  \item variable
+    \subitem list of, 17
+    \subitem main, 16
+    \subitem name, 17
+  \item VIAZ, 29
+  \item VIDIF, 29
+  \item VIERED, 29
+  \item VILCOM, 29
+  \item VINEG, 29
+  \item VISPR, 30
+  \item VISUM, 30
+  \item VIUT, 30
+
+\end{theindex}

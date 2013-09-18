@@ -1,0 +1,336 @@
+This is TeX, Version 3.14159 (C version 6.1) (format=latex 96.10.29)  9 MAR 2000 14:23
+**saclib.tex
+(saclib.tex
+LaTeX2e <1996/06/01>
+Hyphenation patterns for english, german, loaded.
+(/usr/local/latex/texmf/tex/latex/base/latex209.def
+File: latex209.def 1996/05/21 v0.51 Standard LaTeX file
+
+Entering LaTeX 2.09 compatibility mode.
+\footheight=\dimen102
+\@maxsep=\dimen103
+\@dblmaxsep=\dimen104
+\@cla=\count79
+\@clb=\count80
+\mscount=\count81
+(/usr/local/latex/texmf/tex/latex/base/tracefnt.sty
+Package: tracefnt 1996/05/08 v3.0h Standard LaTeX package (font tracing)
+\tracingfonts=\count82
+LaTeX Info: Redefining \selectfont on input line 139.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 307.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 308.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 309.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 315.
+LaTeX Info: Redefining \em on input line 325.
+
+(/usr/local/latex/texmf/tex/latex/base/latexsym.sty
+Package: latexsym 1995/11/28 v2.2c Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 86.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 389.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 391.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 393.
+
+(/usr/local/latex/texmf/tex/latex/config/latex209.cfg
+(/usr/local/latex/texmf/tex/latex/tools/rawfonts.sty
+Compatibility mode: package `' requested, but `rawfonts' provided.
+Package: rawfonts 1994/05/08 Low-level LaTeX 2.09 font compatibility
+
+(/usr/local/latex/texmf/tex/latex/tools/somedefs.sty
+Package: somedefs 1994/06/01 Toolkit for optional definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 36.
+
+(/usr/local/latex/texmf/tex/latex/base/Ulasy.fd
+File: Ulasy.fd 1995/11/28 v2.2cLaTeX symbol font definitions
+))))
+(/usr/local/latex/texmf/tex/latex/base/report.cls
+Document Class: report 1996/05/26 v1.3r Standard LaTeX document class
+(/usr/local/latex/texmf/tex/latex/base/size10.clo
+File: size10.clo 1996/05/26 v1.3r Standard LaTeX file (size option)
+)
+\c@part=\count83
+\c@chapter=\count84
+\c@section=\count85
+\c@subsection=\count86
+\c@subsubsection=\count87
+\c@paragraph=\count88
+\c@subparagraph=\count89
+\c@figure=\count90
+\c@table=\count91
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 620.
+LaTeX Info: Redefining \mit on input line 621.
+\bibindent=\dimen105
+) (saclib.sty
+\arrow=\box26
+\cell=\box27
+\dline=\box28
+) (makeidx.sty)
+(DinA4.sty)
+\@indexfile=\write3
+
+Writing index file saclib.idx
+(saclib.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 27.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 27.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
+ (/usr/local/latex/texmf/tex/latex/base/OMScmr.fd
+File: OMScmr.fd 1996/05/19 v2.4h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 27.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 27.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 27.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 27.
+ [0
+
+]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
+ [1
+
+] [0]
+(saclib.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+ [1
+
+
+] [2])
+\tf@toc=\write4
+ [3] (saclib.lof)
+\tf@lof=\write5
+ [4
+
+
+]
+Chapter 1.
+(cI.tex [1
+
+
+] [2]) [3]
+Chapter 2.
+(cLP.tex [4
+
+] [5] [6]
+Overfull \hbox (6.23833pt too wide) in paragraph at lines 292--295
+[][]\OT1/cmr/m/n/10 List of BETA-integers bub-ble sort. \OT1/cmr/m/it/10 Sorts 
+a list of atoms into non-descending
+ []
+
+[7]) [8]
+Chapter 3.
+(cAsI.tex [9
+
+]) (cAsIA.tex [10] [11]) (cAsMA.tex [12]) (cAsRA.tex [13]) [14]
+Chapter 4.
+(cPAsI.tex
+Overfull \hbox (14.91335pt too wide) in paragraph at lines 21--27
+\OT1/cmr/m/it/10 sen-ta-tion \OT1/cmtt/m/n/10 P \OT1/cmr/m/n/10 of a poly-no-mi
+al $\OML/cmm/m/it/10 p \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 p[]x[]$ \OT1/cmr
+/m/n/10 with $\OML/cmm/m/it/10 e[] > [] > e[]$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/
+10 p[] \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 ([] (\OT1/cmr/bx/n/10 D\OT1/cmr/m/n/1
+0 [\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 ]) [])[\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/
+10 ]$,
+ []
+
+
+Overfull \hbox (48.21544pt too wide) in paragraph at lines 48--53
+[]\OT1/cmr/m/n/10 The \OT1/cmr/m/it/10 sparse dis-tribu-tive rep-re-sen-ta-tion
+ \OT1/cmtt/m/n/10 P \OT1/cmr/m/n/10 of such a poly-no-mial $\OML/cmm/m/it/10 p$
+ \OT1/cmr/m/n/10 is the list $(\OT1/cmtt/m/n/10 D[]\OML/cmm/m/it/10 ; \OT1/cmtt
+/m/n/10 E[]\OML/cmm/m/it/10 ; \OT1/cmtt/m/n/10 D[]\OML/cmm/m/it/10 ; \OT1/cmtt/
+m/n/10 E[]\OML/cmm/m/it/10 ; [] ; \OT1/cmtt/m/n/10 D[]\OML/cmm/m/it/10 ; \OT1/c
+mtt/m/n/10 E[]\OT1/cmr/m/n/10 )$,
+ []
+
+
+Overfull \hbox (10.34651pt too wide) in paragraph at lines 48--53
+\OT1/cmr/m/n/10 where $\OT1/cmtt/m/n/10 D[]$ \OT1/cmr/m/n/10 is the [] in-ter-n
+al rep-re-sen-ta-tion of $\OML/cmm/m/it/10 d[]$ \OT1/cmr/m/n/10 and $\OT1/cmtt/
+m/n/10 E[]$ \OT1/cmr/m/n/10 is the list $(\OML/cmm/m/it/10 e[]; e[]; [] ; e[]\O
+T1/cmr/m/n/10 )$
+ []
+
+[15
+
+] [16]) (cPAsPIO.tex [17]
+Underfull \hbox (badness 10000) in paragraph at lines 113--128
+\OT1/cmr/m/n/10 For $\OML/cmm/m/it/10 r$\OT1/cmr/m/n/10 -variate re-cur-sive po
+ly-no-mi-als over $\OT1/cmr/bx/n/10 Q$ \OT1/cmr/m/n/10 the al-go-rithms \OT1/cm
+tt/m/n/10 RPREAD \OT1/cmr/m/n/10 and
+ []
+
+[18]) (cPAsDIPA.tex [19]
+Overfull \hbox (1.30998pt too wide) in paragraph at lines 10--12
+[][]\OT1/cmr/m/n/10 Polynomial bi-no-mial. \OT1/cmr/m/it/10 Builds $\OML/cmm/m/
+it/10 a[]x[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 a[]x[]$ \OT1/cmr/m/it/10 from $
+\OML/cmm/m/it/10 a[]; a[]; e[]$\OT1/cmr/m/it/10 ,
+ []
+
+[20]) (cPAsIPA.tex [21]
+Overfull \hbox (2.75485pt too wide) in paragraph at lines 61--64
+[][]\OT1/cmr/m/n/10 Integral poly-no-mial sub-sti-tu-tion. \OT1/cmr/m/it/10 Sub
+-sti-tutes an in-te-gral poly-
+ []
+
+
+Overfull \hbox (4.79852pt too wide) in paragraph at lines 87--89
+[][]\OT1/cmr/m/n/10 Integral poly-no-mial bi-nary ra-tio-nal eval-u-a-tion, in-
+te-gral poly-
+ []
+
+[22] [23]
+Overfull \hbox (4.52579pt too wide) in paragraph at lines 231--234
+[][]\OT1/cmr/m/n/10 Integral poly-no-mial trun-ca-tion. \OT1/cmr/m/it/10 Com-pu
+tes $\OML/cmm/m/it/10 p [] \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; [] ; x[]\OT1/
+cmr/m/n/10 )$
+ []
+
+) (cPAsMPA.tex [24]) (cPAsRPA.tex [25]) (cPAsMR.tex [26]) [27]
+Chapter 5.
+(cLA.tex [28
+
+]
+Overfull \hbox (13.29865pt too wide) in paragraph at lines 75--83
+[][]\OT1/cmr/m/n/10 Linear dio-phan-tine sys-tem so-lu-tion, mod-i-fied Kan-nan
+ and Bachem
+ []
+
+[29]) [30]
+Chapter 6.
+(cGCD.tex [31
+
+] [32] [33]
+Overfull \hbox (5.33914pt too wide) in paragraph at lines 314--318
+[][]\OT1/cmr/m/n/10 Modular uni-vari-ate poly-no-mial great-est com-mon di-vi-s
+or. \OT1/cmr/m/it/10 Com-
+ []
+
+[34] [35]) [36]
+Chapter 7.
+(cPF.tex [37
+
+]
+Overfull \hbox (10.68768pt too wide) in paragraph at lines 82--85
+[][]\OT1/cmr/m/n/10 Modular uni-vari-ate poly-no-mial factorization-Berlekamp a
+l-go-rithm.
+ []
+
+
+Overfull \hbox (15.60327pt too wide) in paragraph at lines 114--115
+[][]\OT1/cmr/m/n/10 Integral poly-no-mial mod ideal quadratic Hensel
+ []
+
+
+Overfull \hbox (6.7976pt too wide) in paragraph at lines 151--152
+[][]\OT1/cmr/m/n/10 Modular poly-no-mial mod ideal, quadratic
+ []
+
+
+Overfull \hbox (13.82599pt too wide) in paragraph at lines 154--156
+[][]\OT1/cmr/m/n/10 Modular poly-no-mial mod ideal, quadratic Hensel lemma,
+ []
+
+[38]
+Overfull \hbox (5.39168pt too wide) in paragraph at lines 166--171
+[][]\OT1/cmr/m/n/10 Modular poly-no-mial dis-tinct de-gree fac-tor-iza-tion. \O
+T1/cmr/m/it/10 Given a monic,
+ []
+
+) [39]
+Chapter 8.
+(cRRC.tex [40
+
+] [41] [42]) [43]
+Chapter 9.
+(cAN.tex [44
+
+] [45] [46] [47]
+Overfull \hbox (9.71533pt too wide) in paragraph at lines 373--376
+[][]\OT1/cmr/m/n/10 Algebraic mod-ule uni-vari-ate poly-no-mial bi-nary ho-mo-t
+h-etic trans-
+ []
+
+[48]
+Overfull \hbox (10.29866pt too wide) in paragraph at lines 441--444
+[][]\OT1/cmr/m/n/10 Algebraic mod-ule uni-vari-ate poly-no-mial iso-lat-ing in-
+ter-vals weakly
+ []
+
+
+Overfull \hbox (2.79773pt too wide) in paragraph at lines 444--447
+[][]\OT1/cmr/m/n/10 Algebraic mod-ule uni-vari-ate poly-no-mial real
+ []
+
+[49]) [50]
+Appendix A.
+(cCFC.tex [51
+
+
+] [52] [53] [54] [55]) [56]
+Appendix B.
+(cISAC.tex
+Overfull \hbox (27.82635pt too wide) in paragraph at lines 5--7
+[] \OT1/cmr/m/n/10 is a small ex-per-i-men-tal in-ter-ac-tive in-ter-face to []
+, al-low-ing sim-ple \OT1/cmtt/m/n/10 read--eval--write
+ []
+
+[57
+
+] [58] [59]) [60]
+Appendix C.
+(cNIWsGC.tex (fSPACE.tex) (fLIST.tex) [61
+
+]) [62] (cNIWsCGV.tex [63] [64])
+[65] (saclib.ind [66
+
+
+] [67] [68] [69] [70] [71] [72]) (saclib.aux) ) 
+Here is how much of TeX's memory you used:
+ 857 strings out of 10910
+ 7838 string characters out of 72284
+ 57077 words of memory out of 262141
+ 3569 multiletter control sequences out of 9500
+ 29059 words of font info for 106 fonts, out of 150000 for 255
+ 14 hyphenation exceptions out of 607
+ 24i,11n,21p,321b,282s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on saclib.dvi (79 pages, 266732 bytes).

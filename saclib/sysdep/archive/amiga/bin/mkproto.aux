@@ -1,0 +1,29 @@
+; USAGE
+;   mkproto.aux
+;
+; FUNCTION
+;   Reads names of SACLIB source files from STDIN (for use with pipes) until
+;   an EOF is read. The files are processed by awk (script 'mkproto.awk')
+;   to extract the function prototypes.
+
+LAB loop
+
+Read fname
+IF $? EQ 1 VAL
+  Skip End
+ENDIF
+
+IF "$fname" EQ "SACLIB:src/FAIL.c
+  Skip BACK loop
+ENDIF
+IF "$fname" EQ "SACLIB:src/main.c
+  Skip BACK loop
+ENDIF
+
+awk -f SACLIB:bin/mkproto.awk $fname
+fname=
+
+Skip BACK loop
+
+LAB End
+

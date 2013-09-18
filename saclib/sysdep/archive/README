@@ -1,0 +1,126 @@
+                         HOW TO PORT SACLIB
+                         ==================
+
+
+
+1. Introduction
+===============
+
+This file briefly describes the things to do when porting SACLIB to a UN*X
+system on which the shell 'csh' is installed.
+	Actually, it should not be too much work to port SACLIB to any system
+with a C compiler and the standard C libraries. The problem here is, that the
+shell scripts will not work without 'csh', which is not available on most
+non-UN*X systems.
+
+
+
+2. Preliminaries
+================
+
+In general, the material in the "generic" directory should not need too many
+modifications to run on any given UN*X machine. It might also be helpful to
+check some of the other system dependent directories for differences to the
+generic version.
+	In the following sections we assume that you copied the contents of
+the "generic" directory to a new system dependent directory called "foo" and
+we describe which modifications might be necessary to these generic files.
+
+
+
+2. Source files
+===============
+
+Check whether the timing function called in "foo/src/CLOCK.c" is available
+on your system and suitable for your purposes.
+	The generic version uses the standard function "time()", which returns
+the system time in seconds. As "CLOCK()" is defined to return the time in
+milliseconds, you should try to find a timing function with a higher
+resolution.
+
+Check whether the hack used in "foo/src/GC.c" works for your machine's
+processor and compiler. "GC()" must guarantee that the values of all
+registered variables are pushed onto the stack before "GCSI()" is called.
+	The generic version defines 16 registered dummy variables and
+initializes them by calling a dummy function, thus (hopefully) forcing the
+compiler to push all registers onto the stack.
+
+Check whether your compiler uses "varargs" or "stdarg" for handling functions
+with a variable number of arguments. If it uses "varargs", then rename
+"foo/src/FAIL_varargs.c" to "foo/src/FAIL.c", so that it will replace the
+default version of "FAIL.c", which uses "stdarg".
+
+Try to write assembly code versions of "DPR.c" and "DQR.c". Replacing these
+low-level functions by assembly code versions should result in a speedup of at
+least 3 for most SACLIB arithmetic functions.
+
+Check the definitions in "foo/include/sacsys.h":
+- "Word" should be typedef'd to the signed C type representing the wordsize
+  of your machine's processor. In general, this will be "int".
+- "BETA" must be a power of 2 such that 2^6 <= BETA and 3*BETA fits into a
+  Word. In general, BETA will be equal to 2^(bitsize of a Word - 3).
+- "BETA1" must be defined to be equal to BETA-1.
+- "NU_" must be defined to be 2 times the number of list cells in the SACLIB
+  heap. Note that each list cell uses 2 Words, so the memory used for the heap
+  array is 4*NU_*sizeof(Word).
+- See Section B.2 of the "SACLIB User's Guide" for a description of the
+  remaining constants. In general, the generic values should be suitable for
+  any machine.
+
+
+
+3. Shell scripts
+================
+
+Note that all the shell scripts in "generic" are written for "csh". If you do
+not have this shell installed on your machine, more extensive modifications
+than the ones listed below may be necessary.
+
+Adjust the environment variable "CC" in "foo/bin/mklib". It must be set to the
+name of the command starting the C compiler. In general, this will be set to
+"cc".
+
+Check whether your systems's "ar" command accepts the parameter "s". If it
+does not, comment out the line containing "ar ts" in the file "foo/bin/mkmake"
+and uncomment the corresponding line containing "ranlib". If your system does
+not have "ranlib", either, then try to find some other way of building the
+library with correct symbol tables.
+
+Adjust the environment variable "system" in "foo/install". It must be set to
+the name of the new system dependent directory. In the example described here,
+this would be "foo". 
+
+
+
+4. Installing
+=============
+
+Follow the instructions in "foo/README", keeping in mind that they were
+written under the assumption that a correctly ported version of SACLIB should
+be installed.
+	If the instructions given are not valid for your port, please correct
+them.
+
+
+
+5. In case of success (or of total failure)
+===========================================
+
+If you have successfully ported SACLIB we would appreciate it if you could
+inform us by sending e-mail to
+
+		saclib@risc.uni-linz.ac.at (Internet)
+
+or ordinary mail to
+
+		SACLIB Maintenance
+
+		Research Institute for Symbolic Computation
+		Johannes Kepler University
+		A-4040 Linz, Austria
+
+so that we can include your port in the SACLIB distribution. 
+
+On the other hand, if you ran into troubles porting SACLIB and still want to
+have it on your system, tell us of your problem and we will see what we can do
+about it. (Satisfaction not guaranteed!)

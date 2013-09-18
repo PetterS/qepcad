@@ -1,0 +1,19 @@
+.key pat,name,sc,ll
+.bra {
+.ket }
+.def pat SACLIB:src/*.c
+.def name SACLIB:doc/desc.doc
+.def sc 8
+.def ll 79
+
+; USAGE:
+;   mkdesc [filename pattern] [output file] [starting column] [line length]
+;
+; FUNCTION
+;   Extracts the function descriptions from SACLIB source files and writes
+;   them to [output file].
+;   Default values for pattern, filename, column, and length are
+;   "SACLIB:src/*.c", "SACLIB:doc/desc.doc", 8, and 79, resp.
+
+List {pat} FILES SORT LFORMAT "%s%s" | SACLIB:bin/mkdesc.aux >{name} {sc} {ll}
+

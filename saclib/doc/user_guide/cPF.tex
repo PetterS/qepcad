@@ -1,0 +1,179 @@
+\section{Mathematical Preliminaries}
+
+A non-constant polynomial $A(x_1,\ldots,x_r)$ in $R[x_1,\ldots,x_r]$,
+where $R$ is a unique factorization domain, is said to be {\em
+irreducible} if $A$ cannot be expressed as the product of two
+non-constant polynomials in $R[x_1,\ldots,x_r]$.
+%
+The problem of factoring a polynomial $A(x_1,\ldots,x_r)$
+is that of finding distinct irreducible polynomials
+$A_i(x_1,\ldots,x_r)$ and integers $e_i$, $i = 1,\ldots,k$, such
+that $A = A_1^{e_1}\cdots A_k^{e_k}$.
+%
+Such an expression is called a {\em complete
+factorization}\index{factorization!complete} of $A$.
+%
+The polynomials $A_i$ are called the {\em irreducible factors} of $A$
+and the integer $e_i$ is called the {\em multiplicity} of $A_i$.
+
+\section{Purpose}
+The \saclib\ polynomial factorization package provides factorization
+algorithms for $R = \BbbZ_p$, $p$ a single-precision prime and $r =
+1$, and for $R = \BbbZ$ for $r \geq 1$. For $R = \BbbZ$ one obtains
+the sign, integer content and positive primitive irreducible factors
+of $A$, as well as the multiplicity of each irreducible factor. The
+integer content is not factored. For $R = \BbbZ_p$ the irreducible
+factors obtained are monic.
+
+\section{Methods and Algorithms}
+
+To factor an arbitrary univariate polynomial modulo a prime, one
+should first obtain a similar monic polynomial by using the algorithm
+{\tt MPMON}.  Having done this, one then computes the squarefree
+factors of the monic polynomial by using the algorithm {\tt MUPSFF}.
+In order to factor each squarefree factor one would use {\tt MUPFBL},
+which implements Berlekamp's algorithm.  The irreducible factors
+returned by {\tt MUPFBL} are monic.
+
+For factoring a univariate integral polynomial, {\tt IUPFAC} first
+computes the squarefree factorization using the algorithm {\tt IPSF}.
+The squarefree factors are in turn factored using {\tt IUSFPF} which
+first computes a factorization modulo a prime and the modular factors
+thus obtained are then lifted by the quadratic version of the Hensel
+construction.  {\tt IUPFAC} returns the sign, the integer content and
+a list of irreducible factors, with multiplicities, of the input
+polynomial.  The irreducible factors returned by {\tt IUPFAC} are
+positive and primitive.
+
+Multivariate integral polynomials are factored by using {\tt IPFAC}.
+This algorithm first computes the content as well as the squarefree
+factors of the primitive part of the input polynomial and subsequently
+factors each of these separately. The factorization of a squarefree
+primitive polynomial is performed by the algorithm {\tt ISFPF} which
+implements a multivariate lifting technique based on the Hensel lemma.
+The lifting is done one variable at a time as opposed to lifting
+several variables simultaneously.
+
+If the polynomial $A$ to be factored has rational base coefficients
+then it must first be converted to an integral polynomial by
+multiplying $A$ by the least common multiple of the denominators of
+the base coefficients and then converting the polynomial thus obtained
+to integral representation.  This can be achieved by using {\tt IPSRP}
+which computes the primitive and positive integral polynomial
+$A^{\prime}$ as well as the rational number $a$ such that $A = a
+A^{\prime}$.
+
+\section{Functions}
+
+\begin{description}
+
+\item[Factorization:] \ \
+  \begin{description}
+
+  \item[{\tt  IPFAC(r,A; s,c,L) 
+}]\index{IPFAC} Integral polynomial factorization. {\em Factors
+$r$-variate polynomials over $\BbbZ$.}
+
+  \item[{\tt  IUPFAC(A; s,c,L) 
+}]\index{IUPFAC} Integral univariate polynomial factorization. {\em
+Factors univariate polynomials over $\BbbZ$.}
+
+  \item[{\tt L <- MUPFBL(p,A) 
+}]\index{MUPFBL} Modular univariate polynomial factorization-Berlekamp
+                algorithm. {\em Factors monic squarefree univariate
+                polynomials over $\BbbZ_p$.}
+
+  \end{description} % factorization
+
+\item[Auxiliary Functions for Factorization:] \ \
+  \begin{description}
+
+  \item[{\tt  IPCEVP(r,A; B,L) 
+}]\index{IPCEVP} Integral polynomial, choice of evaluation points. {\em
+Given an integral polynomial $A$ that is squarefree in its main
+variable, computes integers that, when substituted for the minor
+variables, maintain the degree of $A$ in the main variable and its
+squarefreeness.}
+
+  \item[{\tt b <- IPFCB(V) 
+}]\index{IPFCB} Integral polynomial factor coefficient bound. {\em
+Given the degree vector of an integral polynomial $A$, computes an
+integer $b$ such the product of the infinity norms of any divisors of
+$A$ is less than or equal to $2^b$ times the infinity norm of $A$.}
+
+  \item[{\tt Lp <- IPFLC(r,M,I,A,L,D) 
+}]\index{IPFLC} Integral polynomial factor list combine.
+
+  \item[{\tt B <- IPFSFB(r,A) 
+}]\index{IPFSFB} Integral polynomial finest squarefree basis.
+
+  \item[{\tt a <- IPGFCB(r,A) 
+}]\index{IPGFCB} Integral polynomial Gelfond factor coefficient bound.
+
+  \item[{\tt  IPIQH(r,p,D,Ab,Bb,Sb,Tb,M,C; A,B) 
+}]\index{IPIQH} Integral polynomial mod ideal quadratic Hensel lemma.
+
+  \item[{\tt L <- ISFPF(r,A) 
+}]\index{ISFPF} Integral squarefree polynomial factorization. {\em
+Given a positive, primitive integral polynomial $A$ that is squarefree
+with respect to the main variable, computes a list of the distinct
+positive irreducible factors of $A$.}
+
+  \item[{\tt  IUPFDS(A; p,F,C) 
+}]\index{IUPFDS} Integral univariate polynomial factor degree set.
+
+  \item[{\tt  IUPQH(p,Ab,Bb,Sb,Tb,M,C; A,B) 
+}]\index{IUPQH} Integral univariate polynomial quadratic Hensel lemma.
+
+  \item[{\tt Fp <- IUPQHL(p,F,M,C) 
+}]\index{IUPQHL} Integral univariate polynomial quadratic Hensel lemma,
+                list.
+
+  \item[{\tt L <- IUSFPF(A) 
+}]\index{IUSFPF} Integral univariate squarefree polynomial
+factorization. {\em Given a univariate, positive, primitive, squarefree
+integral polynomial $A$, computes a list of the positive irreducible
+factors of $A$.}
+
+  \item[{\tt M <- MCPMV(n,L) 
+}]\index{MCPMV} Matrix of coefficients of polynomials, with respect to
+               main variable.
+
+  \item[{\tt  MIPISE(r,M,D,A,B,S,T,C; U,V) 
+}]\index{MIPISE} Modular integral polynomial mod ideal, solution of
+                equation.
+
+  \item[{\tt  MIUPSE(M,A,B,S,T,C; U,V) 
+}]\index{MIUPSE} Modular integral univariate polynomial, solution of
+                equation.
+
+  \item[{\tt  MPIQH(r,p,D,Ab,Bb,Sb,Tb,M,Dp,C; A,B) 
+}]\index{MPIQH} Modular polynomial mod ideal, quadratic Hensel lemma.
+
+  \item[{\tt Fp <- MPIQHL(r,p,F,M,D,C) 
+}]\index{MPIQHL} Modular polynomial mod ideal, quadratic Hensel lemma,
+                list.
+
+  \item[{\tt  MPIQHS(r,M,D,Ab,Bb,Sb,Tb,s,n,C; A,B,S,T,Dp) 
+}]\index{MPIQHS} Modular polynomial mod ideal, quadratic Hensel lemma
+                on a single variable.
+
+  \item[{\tt Q <- MUPBQP(p,A) 
+}]\index{MUPBQP} Modular univariate polynomial Berlekamp Q-polynomials
+                construction.
+
+  \item[{\tt L <- MUPDDF(p,A) 
+}]\index{MUPDDF} Modular polynomial distinct degree factorization. {\em
+Given a monic, squarefree polynomial $A$ over $R = \BbbZ_p$,
+computes a list $((n_1,A_1)$, $\ldots$, $(n_k,A_k))$, where the $n_i$ are
+positive integers with $n_1 < \cdots < n_k$ and each $A_i$ is the
+product of all monic irreducible factors of $A$ of degree $n_i$.}
+
+  \item[{\tt L <- MUPFS(p,A,B,d) 
+}]\index{MUPFS} Modular univariate polynomial factorization, special.
+
+  \end{description}  % auxiliary functions
+
+
+\end{description}  % programs
+

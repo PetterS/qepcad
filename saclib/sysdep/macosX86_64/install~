@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Installing macosX86 system dependent files ..."
+'cp' -f GC.c $saclib/src/
+'cp' -f sysdep.h $saclib/include

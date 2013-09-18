@@ -1,0 +1,12 @@
+#! /bin/csh
+
+# USAGE
+#   mkmspec <SAC source file names>
+#
+# FUNCTION
+#   Extracts the function specifications from the headers of SAC source files
+#   if they contain a macro description and writes them to STDOUT.
+
+foreach fname ($argv)
+  awk $saclib/bin/mkmspec.awk $fname
+end

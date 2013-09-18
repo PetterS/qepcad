@@ -1,0 +1,449 @@
+\section{Mathematical Preliminaries}
+Given polynomials $A$ and $B$ in $R[x_1,\ldots,x_r]$, $R$ a unique
+factorization domain, a {\em greatest common divisor} (GCD) of $A$ and
+$B$ is a polynomial $C$ in $R[x_1,\ldots,x_r]$ such that $C$ divides
+both $A$ and $B$ and such that any other divisor of both $A$ and $B$
+also divides $C$.  GCDs of more than two polynomials are defined in a
+similar way. GCDs are not unique since any unit multiple of a GCD is
+itself a GCD.  Polynomials $A$ and $B$ are {\em relatively prime} if
+$1$ is a GCD of $A$ and $B$.
+
+If $A = \sum_{i=0}^m{a_ix_r^i}$ and $B = \sum_{i=0}^n{b_ix_r^i}$, then
+the {\em Sylvester matrix} of $A$ and $B$ is the $(m+n) \times (m+n)$
+square matrix
+
+$$ \left(  \begin{array}{ccccccccccccc}
+
+a_m & a_{m-1} & \cdots & & & & \cdots & a_0 & 0 & \cdots & 0 \\
+
+0 & a_m & \cdots & & & & \cdots & a_1 & a_0 & \cdots & 0 \\
+
+\vdots & & \ddots & & & & & & & \ddots & \vdots \\ 
+
+0 & \cdots & 0 & a_m & \cdots & & & & \cdots & a_1 & a_0 \\
+
+b_n & b_{n-1} & \cdots & & & \cdots & b_0 & 0 & \cdots & \cdots & 0 \\
+
+0 & b_n & \cdots & & & \cdots & b_1 & b_0 & 0 & \cdots & 0 \\
+
+\vdots & & \ddots & & & & & & \ddots & & \vdots \\
+
+\vdots & & & \ddots & & & & & & \ddots & \vdots \\
+
+0 & \cdots & \cdots & 0 & b_n & \cdots & & & \cdots & b_1 & b_0 
+\end{array} \right) $$
+in which there are $n$ rows of $A$ coefficients and $m$ rows of $B$
+coefficients.
+
+The {\em resultant} of two polynomials $A$ and $B$, denoted by ${\rm
+res}(A,B)$, is the determinant of the Sylvester matrix of $A$ and $B$.
+The resultant will be an element of $R[x_1,\ldots,x_{r-1}]$ if $A$ and
+$B$ are elements of $R[x_1,\ldots,x_r]$. From a classic result we know
+that $A$ and $B$ are relatively prime just in case their resultant is
+nonzero.
+
+Let ${\rm deg}_{x_r}(A) = m$ and ${\rm deg}_{x_r}(B) = n$, with $m
+\geq n >0$. If $M$ is the Sylvester matrix of $A$ and $B$, then for 
+$0 \leq i \leq j < n$ define $M_{ij}$ to be the matrix obtained by
+deleting from $M$ the last $j$ rows of the $A$ coefficients, the last
+$j$ rows of the $B$ coefficients and the last $2j+1$ columns except
+column $m+n-i-j$.  The {\em $j$-th subresultant} of $A$ and $B$ is the
+polynomial $S_j(x_r) = \sum_{i=0}^{j}{\rm det}(M_{ij})x_r^i$ for $0
+\leq j < n$.  Note that $S_0$ is simply ${\rm res}(A,B)$.  The {\em
+$k$-th principal subresultant coefficient} of $A$ and $B$ is the
+coefficient of $x_r^k$ in $S_k$ (which may be 0).
+
+$A$ and $B$ are {\em similar}, denoted $A \sim B$, if there exist $a$
+and $b$, elements of $R[x_1,\ldots,x_{r-1}]$, such that $aA = bB$.
+%
+If $A$ and $B$ are nonzero and ${\rm deg}_{x_r}(A) \geq {\rm
+deg}_{x_r}(B)$ then a {\em polynomial remainder sequence} (PRS) of $A$
+and $B$ is a sequence $A_1, \ldots, A_n$ of nonzero polynomials such
+that $A_1 = A$, $A_2 = B$, $A_i \sim {\rm prem}(A_{i-2},A_{i-1})$, for
+$i = 3,\ldots,n$, and ${\rm deg}_{x_r}(A_n) = 0$.\footnote{prem$(F,G)$
+denotes the pseudo-remainder of $F$ when pseudo-divided by $G$ with
+respect to the main variable $x_r$.} 
+
+Since there are many polynomials similar to a given one, there are
+many different PRSs $A_1, A_2, \ldots, A_n$ corresponding to $A$ and $B$.
+
+The {\em Euclidean} PRS is obtained by setting $A_i = {\rm
+prem}(A_{i-2},A_{i-1})$ for $i = 3,\ldots,n$.
+
+The {\em primitive} PRS is obtained by setting $A_i = {\rm
+prem}(A_{i-2}, A_{i-1})/g_i$, where $g_i$ is the content of ${\rm
+prem}(A_{i-2}, A_{i-1})$. In other words, we set $A_i$ to be equal to
+the primitive part of ${\rm prem}(A_{i-2}, A_{i-1})$.
+
+The {\em subresultant} PRS {\em of the first kind} is obtained by
+setting $A_i = S_{d_{i-1}-1}$ where $d_i$ is the degree of the $i$-th
+element of any PRS of $A$ and $B$. [For each $i$, $d_i$ is invariant
+over the set of PRSs of $A$ and $B$.]
+
+The {\em subresultant} PRS {\em of the second kind} is obtained by
+setting $A_i = S_{d_i}$ where $d_i$ is as in the previous definition.
+
+The {\em reduced} PRS is obtained by setting $A_i = {\rm
+prem}(A_{i-2}, A_{i-1}) / c_i^{\delta_i+1}$, where $c_i = {\rm
+ldcf}(A_{i-2})$ and $\delta_i = {\rm deg}_{x_r}(A_{i-3})-{\rm
+deg}_{x_r}(A_{i-2})$ for $3 \leq i \leq n$, with  $\delta_3 = 0$.
+
+Although it is not immediately clear from the definitions, both
+subresultant PRSs as well as the reduced PRS can be shown to be, in
+fact, PRSs.
+
+For univariate polynomials over a field we may define what is known as
+the {\em natural} PRS defined by $A_i = A_{i-2} - Q_iA_{i-1}$, ${\rm
+deg}(A_i) < {\rm deg}(A_{i-1})$, for $i = 3,\ldots,n$.  That is, we
+take $A_i$ to be the remainder obtained from dividing $A_{i-2}$
+by $A_{i-1}$.
+
+\section{Purpose}
+The \saclib\ polynomial GCD and resultant package provides algorithms
+for the calculation of GCDs of $r$-variate polynomials over $R =
+\BbbZ$ or $R = \BbbZ_p$.  Since GCDs are not unique, we will need to
+specify a canonical form in which to express the results of the
+computations. Over $R = \BbbZ$, the positive GCD is computed while
+over $R = \BbbZ_p$ it is the monic GCD that is computed. Henceforth,
+if we refer to {\em the} GCD of $A$ and $B$ we will mean the GCD
+defined by the algorithms and this will be denoted by ${\rm
+gcd}(A,B)$.
+
+Algorithms are also available for the computation of resultants of
+$r$-variate polynomials over $R = \BbbZ$ or $R = \BbbZ_p$. The package
+also provides algorithms for computing the subresultant PRS and the
+reduced PRS for $r$-variate polynomials over $R = \BbbZ$ and the
+subresultant PRS for $r$-variate polynomials over $R = \BbbZ_p$.
+
+\section{Definitions of Terms}
+\begin{description}
+
+  \item[coarsest squarefree basis]\index{basis!coarsest
+squarefree}\index{squarefree!basis!coarsest}
+ If $A = (A_1,\ldots,A_n)$ is a list of
+$r$-variate polynomials, a coarsest squarefree basis for $A$ is a list
+$B = (B_1,\ldots,B_m)$ of pairwise relatively prime squarefree $r$-variate
+polynomials such that each $A_i$ in $A$ can be expressed as the
+product of powers of elements of $B$.
+
+  \item[discriminant]\index{discriminant} If $A$ is an $r$-variate polynomial of degree
+$n$ in its main variable, $n \geq 2$, the discriminant of $A$ is the
+$(r-1)$-variate polynomial equal to the quotient of
+$(-1)^{n(n-1)/2}{\rm res}(A,A^\prime)$ when divided by $a$, where
+$A^\prime$ is the derivative of $A$ with respect to its main variable
+and $a$ is the leading coefficient of $A$.
+
+  \item[finest squarefree basis]\index{basis!finest
+squarefree}\index{squarefree!basis!finest}
+ A finest squarefree basis $B = (B_1,
+\ldots, B_m)$ for a list $A$ of $r$-variate polynomials is a coarsest
+squarefree basis for $A$ with the additional condition that each $B_i$
+is irreducible.
+
+  \item[cofactors]\index{cofactors} If $C$ is the GCD of two polynomials $A$ and $B$ then
+the cofactors of $A$ and $B$, respectively, are $A/C$ and $B/C$.
+
+  \item[content]\index{content} The content of a polynomial $A$ in $r$ variables is a
+polynomial in $r-1$ variables equal to the absolute value of the
+greatest common divisor of the coefficients of $A$.
+
+  \item[greatest squarefree divisor]\index{squarefree!divisor, greatest}
+ A greatest squarefree divisor of
+a polynomial $A$ is a squarefree polynomial $C$ that divides $A$ and
+is such that any other squarefree polynomial that divides $A$ also
+divides $C$.
+
+  \item[primitive part]\index{primitive part}
+ The primitive part of a polynomial $A$ is the
+absolute value of $A/c$ where $c$ is the content of $A$.
+
+  \item[primitive polynomial]\index{primitive polynomial}\index{polynomial!primitive}
+ A polynomial, the content of which is
+$1$.
+
+  \item[squarefree
+factorization]\index{factorization!squarefree}\index{squarefree!factorization}
+ The squarefree factorization of $A$
+is $A = A_1^{e_1}\cdots A_k^{e_k}$ where $1 \leq e_1 < \cdots < e_k$
+and each of the $A_i$ is a positive squarefree polynomial of positive
+degree.  Note that if $A$ is squarefree then $A^1$ is the
+squarefree factorization of $A$.
+
+  \item[squarefree polynomial]\index{polynomial!squarefree}\index{squarefree!polynomial}
+ A polynomial $A$ is squarefree if each
+factor occurs only once.  In other words, if $A = A_1^{e_1}\cdots
+A_k^{e_k}$ is a complete factorization of $A$ then each of the $e_i$
+is equal to $1$.
+
+  \item[univariate content]\index{univariate content}\index{content!univariate}
+ If $A$ is an $r$-variate polynomial, $r
+\geq 2$, then the univariate content of $A$ is a univariate polynomial
+in the most minor variable equal to the GCD of the coefficients of
+$A$, where $A$ is considered as an element of
+$(R[x_1])[x_2,\ldots,x_r]$.
+
+  \item[univariate primitive part]\index{univariate primitive part}\index{primitive part!univariate}
+ Given an $r$-variate polynomial
+$A$, $r \geq 2$, the univariate primitive part of $A$ is the
+$r$-variate polynomial $A/a$, where $a$ is the univariate content of
+$A$.
+
+\end{description}
+
+\section{Methods and Algorithms}
+In this section we briefly discuss the main algorithms that might be
+of interest to the user and give a sketch of the mathematical ideas
+behind these algorithms.
+
+\subsection{GCD Computations}
+To compute the GCD of two univariate polynomials over $R =\BbbZ_p$,
+the algorithm {\tt MUPGCD} may be used. Making use of the fact that if
+$A_1,\ldots,A_n$ is a PRS of two polynomials $A$ and $B$ then ${\rm
+gcd}(A,B) \sim A_n$, this algorithm simply computes the natural PRS of
+the two input polynomials and returns the monic GCD.
+
+The GCD and cofactors of two $r$-variate polynomials over $\BbbZ_p$
+are computed by {\tt MPGCDC} which employs evaluation homomorphisms
+and interpolation to reduce the problem to that of computing the GCDs
+of $(r-1)$-variate polynomials over $R = \BbbZ_p$. {\tt MPGCDC}
+proceeds recursively until it arrives at univariate polynomials
+whereupon {\tt MUPGCD} is called. The GCD computed is monic.
+
+To obtain the GCD of two $r$-variate integral polynomials $A$ and $B$
+one would use the algorithm {\tt IPGCDC} which also computes the
+cofactors of $A$ and $B$. In this algorithm modular homomorphisms and
+Chinese remaindering are used to reduce the problem to GCD
+computations of $r$-variate polynomials over $R = \BbbZ_p$, which is
+solved by {\tt MPGCDC}.
+
+\subsection{Resultants}
+Using the algorithm suggested by the definition of the resultant,
+namely to construct the Sylvester matrix and compute its determinant,
+is not the most efficient way to proceed.
+
+Instead, {\tt MUPRES} computes the resultant of two univariate
+polynomials $A$ and $B$ over $R= \BbbZ_p$ by computing the natural PRS
+of $A$ and $B$ and by using the identity
+% 
+$${\rm res}(A,B) = (-1)^\nu \left[
+\prod_{i=2}^{n-1}c_i^{d_{i-1}-d_{i+1}}\right]c_n^{d_{n-1}}$$
+%
+where $c_i = {\rm ldcf}(A_i)$, $d_i = {\rm deg}(A_i)$, $\nu =
+\sum_{i=1}^{k-2}d_id_{i+1}$ and $A_1,\ldots,A_n$ is the natural PRS.
+
+For calculating the resultant of $r$-variate polynomials over $R =
+\BbbZ_p$, {\tt MPRES} makes use of evaluation homomorphisms and
+interpolation to recursively reduce the problem to the calculation of
+resultants of univariate polynomials over $R = \BbbZ_p$ which can be
+done by {\tt MUPRES}.
+
+{\tt IPRES} computes the resultant of $r$-variate polynomials over $R
+= \BbbZ$ by applying modular homomorphisms and Chinese remaindering to
+simplify the problem to resultant computations over $R = \BbbZ_p$,
+computations which are performed by {\tt MPRES}.
+
+\section{Functions}
+
+\begin{description}
+
+\item[Integral polynomial GCDs:] \ \
+  \begin{description} 
+
+    \item[{\tt C <- IPC(r,A) 
+}]\index{IPC} Integral polynomial content. {\em Given an $r$-variate
+polynomial $A$ over $R = \BbbZ$, computes the $(r-1)$-variate
+polynomial equal to the content of $A$.}
+
+    \item[{\tt  IPCPP(r,A; C,Ab) 
+}]\index{IPCPP} Integral polynomial content and primitive part. {\em
+Computes the content and the primitive part of a given 
+polynomial over $R = \BbbZ$.}
+
+    \item[{\tt  IPGCDC(r,A,B; C,Ab,Bb) 
+}]\index{IPGCDC} Integral polynomial greatest common divisor and
+cofactors. {\em Given two $r$-variate polynomials $A$ and $B$ over $R
+= \BbbZ$, computes the GCD and the cofactors of $A$ and $B$.}
+
+    \item[{\tt  IPLCPP(r,A; C,P) 
+}]\index{IPLCPP} Integral polynomial list of contents and primitive
+parts. {\em Given a list $(A_1,\ldots,A_n)$ of $r$-variate polynomials
+over $R = \BbbZ$, computes two lists, one consisting of the contents
+of the $A_i$ that have positive degree in at least one variable and
+another consisting of the primitive parts of the $A_i$ that that have
+positive degree in the main variable.}
+
+    \item[{\tt Ab <- IPPP(r,A) 
+}]\index{IPPP} Integral polynomial primitive part. {\em Given a
+polynomial $A$ over $R = \BbbZ$, computes the primitive part of $A$.}
+
+    \item[{\tt  IPSCPP(r,A; s,C,Ab) 
+}]\index{IPSCPP} Integral polynomial sign, content, and primitive
+part. {\em Computes the sign, the content and the primitive part of a
+given polynomial over $R = \BbbZ$.}
+
+\end{description}
+
+\item[Modular Polynomial GCDs:] \ \
+  \begin{description}
+
+    \item[{\tt  MPGCDC(r,p,A,B; C,Ab,Bb) 
+}]\index{MPGCDC} Modular polynomial greatest common divisor and
+cofactors.  {\em Computes the GCD and cofactors of two given
+polynomials over $R = \BbbZ_p$.}
+
+    \item[{\tt c <- MPUC(r,p,A) 
+}]\index{MPUC} Modular polynomial univariate content. {\em Computes
+the univariate content of an $r$-variate polynomial, $r \geq 2$, over
+$R = \BbbZ_p$.}
+
+    \item[{\tt  MPUCPP(r,p,A; a,Ab) 
+}]\index{MPUCPP} Modular polynomial univariate content and primitive
+part. {\em Giver an $r$-variate polynomial $A$, $r \geq 2$, computes
+the univariate content $a$ of $A$ and the univariate primitive part
+$A/a$.}
+
+    \item[{\tt d <- MPUCS(r,p,A,c) 
+}]\index{MPUCS} Modular polynomial univariate content subroutine.
+
+    \item[{\tt Ab <- MPUPP(r,p,A) 
+}]\index{MPUPP} Modular polynomial univariate primitive part. {Given
+$A$, an $r$-variate polynomial over $R = \BbbZ_p$, $r \geq 2$,
+computes the univariate primitive part of $A$.}
+
+    \item[{\tt C <- MUPGCD(p,A,B) 
+}]\index{MUPGCD} Modular univariate polynomial greatest common
+divisor. {\em Computes the GCD of two given univariate polynomials
+over $R =
+\BbbZ_p$.} 
+
+    \item[{\tt L <- MUPSFF(p,A) 
+}]\index{MUPSFF} Modular univariate polynomial squarefree
+factorization. {\em Computes the squarefree factorization of a given
+univariate polynomial over $R = \BbbZ_p$.}
+
+  \end{description}
+
+\item[Squarefree basis:] \ \
+  \begin{description}
+
+    \item[{\tt B <- IPCSFB(r,A) 
+}]\index{IPCSFB} Integral polynomial coarsest squarefree basis. {\em
+Given a list $A$ of positive and primitive $r$-variate polynomials
+over $R = \BbbZ$, each of which is of positive degree in the main
+variable, computes a coarsest squarefree basis for $A$.}
+
+    \item[{\tt B <- IPFSFB(r,A) 
+}]\index{IPFSFB} Integral polynomial finest squarefree basis. {\em
+Given a list $A$ of positive and primitive $r$-variate polynomials
+over $R = \BbbZ$, each of which is of positive degree in the main
+variable, computes a finest squarefree basis for $A$.}
+
+    \item[{\tt B <- IPPGSD(r,A) 
+}]\index{IPPGSD} Integral polynomial primitive greatest squarefree
+divisor. {\em Given a polynomial $A$ over $R = \BbbZ$, computes the
+positive and primitive greatest squarefree divisor of the primitive
+part of $A$.}
+
+    \item[{\tt L <- IPSF(r,A) 
+}]\index{IPSF} Integral polynomial squarefree factorization. {\em
+Given a primitive polynomial $A$, of positive degree in the main
+variable, computes the squarefree factorization of $A$.}
+
+    \item[{\tt Bs <- IPSFBA(r,A,B) 
+}]\index{IPSFBA} Integral polynomial squarefree basis augmentation.
+
+    \item[{\tt B <- ISPSFB(r,A) 
+}]\index{ISPSFB} Integral squarefree polynomial squarefree basis.
+
+  \end{description}
+
+\item[Resultants:] \ \
+  \begin{description}
+
+    \item[{\tt B <- IPDSCR(r,A) 
+}]\index{IPDSCR} Integral polynomial discriminant. {\em Computes the
+discriminant of an $r$-variate polynomial over $R = \BbbZ$, the degree
+of which is greater than or equal to $2$ in its main variable.}
+
+    \item[{\tt P <- IPPSC(r,A,B) 
+}]\index{IPPSC} Integral polynomial principal subresultant
+coefficients. {\em Computes a list of the non-zero principal
+subresultant coefficients of two given $r$-variate polynomials over $R
+= \BbbZ$ each of which is of positive degree in the main variable.}
+
+    \item[{\tt C <- IPRES(r,A,B) 
+}]\index{IPRES} Integral polynomial resultant. {\em Given two
+$r$-variate polynomials over $R = \BbbZ$, each of which is
+of positive degree in the main variable, computes the $(r-1)$-variate
+polynomial over $R = \BbbZ$ equal to their resultant.}
+
+    \item[{\tt  IUPRC(A,B; C,R) 
+}]\index{IUPRC} Integral univariate polynomial resultant and
+cofactor. {\em Given two univariate polynomials $A$ and $B$ over $R =
+\BbbZ$, where both $A$ and $B$ are of positive degree, computes ${\rm
+res}(A,B)$ and the univariate polynomial $C$ over $R = \BbbZ$ such
+that for some $D$, $AD + BC = {\rm res}(A,B)$ and ${\rm deg}(C) < {\rm
+deg}(A)$.}
+
+    \item[{\tt C <- MPRES(r,p,A,B) 
+}]\index{MPRES} Modular polynomial resultant. {\em Given two
+$r$-variate polynomials over $R = \BbbZ_p$, each of which is
+of positive degree in the main variable, computes the $(r-1)$-variate
+polynomial over $R = \BbbZ_p$ equal to their resultant.}
+
+    \item[{\tt  MUPRC(p,A,B; C,r) 
+}]\index{MUPRC} Modular univariate polynomial resultant and cofactor.
+{\em Given two univariate polynomials $A$ and $B$ over $R = \BbbZ_p$,
+where both $A$ and $B$ are of positive degree, computes ${\rm
+res}(A,B)$ and the univariate polynomial $C$ over $R = \BbbZ_p$ such
+that for some $D$, $AD + BC = {\rm res}(A,B)$ and ${\rm deg}(C) < {\rm
+deg}(A)$.}
+
+    \item[{\tt c <- MUPRES(p,A,B) 
+}]\index{MUPRES} Modular univariate polynomial resultant. {\em
+Computes the resultant of two given univariate polynomials over $R =
+\BbbZ_p$, each of which is of positive degree in the main variable.}
+
+  \end{description}
+
+\item[Polynomial Remainder Sequences:] \ \
+  \begin{description}
+
+    \item[{\tt S <- IPRPRS(r,A,B) 
+}]\index{IPRPRS} Integral polynomial reduced polynomial remainder
+sequence. {\em Computes a list representing the reduced polynomial
+remainder sequence of two given nonzero $r$-variate polynomials over $R =
+\BbbZ$.}
+
+    \item[{\tt S <- IPSPRS(r,A,B) 
+}]\index{IPSPRS} Integral polynomial subresultant polynomial
+remainder sequence. {\em Computes a list representing the subresultant
+polynomial remainder sequence of the first kind of two given nonzero
+$r$-variate polynomials over $R = \BbbZ$.}
+
+    \item[{\tt S <- MPSPRS(r,p,A,B) 
+}]\index{MPSPRS} Modular polynomial subresultant polynomial remainder
+sequence.{\em Computes a list representing the subresultant polynomial
+remainder sequence of the first kind of two given nonzero $r$-variate
+polynomials over $R = \BbbZ_p$.}
+
+  \end{description}
+
+\item[Extended GCDs:] \ \
+  \begin{description}
+
+    \item[{\tt  MUPEGC(p,A,B; C,U,V) 
+}]\index{MUPEGC} Modular univariate polynomial extended greatest
+                  common divisor. {\em Computes the GCD $C$ of two
+univariate polynomials $A$ and $B$ over $R = \BbbZ_p$ as well the
+univariate polynomials $U$ and $V$ such that $AU+BV=C$.}
+
+    \item[{\tt  MUPHEG(p,A,B; C,V) 
+}]\index{MUPHEG} Modular univariate polynomial half-extended greatest
+                  common divisor.{\em Computes the GCD $C$ of two
+univariate polynomials $A$ and $B$ over $R = \BbbZ_p$ as well the
+univariate polynomial $V$ such that $AU+BV=C$ for some $U$.}
+
+  \end{description}
+
+\end{description}  % programs

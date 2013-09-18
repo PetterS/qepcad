@@ -1,0 +1,125 @@
+\begin{description}
+\item[Constructors:] \ \
+  \begin{description}
+  \item[{\tt A <- PFBRE(r,a) 
+}]\index{PFBRE}  Polynomial from Base Ring Element. {\em Builds an r-variate
+    polynomial from an element of some domain.}
+  \item[{\tt A <- PMON(a,e) 
+}]\index{PMON}  Polynomial monomial. {\em Builds $a x^e$ from $a$ and $e$.}
+  \item[{\tt A <- PBIN(a1,e1,a2,e2) 
+}]\index{PBIN}  Polynomial binomial. {\em Builds $a_1 x^{e_1} + a_2 x^{e_2}$
+    from $a_1, a_2, e_1$, and $e_2$.}
+  \end{description}
+
+\item[Selectors:] \ \
+  \begin{description}
+  \item[{\tt a <- PLDCF(A) 
+}]\index{PLDCF}  Polynomial leading coefficient. {\em Returns the leading
+    coefficient w.r.t.\ the main variable.}
+  \item[{\tt B <- PRED(A) 
+}]\index{PRED}  Polynomial reductum. {\em Returns the reductum (the
+    polynomial minus its leading term) w.r.t.\ the main variable.}
+  \item[{\tt a <- PLBCF(r,A) 
+}]\index{PLBCF}  Polynomial leading base coefficient. {\em Returns the
+    coefficient of the term of the highest degree w.r.t.\ all variables (an
+    element of the base domain).}
+  \item[{\tt a <- PTBCF(r,A) 
+}]\index{PTBCF}  Polynomial trailing base coefficient. {\em Returns the
+    coefficient of the term of the lowest degree w.r.t.\ all variables (an
+    element of the base domain).}
+  \end{description}
+
+\item[Information and Predicates:] \ \
+  \begin{description}
+  \item[{\tt n <- PDEG(A) 
+}]\index{PDEG}  Polynomial degree. {\em Returns the degree of the argument
+    w.r.t.\ the main variable.}
+  \item[{\tt n <- PMDEG(A) 
+}]\index{PMDEG}  Polynomial modified degree. {\em Returns the degree of the
+    argument, $-1$ if the argument is $0$.}
+  \item[{\tt n <- PDEGSV(r,A,i) 
+}]\index{PDEGSV}  Polynomial degree, specified variable. {\em Returns the
+    degree of the argument w.r.t.\ the i-th variable.}
+  \item[{\tt V <- PDEGV(r,A) 
+}]\index{PDEGV}  Polynomial degree vector. {\em Returns a list
+    $(d_1,\ldots,d_r)$ where $d_i$ is the degree of argument w.r.t.\ the
+    i-th variable.}
+  \item[{\tt b <- PCONST(r,A) 
+}]\index{PCONST}  Polynomial constant. {\em Tests whether the argument is a
+    constant polynomial.}
+  \item[{\tt b <- PUNT(r,A) 
+}]\index{PUNT}  Polynomial univariate test. {\em Tests whether the argument is a
+    univariate polynomial.}
+  \item[{\tt k <- PORD(A) 
+}]\index{PORD}  Polynomial order. {\em Returns the smallest exponent
+    appearing in the argument polynomial (w.r.t.\ the main variable).}
+  \end{description}
+
+\item[Transformation:] \ \
+  \begin{description}
+  \item[{\tt B <- PSDSV(r,A,i,n) 
+}]\index{PSDSV}  Polynomial special decomposition, specified variable. {\em
+    Computes $p(x_1, \ldots, x_i^{1/n}, \ldots, x_r)$ given $p, i, n$, and
+    $r$.}
+  \item[{\tt B <- PDPV(r,A,i,n) 
+}]\index{PDPV}  Polynomial division by power of variable. {\em Computes
+    $x_i^{-n} p$ given $p, i$, and $n$.}
+  \item[{\tt B <- PMPMV(A,k) 
+}]\index{PMPMV}  Polynomial multiplication by power of main variable. {\em
+    Computes $x^n p$ given $p$ and $n$, with $x$ being the main variable of
+    $p$.}
+  \item[{\tt B <- PRT(A) 
+}]\index{PRT}  Polynomial reciprocal transformation. {\em Computes $x^n
+    p(x^{-1})$ with $n = {\rm deg}(p)$.}
+  \item[{\tt B <- PDBORD(A) 
+}]\index{PDBORD}  Polynomial divided by order. {\em Computes $x^{-n} p$
+    where $n$ is the order of $p$.}
+  \end{description}
+
+\item[Conversion\footnotemark :] \ \
+  \footnotetext{
+    \rm See Section \ref{c:PA s:MR} for a description of the sparse
+    distributive and the dense recursive representations.
+  }
+  \begin{description}
+  \item[{\tt B <- PFDIP(r,A) 
+}]\index{PFDIP}  Polynomial from distributive polynomial. {\em Computes a
+  polynomial in the sparse recursive representation from a polynomial in
+  the sparse distributive representation.}
+  \item[{\tt B <- PFDP(r,A) 
+}]\index{PFDP}  Polynomial from dense polynomial. {\em Computes a polynomial
+  in the sparse recursive representation from a polynomial in the dense
+  recursive representation.}
+  \end{description}
+
+\item[Miscellaneous:] \ \
+  \begin{description}
+  \item[{\tt B <- PINV(r,A,k) 
+}]\index{PINV}  Polynomial introduction of new variables. {\em Computes a
+    polynomial in $R[y_1, \ldots, y_s, x_1, \ldots, x_r]$ from a polynomial
+    in $R[x_1,\ldots,x_r]$.}
+  \item[{\tt B <- PPERMV(r,A,P) 
+}]\index{PPERMV}  Polynomial permutation of variables. {\em Computes a
+    polynomial in $R[x_{p_1}, \ldots, x_{p_r}]$ from a polynomial in
+    $R[x_1, \ldots, x_r]$, where $(p_1, \ldots, p_r)$ is a permutation of
+    $(1, \ldots, r)$.}
+  \item[{\tt B <- PCPV(r,A,i,j) 
+}]\index{PCPV}  Polynomial cyclic permutation of variables.
+  \item[{\tt B <- PICPV(r,A,i,j) 
+}]\index{PICPV}  Polynomial inverse cyclic permutation of variables.
+  \item[{\tt B <- PTV(r,A,i) 
+}]\index{PTV}  Polynomial transpose variables.
+  \item[{\tt B <- PTMV(r,A) 
+}]\index{PTMV}  Polynomial transpose main variables.
+  \item[{\tt B <- PUFP(r,A) 
+}]\index{PUFP}  Polynomial, univariate, from polynomial. {\em Computes a
+    univariate polynomial from an r-variate polynomial by substituting
+    0 for all variables except the main variable $x_r$.}
+  \item[{\tt L <- PCL(A) 
+}]\index{PCL}  Polynomial coefficient list. {\em Returns a list
+    $(p_n,\ldots,p_0)$ where $n$ is the degree of $p$ and the $p_i$ are the
+    coefficients of $p$.}
+  \end{description}
+
+\end{description}
+
