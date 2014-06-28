@@ -7,6 +7,12 @@
  * editing, history and, eventually, tab-completion.
  ***************************************************************/
 #include <iostream>
+
+#ifdef _MSC_VER
+
+// ...
+
+#else
 #include <readline/readline.h>
 #include <readline/history.h>
 using namespace std;
@@ -73,3 +79,5 @@ readlineInBuff::int_type readlineInBuff::underflow()
   }
   return *gptr();
 }
+
+#endif  // _MSC_VER

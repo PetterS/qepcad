@@ -10,6 +10,7 @@
  ***************************************************************/
 #ifndef _CONVENIENT_STREAMS_
 #define _CONVENIENT_STREAMS_
+#include <algorithm>
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>

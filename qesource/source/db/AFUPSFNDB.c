@@ -28,4 +28,7 @@ Return: /* Prepare for return. */
        *t_ = t;
        *Bt_ = Bt;
        *F_ = F;
+
+	   // Petter: What should be returned??
+	   return 0;
 }

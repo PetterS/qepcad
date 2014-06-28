@@ -22,6 +22,10 @@
 #ifdef _X86_LINUX_
 #include <ieee754.h>
 #include <fenv.h>
+#else
+#ifdef _WIN32
+#include <fenv.h>
+#endif
 #endif
 #endif
 

@@ -4,8 +4,10 @@
 #include <signal.h>
 #include "db/CAPolicy.h"
 
+#ifndef _MSC_VER
 static void SIGINT_handler(int i, siginfo_t *sip,void* uap);
 static void init_SIGINT_handler();
+#endif
 
 /*====================================================================
                  main(argc,argv)
@@ -21,9 +23,11 @@ Step1: /* Set up the system. */
        ARGSACLIB(argc,argv,&ac,&av);
        BEGINSACLIB((Word *)&argc);
        BEGINQEPCAD(ac,av);
+	   #ifndef _MSC_VER
        init_SIGINT_handler(); /* A special handler for SIGINT is needed
                                  to shut down child processes. Also used
 			         for SIGTERM. */
+       #endif
 
 Step2: /* Read input, create CAD, write result */
        PCCONTINUE = FALSE;
@@ -52,6 +56,7 @@ Return: /* Prepare for return. */
        return 0;
 }
 
+#ifndef _MSC_VER
 static void SIGINT_handler(int i, siginfo_t *sip,void* uap)
 {  
   ENDQEPCAD(); // Kill child CAServer processes
@@ -71,4 +76,4 @@ static void init_SIGINT_handler()
   sigaction(SIGTERM,p,NULL);
   free(p);
 }
-
+#endif

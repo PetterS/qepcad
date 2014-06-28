@@ -7,6 +7,8 @@ Outputs
   t :  the system clock time in millisecconds.
 ======================================================================*/
 #include "saclib.h"
+
+#ifndef _MSC_VER 
 #include <sys/resource.h>
 
 Word CLOCK()
@@ -24,3 +26,11 @@ Step1: /* Get the system time. */
 Return: /* Prepare for return. */
        return(t);
 }
+#else
+#include <time.h>
+Word CLOCK()
+{
+	double seconds = (double)clock() / (double)CLOCKS_PER_SEC;
+	return (Word)(seconds * 1000.0);
+}
+#endif
