@@ -1,0 +1,5 @@
+[Petter Strandmarks test 7]
+(d,e,x)
+2
+(Ex)[x^4 + d x + e = 0 ].
+finish

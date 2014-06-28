@@ -1,0 +1,5 @@
+[Petter Strandmarks test 5]
+(a,b,c,d,x)
+4
+(Ex)[a x^3 + b x^2 + c x + d = 0 /\ a > 0 ].
+finish

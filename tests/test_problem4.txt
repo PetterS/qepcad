@@ -1,0 +1,5 @@
+[Petter Strandmarks test 4]
+(a,x,y)
+1
+(E x)(E y)[x^2 + y^2 = 1 /\ a = x ].
+finish

@@ -1,0 +1,5 @@
+[Petter Strandmarks test 2]
+(a,b,c,x)
+3
+(Ex)[a x^2 + b x + c = 0].
+finish

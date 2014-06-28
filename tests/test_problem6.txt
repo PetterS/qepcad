@@ -1,0 +1,5 @@
+[Petter Strandmarks test 6]
+(a,c,d,e,x)
+4
+(Ex)[a x^4 + c x^2 + d x + e = 0 ].
+finish

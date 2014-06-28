@@ -1,22 +1,11 @@
 # Author: petter.strandmark@gmail.com (Petter Strandmark)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.4)
 PROJECT(QE C CXX)
 
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-# Default locations to search for on various platforms.
-LIST(APPEND SEARCH_LIBS /usr/lib)
-LIST(APPEND SEARCH_LIBS /usr/local/lib)
-LIST(APPEND SEARCH_LIBS /usr/local/homebrew/lib) # Mac OS X
-LIST(APPEND SEARCH_LIBS /opt/local/lib)
-
-LIST(APPEND SEARCH_HEADERS /usr/include)
-LIST(APPEND SEARCH_HEADERS /usr/local/include)
-LIST(APPEND SEARCH_HEADERS /usr/local/homebrew/include) # Mac OS X
-LIST(APPEND SEARCH_HEADERS /opt/local/include)
 
 # Change the default build type from Debug to Release, while still
 # supporting overriding the build type.
@@ -708,3 +697,9 @@ TARGET_LINK_LIBRARIES(qepcad rend)
 TARGET_LINK_LIBRARIES(qepcad sfext)
 
 TARGET_LINK_LIBRARIES(qepcad readline)
+
+configure_file(qesource/bin/qepcad.help ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/qepcad.help COPYONLY)
+configure_file(qesource/default.qepcadrc ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/default.qepcadrc COPYONLY)
+
+ENABLE_TESTING()
+ADD_SUBDIRECTORY(tests)
