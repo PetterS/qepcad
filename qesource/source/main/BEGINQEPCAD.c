@@ -98,10 +98,18 @@ void BEGINQEPCAD(int &argc, char**& argv)
 void QEPCAD_ProcessRC(int argc, char **argv)
 {
   char *qepath = getenv("qe");
-  if (qepath == NULL) { FAIL("QEPCAD_ProcessRC","Environment variable qe not defined!"); }
+  if (qepath == NULL)
+  {
+	  static char current_path[] = ".";
+	  qepath = current_path;
+  }
+
   string rcFileName = qepath + string("/default.qepcadrc");
   ifstream rcin(rcFileName.c_str());
-  if (!rcin) { return; }
+  if (!rcin) {
+	  std::cerr << "QEPCAD_ProcessRC: default.qepcadrc not found!" << std::endl;
+	  return;
+  }
   string name, tmp;
   while(rcin)
   {
