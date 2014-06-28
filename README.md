@@ -19,7 +19,7 @@
 
 This is a (shallow) fork of QEPCAD, a program performing cylindrical algebraic decomposition.
 
-I found the library a bit hard to build, so I added CMake files which makes the process considerably easier.
+I found the library a bit hard to build (especially with Visual Studio), so I added CMake files which makes the process considerably easier.
 
 Very Simple Example
 -------------------
@@ -40,6 +40,8 @@ There are more examples in the tests folder.
 
 Compiling
 =========
+With Visual Studio in Windows, everything is included.
+
 In Ubuntu, you may have to execute
 
      sudo apt-get install libreadline-dev 

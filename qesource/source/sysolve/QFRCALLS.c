@@ -110,6 +110,10 @@ bool qfrCheckNonNullified(BDigit r, Word P, Word A, Word F, Word V)
 
 bool qfrFalseCheck(string qfrInputString)
 {
+#ifdef _MSC_VER
+  std::cerr << "fork() not supported in qfrFalseCheck!" << std::endl;
+  std::exit(1);
+#else
   UnnamedPipe intoQfr, outofQfr;
   if (PCVERBOSE) { cerr << "forking (" + qfrInputString + " )..." << endl; }
   int childpid = fork();
@@ -140,5 +144,6 @@ bool qfrFalseCheck(string qfrInputString)
     return true;
   else
     return false;
+#endif
 }
 

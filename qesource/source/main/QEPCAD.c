@@ -21,6 +21,13 @@ Quantifier Elimination by Partial Cylindrical Algebraic Decomposition.
 void QepcadCls::QEPCAD(Word Fs, Word *t_, Word *F_e_, Word *F_n_, Word *F_s_)
 {
        Word A,D,F,F_e,F_n,F_s,Fh,J,P,Q,Ths,f,i,r,t, T;
+
+	   // To satisfy Visual Studio Debugger.
+	   t = 0;
+	   F_e = 0;
+	   F_n = 0;
+	   F_s = 0;
+
        /* hide Ths,i,t; */
        Word cL,**cC,cr,ce,ci,*cT,cj,cs,cl,ct; /* Chris variables. */
        Word Cs,Ps,Qs,Pps,Cps,Qps,SF; /* Chris variables. */

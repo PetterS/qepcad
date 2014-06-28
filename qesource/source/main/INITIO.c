@@ -5,7 +5,15 @@ Initialize Input/Output.
 ======================================================================*/
 #include "qepcad.h"
 #include <stdlib.h>
-#include <unistd.h>
+#ifdef _MSC_VER
+	namespace
+	{
+		bool isatty(int) { return false; }
+	}
+#else
+	#include <unistd.h>
+#endif
+
 #include <iostream>
 #include "db/readlineistream.h"
 
@@ -17,10 +25,16 @@ void INITIO()
        Word i;
 
 Step1: /* Initialize Input. */	  
-       if (isatty(0)) 
-	 InputContextInit(*(new readlineIstream()));
-       else
-	 InputContextInit(std::cin);
+       if (isatty(0)) {
+         #ifdef _MSC_VER
+		   InputContextInit(std::cin);
+         #else
+           InputContextInit(*(new readlineIstream()));
+         #endif
+	   }
+       else {
+         InputContextInit(std::cin);
+	   }
        
 Step2: /* Initialize Output. */
        OutputContextInit(std::cout);

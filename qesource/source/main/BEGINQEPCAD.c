@@ -14,7 +14,28 @@ already been initialized!
 #include "db/convenientstreams.h"
 #include "db/CAPolicy.h"
 #include <ctype.h>
-#include <sys/wait.h>
+
+#ifdef _MSC_VER
+	namespace
+	{
+		bool isatty(int)
+		{
+			return true;
+		}
+
+		bool WEXITSTATUS(int status)
+		{
+			return status == 0;
+		}
+
+		template<typename F>
+		void setlinebuf(F)
+		{
+		}
+	}
+#else
+	#include <sys/wait.h>
+#endif
 
 void QEPCAD_ProcessRC(int argc, char **argv);
 void QEPCAD_Usage(int cols);

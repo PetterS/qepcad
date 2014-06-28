@@ -93,6 +93,11 @@ typedef union {
 #define roundup() fesetround(FE_UPWARD)
 #endif
 
+#ifdef _MSC_VER
+#define rounddown() fesetround(FE_DOWNWARD)
+#define roundup() fesetround(FE_UPWARD)
+#endif
+
 /* ----------------------------------------*/
 /*            Hardware intervals           */
 /* ----------------------------------------*/

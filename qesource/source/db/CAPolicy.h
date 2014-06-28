@@ -26,7 +26,10 @@ public:
   virtual Word IPRES(Word r, Word A, Word B) = 0;
   virtual Word IPDSCR(Word r, Word A) = 0;
   virtual Word IPFACTGB(Word r, Word I, Word N) 
-    { FAIL("CAPolicy::IPFACTGB","Not implemented in this policy!"); }
+  {
+	  FAIL("CAPolicy::IPFACTGB","Not implemented in this policy!");
+	  return 0;
+  }
 
 /*
 CONSTORDTEST
@@ -41,7 +44,10 @@ Otherwise returns a GB for A,L and all k-order partials s.t.
 some of the partials are not 0.
  */
   virtual Word CONSTORDTEST(Word r, Word A, Word L) 
-    { FAIL("CAPolicy::CONSTORDTEST","Not implemented in this policy!"); }
+  {
+	  FAIL("CAPolicy::CONSTORDTEST","Not implemented in this policy!");
+	  return 0;
+  }
 
   virtual const string name() = 0;
   virtual bool supports(const string &s) = 0;

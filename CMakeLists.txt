@@ -702,7 +702,9 @@ TARGET_LINK_LIBRARIES(qepcad lift2d)
 TARGET_LINK_LIBRARIES(qepcad rend)
 TARGET_LINK_LIBRARIES(qepcad sfext)
 
-TARGET_LINK_LIBRARIES(qepcad readline)
+IF (NOT MSVC)
+	TARGET_LINK_LIBRARIES(qepcad readline)
+ENDIF ()
 
 configure_file(qesource/bin/qepcad.help ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/qepcad.help COPYONLY)
 configure_file(qesource/default.qepcadrc ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/default.qepcadrc COPYONLY)

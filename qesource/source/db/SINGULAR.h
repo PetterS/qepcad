@@ -15,11 +15,21 @@ class SingularServer : public CAServer
 {
 public:
   UnnamedPipe intoSingular, outofSingular;
-  pid_t childpid;
+
+	#ifdef _MSC_VER
+		int childpid;
+	#else
+		pid_t childpid;
+	#endif
   
   SingularServer(string SingluarBase); // give path to Singular
   ~SingularServer();
-  void kill() { ::kill(childpid,SIGKILL); }
+  void kill()
+  {
+	  #ifndef _MSC_VER
+		::kill(childpid,SIGKILL);
+	  #endif
+  }
   
   void IPFAC(Word r, Word P, Word *s_, Word *c_, Word *L_);
   Word IPRES(Word r, Word A, Word B);

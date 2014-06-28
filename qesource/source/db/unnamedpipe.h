@@ -12,6 +12,20 @@
  ***************************************************************/
 #ifndef _UNNAMEDPIPE_
 #define _UNNAMEDPIPE_
+
+#ifdef _MSC_VER
+
+#include <iostream>
+
+class UnnamedPipe
+{
+public:
+  std::istream& in()  { return std::cin; }
+  std::ostream& out() { return std::cout; }
+};
+
+#else
+
 #include <cstdlib>
 #include <cstdio>
 #include <unistd.h>
@@ -126,5 +140,7 @@ public:
       openmask[1] = false; }
   }
 };
+
+#endif
 
 #endif
