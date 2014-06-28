@@ -426,24 +426,24 @@ SET(NEWADJ_LIB_SOURCE
 	)
 
 SET(LIFT2D_LIB_SOURCE
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/PFSRRQ2D.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/PFSRDQ2D.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/CELLLEFTSIB.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/CELLRIGHTSIB.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/CELLSRRQ2D.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/CELLSRDQ2D.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/LIFTSRR2D.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/modHIPRRISD.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/modHIPRRID.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/modIBPRRIOAP.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/LIFTSRD2D.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/IBPRRIOAP.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/IBPRRIOAPSF.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/IBPELBRISIPR.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/IBPESISIPR.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/modIBPRRIOAPSF.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/modSIPRRISD.c
-	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2d/modSIPRRID.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/PFSRRQ2D.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/PFSRDQ2D.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/CELLLEFTSIB.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/CELLRIGHTSIB.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/CELLSRRQ2D.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/CELLSRDQ2D.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/LIFTSRR2D.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/modHIPRRISD.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/modHIPRRID.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/modIBPRRIOAP.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/LIFTSRD2D.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/IBPRRIOAP.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/IBPRRIOAPSF.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/IBPELBRISIPR.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/IBPESISIPR.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/modIBPRRIOAPSF.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/modSIPRRISD.c
+	${CMAKE_SOURCE_DIR}/qesource/extensions/lift2D/modSIPRRID.c
 	)
 
 SET(REND_LIB_SOURCE
