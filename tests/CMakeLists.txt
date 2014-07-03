@@ -8,6 +8,14 @@ configure_file(test_problem5.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/test_problem5
 configure_file(test_problem6.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/test_problem6.txt COPYONLY)
 configure_file(test_problem7.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/test_problem7.txt COPYONLY)
 
+configure_file(Anai2.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Anai2.txt COPYONLY)
+configure_file(ESP.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ESP.txt COPYONLY)
+configure_file(ESP_b.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ESP_b.txt COPYONLY)
+configure_file(HLS_5_14.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/HLS_5_14.txt COPYONLY)
+configure_file(PosSemiDef.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/PosSemiDef.txt COPYONLY)
+configure_file(Quartic.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Quartic.txt COPYONLY)
+configure_file(Triangle2.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Triangle2.txt COPYONLY)
+
 FILE(WRITE ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main.sh
 "exec $1 < $2\n")
 

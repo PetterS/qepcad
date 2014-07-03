@@ -1,0 +1,6 @@
+[http://www.usna.edu/CS/~qepcad/B/examples/PosSemiDef/PosSemiDef.html]
+(w,z,x,y)
+0
+(F w)(F z)(F x)(F y)[
+w^6 + 2 z^2 w^3 + x^4 + y^4 + z^4 + 2 x^2 w + 2 x^2 z + 3 x^2 + w^2 + 2 z w + z^2 + 2 z + 2 w + 1 < 0].
+finish

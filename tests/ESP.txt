@@ -1,0 +1,14 @@
+[http://www.usna.edu/CS/~qepcad/B/examples/EdgeSquareProd/ESP.html]
+(x,y,x1,x2)
+2
+(E x1)(E x2)[
+y = x1 (x1 x2 - x) + x2 /\
+0 <= x1 /\ x1 <= 2 /\ 
+2 <= x2 /\ x2 <= 4 /\ 
+-1 <= (x1 x2 - x) /\ (x1 x2 - x) <= 1
+].
+prop-eqn-const
+go
+d-level-f 4
+eqn-const-l (A_4,1)
+finish
