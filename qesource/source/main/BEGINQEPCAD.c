@@ -64,15 +64,18 @@ void BEGINQEPCAD(int &argc, char**& argv)
   /* #cols for usage message output is 80 or terminal width if 
      stdout attached to a terminal*/
   int cols = 80;         /* number of columns for help output */
-  int isStdoutTerm = system("test -t 1");
-  isStdoutTerm = WEXITSTATUS(isStdoutTerm);
-  if (isStdoutTerm == 0 && isatty(0))
-  {
-    int tmp = system("bash -c 'exit $(stty size | cut -d\" \" -f2)'");
-    tmp = WEXITSTATUS(tmp);
-    if (10 <= tmp <= 512)
-      cols = tmp;
-  }
+  #ifndef _WIN32
+	  int isStdoutTerm = system("test -t 1");
+	  isStdoutTerm = WEXITSTATUS(isStdoutTerm);
+	  if (isStdoutTerm == 0 && isatty(0))
+	  {
+		int tmp = system("bash -c 'exit $(stty size | cut -d\" \" -f2)'");
+		tmp = WEXITSTATUS(tmp);
+		if (10 <= tmp <= 512)
+			cols = tmp;
+
+	  }
+  #endif
 
   /* LOOP OVER ARGUMENTS! */
   for(int i = 1; i < argc; ++i)
