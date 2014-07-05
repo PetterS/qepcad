@@ -145,6 +145,33 @@ class TestQuadratic(unittest.TestCase):
 		self.assertTrue(out.subs(b,100).subs(a,100))
 		self.assertFalse(out.subs(b,100).subs(a,1))
 
+	def test_a_b_c(self):
+		expr = Exists(x, sp.Eq(a * x**2 + b*x + c, 0))
+		out = run_qepcad(expr, [a, b, c], [x])
+
+		# We expect And(4*a*c - b**2 <= 0, Or(4*a*c - b**2 < 0, a != 0, c == 0))
+		self.assertTrue(out.subs(c, 0).subs(b, 1))
+		self.assertFalse(out.subs(b, 0).subs(a, 0).subs(c, 1))
+
+
+from qepcad import fix_logic_operators
+class TestOutputParser(unittest.TestCase):
+
+	def test_fix_logic_operators(self):
+		self.assertEqual(fix_logic_operators(r"a + b /\ c + (d - e)"),
+		                 "sp.And(a + b, c + (d - e))")
+
+		self.assertEqual(fix_logic_operators(r"a + b \/ c + (d - e)"),
+		                 "sp.Or(a + b, c + (d - e))")
+
+
+		self.assertEqual(fix_logic_operators(r"[a /\ b] \/ [c /\ d]"),
+		                 "sp.Or(sp.And(a, b), sp.And(c, d))")
+
+		input   = r"4*a*c - b**2 <= 0 /\ [ c = 0 \/ a /= 0 \/ 4*a*c - b**2 < 0 ]"
+		desired = "sp.And(4*a*c - b**2 <= 0, sp.Or(sp.Eq(c, 0), sp.Or(sp.Ne(a, 0), 4*a*c - b**2 < 0)))"
+		self.assertEqual(fix_logic_operators(input), desired)
+
 
 if __name__ == '__main__':
 	unittest.main()

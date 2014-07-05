@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import ast
 import os
 import re
 from subprocess import Popen, DEVNULL, PIPE
@@ -127,6 +128,66 @@ def sympy_to_qepcad_string(expr):
 		return variable_string
 
 
+def fix_logic_operators_recursive(output):
+
+	#print("Enter", output)
+
+	# Find an inner-most bracket.
+	start = -1
+	for i, ch in enumerate(output):
+		if ch == '[':
+			start = i
+		if ch == ']':
+			before = output[: start]
+			middle = fix_logic_operators_recursive(output[start + 1: i]).strip()
+			after  = output[i + 1:]
+			#return fix_logic_operators_recursive(before + '{' + middle + '}' + after)
+			return fix_logic_operators_recursive(before  + middle  + after)
+
+	# There are no brackets in the expression.
+	ops = [('/\\', 'sp.And'), ('\\/', 'sp.Or'), (' /= ', 'sp.Ne'), (' = ', 'sp.Eq')]
+
+	for op in ops:
+		pos = output.find(op[0])
+		if pos >= 0:
+			before = fix_logic_operators_recursive(output[: pos].strip())
+			after  = fix_logic_operators_recursive(output[pos + len(op[0]): ].strip())
+			return op[1] + '(' + before + ", " + after + ")"
+
+	# No brackets and no operators.
+	return output
+
+def fix_logic_operators(output):
+	
+	output = fix_logic_operators_recursive(output)
+	output = output.replace('{', '[')
+	output = output.replace('}', ']')
+	return output
+
+
+def parse_qepcad_output(output):
+
+	# Fix multiplication: "4 a" -> "4 * a".
+	new_output = None
+	while output != new_output:
+		new_output = output
+		output = re.sub(r'([a-z0-9])\s([a-z0-9])', r'\1 * \2', output)
+
+	# Fix power.
+	output = output.replace("^", "**")
+
+	output = fix_logic_operators(output)
+
+	symbols = re.findall("[a-z]", output)
+	for symbol in symbols:
+		exec(symbol + " = sp.Symbol('" + symbol + "')")
+
+	try:
+		return eval(output)
+	except:
+		print("Error parsing", output)
+		return None
+
 def run_qepcad(expr, free_vars, non_free_vars):
 	working_dir = find_qepcad_path()
 	qepcad_path = os.path.join(working_dir, "qepcad")
@@ -169,18 +230,5 @@ def run_qepcad(expr, free_vars, non_free_vars):
 	output_string = stdout[stdout.find(before) + len(before) : stdout.find(after)]
 	output_string = output_string.strip(" \n\t")
 
-	# Fix multiplication: "4 a" -> "4 * a".
-	new_output_string = None
-	while output_string != new_output_string:
-		new_output_string = output_string
-		output_string = re.sub(r'([a-z0-9])\s([a-z0-9])', r'\1 * \2', output_string)
-
-	# Fix power.
-	output_string = output_string.replace("^", "**")
-	try:
-		parsed_output = parse_expr(output_string)
-	except:
-		print("Error parsing", output_string)
-		return None
-
+	parsed_output = parse_qepcad_output(output_string)
 	return parsed_output
