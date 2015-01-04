@@ -49,7 +49,3 @@ In Ubuntu, you may have to execute
      sudo apt-get install libreadline-dev 
      
 to install a dependency (GNU Readline).
-
-Todo
-====
-Right now it only compiles with GCC in Linux or Cygwin. Making it work in Visual Studio as well would be nice.
