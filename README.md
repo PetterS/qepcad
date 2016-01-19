@@ -42,10 +42,18 @@ There are more examples in the tests folder.
 
 Compiling
 =========
-With Visual Studio in Windows, everything is included.
+With Visual Studio in Windows, everything is included. Just run the CMake graphical interface and point it to the source root.
 
 In Ubuntu, you may have to execute
 
      sudo apt-get install libreadline-dev 
      
-to install a dependency (GNU Readline).
+to install a dependency (GNU Readline). Then run
+
+     git clone https://github.com/PetterS/qepcad
+     cd qepcad
+     mkdir build
+     cd build
+     cmake ..
+     make
+
