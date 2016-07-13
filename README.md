@@ -16,7 +16,7 @@
 	Werner Krandick, Richard Liska, Scott McCallum,
 	Nicolas Robidoux, and Stanly Steinberg
 	=======================================================
-http://www.usna.edu/CS/~qepcad/B/QEPCAD.html
+https://www.usna.edu/CS/qepcadweb/B/QEPCAD.html
 
 
 This is a (shallow) fork of QEPCAD, a program performing cylindrical algebraic decomposition.
