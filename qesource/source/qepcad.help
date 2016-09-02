@@ -33,7 +33,7 @@ approx-precision 46 abcde m
 @
 approx-precision N
 
-Approximate algeraic numbers to N decimal places.
+Approximate algebraic numbers to N decimal places.
 @
 
 assume 98 a pc

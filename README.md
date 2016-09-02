@@ -16,7 +16,7 @@
 	Werner Krandick, Richard Liska, Scott McCallum,
 	Nicolas Robidoux, and Stanly Steinberg
 	=======================================================
-http://www.usna.edu/CS/~qepcad/B/QEPCAD.html
+https://www.usna.edu/CS/qepcadweb/B/QEPCAD.html
 
 
 This is a (shallow) fork of QEPCAD, a program performing cylindrical algebraic decomposition.
@@ -42,14 +42,18 @@ There are more examples in the tests folder.
 
 Compiling
 =========
-With Visual Studio in Windows, everything is included.
+With Visual Studio in Windows, everything is included. Just run the CMake graphical interface and point it to the source root.
 
 In Ubuntu, you may have to execute
 
      sudo apt-get install libreadline-dev 
      
-to install a dependency (GNU Readline).
+to install a dependency (GNU Readline). Then run
 
-Todo
-====
-Right now it only compiles with GCC in Linux or Cygwin. Making it work in Visual Studio as well would be nice.
+     git clone https://github.com/PetterS/qepcad
+     cd qepcad
+     mkdir build
+     cd build
+     cmake ..
+     make
+
