@@ -1,0 +1,6 @@
+[]
+(m,b,c)
+1
+(Eb)(Ec)[m>0 /\ 1+b>c /\ b+c>1 /\ c+1>b /\ 4 b^3+4 b^2 c+4 b^2+4 b c^2+4 b+4 c^3+4 c^2+4 c+4=(b^3 m+3 b^2 c m+3 b^2 m+3 b c^2 m+14 b c m+3 b m+c^3 m+3 c^2 m+3 c m+m)].
+assume[m>0].
+finish
