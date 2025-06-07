@@ -232,6 +232,7 @@ extern void FIRST5	P__((Word L, Word *a1_, Word *a2_, Word *a3_, Word *a4_, Word
 extern void FIRST6	P__((Word L, Word *a1_, Word *a2_, Word *a3_, Word *a4_, Word *a5_, Word *a6_));
 extern Word FLBRN	P__((BDigit *F));
 extern Word FOURTH	P__((Word L));
+extern void FPCATCH     P__((void));
 extern Word FPCHECK	P__((void));
 extern void FPROD	P__((Word *A, Word *B, BDigit d, Word *C));
 extern void FPROD1	P__((Word *A, Word *B, BDigit d, Word *C));
